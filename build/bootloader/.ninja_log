@@ -1,66 +1,67 @@
 # ninja log v5
+1042	1676	7612805526555080	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_sha.c.obj	5a00af45ac8cc423
 11	281	7612805512342109	project_elf_src_esp32.c	606b330a3d5b80bf
+120	716	7612805515854441	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2c_periph.c.obj	8fbb80bc5a41f2ca
+197	444	7612805515535828	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/ledc_periph.c.obj	9ca1876320b59858
+2016	2299	7612805534232818	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj	3f87aefabdb7b33e
 11	281	7612805512342109	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/project_elf_src_esp32.c	606b330a3d5b80bf
+1677	2094	7612805531311748	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_pm.c.obj	744d6dd219c2c79e
 93	337	7612805514326331	esp-idf/soc/CMakeFiles/__idf_soc.dir/soc_include_legacy_warn.c.obj	e6fe5243d24b1db2
 110	357	7612805514718900	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dac_periph.c.obj	52b90fce8a6fb587
+1203	1648	7612805526083828	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj	6fac70d29e9edd5b
+779	1155	7612805522578037	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj	90f324853328de10
 102	385	7612805514805742	esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj	5faf8a9c85710308
+377	777	7612805516733118	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/timer_periph.c.obj	23f6f62180cc1625
+1051	1758	7612805527613177	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj	5b89dc47e099587a
+146	826	7612805517218568	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/interrupts.c.obj	cad1f2d7bc496001
 68	395	7612805514864637	esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/efuse_hal.c.obj	a8234c4cab21cc85
-35	408	7612805514864637	esp-idf/hal/CMakeFiles/__idf_hal.dir/mpu_hal.c.obj	c26618359902dfdf
+1730	1979	7612805530836547	esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj	ebe7eb03ad2d2dd3
 129	423	7612805515040872	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/adc_periph.c.obj	49cfa081ff2244db
+35	408	7612805514864637	esp-idf/hal/CMakeFiles/__idf_hal.dir/mpu_hal.c.obj	c26618359902dfdf
 136	435	7612805515264026	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2s_periph.c.obj	6f9ec04cd46a36c2
-197	444	7612805515535828	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/ledc_periph.c.obj	9ca1876320b59858
-45	697	7612805515369058	esp-idf/hal/CMakeFiles/__idf_hal.dir/cpu_hal.c.obj	53070c951615a7ac
 176	708	7612805515703117	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/lcd_periph.c.obj	39682c46f8ff7296
-120	716	7612805515854441	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2c_periph.c.obj	8fbb80bc5a41f2ca
+45	697	7612805515369058	esp-idf/hal/CMakeFiles/__idf_hal.dir/cpu_hal.c.obj	53070c951615a7ac
 183	726	7612805516034635	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/pcnt_periph.c.obj	5a5132b4d1a496d
+791	1202	7612805523050950	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj	3690ee94c7e888f7
+768	1719	7612805526932072	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj	eff1e6e806fbb5ed
 153	735	7612805516232672	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/gpio_periph.c.obj	f3fe3a89cb40b047
 339	745	7612805516394144	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sigmadelta_periph.c.obj	471eb7dd904da1e3
+727	1592	7612805525258500	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj	f72703d3c5a5bf6
 232	756	7612805516715760	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdio_slave_periph.c.obj	15ee2801581ea8ad
 212	766	7612805516733118	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/mcpwm_periph.c.obj	974dfd1b76e1afde
-377	777	7612805516733118	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/timer_periph.c.obj	23f6f62180cc1625
 244	789	7612805516822171	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/uart_periph.c.obj	f4755c97f0c2883a
+1157	1847	7612805528784587	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_utility.c.obj	dc2697399da0fc7f
 386	800	7612805516880141	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/touch_sensor_periph.c.obj	6d74148a3b371949
-146	826	7612805517218568	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/interrupts.c.obj	cad1f2d7bc496001
 57	862	7612805517370381	esp-idf/hal/CMakeFiles/__idf_hal.dir/wdt_hal_iram.c.obj	4e807a20b521efb0
 168	871	7612805517383164	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rtc_io_periph.c.obj	e9bc92c38ef10380
+841	1215	7612805523133650	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj	d198ccb9329a3990
 83	880	7612805517699948	esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj	e3822522500b7296
 283	892	7612805517775646	CMakeFiles/bootloader.elf.dir/project_elf_src_esp32.c.obj	522dd4e16fc5ea0a
 398	906	7612805517919675	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/spi_periph.c.obj	60055060d92aeb2e
 436	1031	7612805518081180	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj	9342a90e94648b3
+709	1135	7612805522419624	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj	f3848c31c1f3d14
 189	1041	7612805518236446	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rmt_periph.c.obj	ca6e131248670433
 410	1050	7612805519905781	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/sdmmc_periph.c.obj	e378cb15ee88fdc5
 445	1060	7612805521471737	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_flash.c.obj	1b279f286a184ac
 717	1115	7612805522105715	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32.c.obj	a77a88464dc4cf7a
-709	1135	7612805522419624	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj	f3848c31c1f3d14
+872	1615	7612805525577635	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj	1d0407525ec159e8
 699	1146	7612805522578037	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj	9d60b3345eb5ebe5
-779	1155	7612805522578037	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj	90f324853328de10
-791	1202	7612805523050950	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj	3690ee94c7e888f7
-841	1215	7612805523133650	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj	d198ccb9329a3990
+1594	1901	7612805530050039	esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj	c7613f98952881e1
+1147	1768	7612805528054418	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_fields.c.obj	117fcd5e93976e5a
 1062	1312	7612805524259133	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_soc.c.obj	17f8ee7187667a04
 863	1572	7612805524708337	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_qio_mode.c.obj	427352444c40d72c
 747	1581	7612805525030340	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj	e93c6ef6e02d522b
-727	1592	7612805525258500	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj	f72703d3c5a5bf6
 737	1605	7612805525258500	esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/esp32/spi_flash_rom_patch.c.obj	1d59443bc5aaae53
-872	1615	7612805525577635	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj	1d0407525ec159e8
+1784	2014	7612805531311748	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj	2e34685d5d3d0726
 801	1626	7612805525657808	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_flash_config_esp32.c.obj	b4b53f3f159534b3
+1226	1783	7612805528054418	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj	a4089fb0e5897ca1
 1136	1636	7612805525821511	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_table.c.obj	c96b29b8b24b5028
-1203	1648	7612805526083828	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj	6fac70d29e9edd5b
-1042	1676	7612805526555080	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32/bootloader_sha.c.obj	5a00af45ac8cc423
+881	1709	7612805526774917	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj	da2d63d104442615
 893	1686	7612805526615235	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_init.c.obj	85e35661278d6c41
 758	1696	7612805526615235	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj	ccec92343825a487
-881	1709	7612805526774917	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj	da2d63d104442615
-768	1719	7612805526932072	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj	eff1e6e806fbb5ed
 1033	1728	7612805527145557	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj	6ff2c3b2748a0057
 907	1738	7612805527253058	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console.c.obj	8d2750e29332912f
-1051	1758	7612805527613177	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj	5b89dc47e099587a
-1147	1768	7612805528054418	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_fields.c.obj	117fcd5e93976e5a
-1226	1783	7612805528054418	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj	a4089fb0e5897ca1
-1157	1847	7612805528784587	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32/esp_efuse_utility.c.obj	dc2697399da0fc7f
 424	1856	7612805528784587	esp-idf/micro-ecc/CMakeFiles/__idf_micro-ecc.dir/uECC_verify_antifault.c.obj	8833010bd9110df2
-1594	1901	7612805530050039	esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj	c7613f98952881e1
-1730	1979	7612805530836547	esp-idf/xtensa/CMakeFiles/__idf_xtensa.dir/eri.c.obj	ebe7eb03ad2d2dd3
-1784	2014	7612805531311748	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj	2e34685d5d3d0726
-1677	2094	7612805531311748	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_pm.c.obj	744d6dd219c2c79e
 1857	2104	7612805531469243	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_tjpgd.c.obj	af461dbd0084234a
 1848	2113	7612805531785918	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj	671eb2a65cc8ecaa
 1902	2115	7612805531942984	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_longjmp.S.obj	fe87c3df929ba4d7
@@ -74,13 +75,14 @@
 1574	2207	7612805532895194	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api_key_esp32.c.obj	b4f2f57a41c3021b
 1637	2239	7612805532895194	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu_util.c.obj	c15750edb32b7107
 1698	2242	7612805533055477	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_time.c.obj	7b14bd07ff366b7
+3623	3878	7612805549968982	esp-idf/bootloader_support/libbootloader_support.a	ca5728431f66f760
 1720	2245	7612805533055477	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_wdt.c.obj	281efda24a820f28
 1667	2248	7612805533529600	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_sleep.c.obj	cf437f19a6896b39
 1688	2263	7612805533696007	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_init.c.obj	3cf5eef3d5a40ffe
 1628	2266	7612805533852217	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/compare_set.c.obj	d9defba5f521b314
 1584	2285	7612805534109542	esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj	1a99efaca9ce840
-2016	2299	7612805534232818	esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj	3f87aefabdb7b33e
 1617	2316	7612805534410803	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_clk.c.obj	78a6cece9044d6bb
+3473	3620	7612805547255980	esp-idf/efuse/libefuse.a	9a26d50d6215b76
 1980	2355	7612805534813759	esp-idf/log/CMakeFiles/__idf_log.dir/log.c.obj	5e1e222e191bab64
 2105	2374	7612805535052604	esp-idf/log/CMakeFiles/__idf_log.dir/log_buffers.c.obj	a281a305682ee4f4
 2096	2376	7612805535052604	esp-idf/log/CMakeFiles/__idf_log.dir/log_noos.c.obj	5e8d06c7f899e13b
@@ -90,8 +92,6 @@
 2853	3051	7612805541710069	esp-idf/xtensa/libxtensa.a	523cbf322e545275
 3084	3311	7612805544313789	esp-idf/esp_hw_support/libesp_hw_support.a	87f2935c2eb2750e
 3314	3472	7612805546005777	esp-idf/esp_system/libesp_system.a	3fb80bb10068a531
-3473	3620	7612805547255980	esp-idf/efuse/libefuse.a	9a26d50d6215b76
-3623	3878	7612805549968982	esp-idf/bootloader_support/libbootloader_support.a	ca5728431f66f760
 3882	4079	7612805551902822	esp-idf/spi_flash/libspi_flash.a	37b1023c8a3880
 4082	4189	7612805553149124	esp-idf/micro-ecc/libmicro-ecc.a	8c2c3f6a1a6f766c
 4191	4342	7612805554591431	esp-idf/soc/libsoc.a	5f2e3b4a72e8e357
@@ -100,109 +100,123 @@
 4724	5853	7612805569261795	bootloader.elf	617a454ad4124ef7
 5855	6591	7612805577139621	.bin_timestamp	5acfa2b65bc1210a
 5855	6591	7612805577139621	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/.bin_timestamp	5acfa2b65bc1210a
-6593	6990	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-6593	6990	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	262	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	262	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	183	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	183	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	190	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	190	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	179	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	179	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	184	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	184	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	188	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	188	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	158	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	158	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	161	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	161	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	211	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	211	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	157	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	157	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	198	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	198	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	196	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	196	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	150	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-10	150	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	181	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	181	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-11	157	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-11	157	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-9	158	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-9	158	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	160	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	160	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-17	314	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-17	314	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-26	282	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-26	282	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	171	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	171	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	181	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	181	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	115	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	115	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	131	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	131	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	192	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	192	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	116	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	116	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+21	141	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+21	141	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	138	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	138	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	120	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	120	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	129	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	129	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	124	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	124	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	139	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	139	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+27	142	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+27	142	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	139	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	139	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	116	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+7	116	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	118	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	118	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	107	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	107	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	115	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	115	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+24	367	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+24	367	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	213	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	213	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	210	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	210	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	155	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	155	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	191	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	191	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	145	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	145	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	199	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	199	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	174	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	174	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	189	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	189	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	173	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	173	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+23	305	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+23	305	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+30	235	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+30	235	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	296	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	296	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	236	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	236	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+19	260	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+19	260	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	207	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	207	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+18	247	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+18	247	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+20	232	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+20	232	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+25	304	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+25	304	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	191	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	191	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	194	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	194	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	180	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	180	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	193	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	193	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	155	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+11	155	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	148	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	148	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	161	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+10	161	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	139	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	139	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	164	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	164	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	194	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	194	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	211	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	211	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	198	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	198	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+16	202	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+16	202	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	219	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	219	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	165	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+9	165	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	182	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	182	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
 12	194	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
 12	194	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	182	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	182	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	196	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	196	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	182	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	182	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	185	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	185	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	184	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	184	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	179	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	179	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-23	241	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-23	241	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	179	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	179	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	178	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	178	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	197	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	197	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	199	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	199	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	181	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	181	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-38	346	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-38	346	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-18	193	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-18	193	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	187	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	187	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	182	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	182	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	224	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	224	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	214	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	214	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	200	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	200	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	171	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	171	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	190	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	190	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	207	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-15	207	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-16	185	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-16	185	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	206	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-14	206	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	173	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-12	173	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-20	277	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-20	277	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	256	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-13	256	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-19	153	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-19	153	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-8	122	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-8	122	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-8	106	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
-8	106	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+24	217	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+24	217	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	201	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+17	201	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	199	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+15	199	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	187	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+13	187	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	118	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	118	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	130	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+12	130	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	141	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+14	141	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	119	0	esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
+8	119	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/esp-idf/esptool_py/CMakeFiles/bootloader_check_size	e8fa0242688acde1
