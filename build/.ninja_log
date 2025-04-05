@@ -1308,3 +1308,225 @@
 4297	4575	7647260717649483	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
 4577	4690	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
 4577	4690	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+75	318	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+75	318	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+75	318	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+75	318	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+75	318	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+75	318	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+75	318	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+75	318	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+89	744	7647266663364119	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+744	862	7647266665119331	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+863	2778	7647266684169616	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+863	2778	7647266684169616	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2778	3892	7647266695210459	FourWheelSteering.elf	62dc3cb3b0754b5d
+3895	4143	7647266697899879	.bin_timestamp	141209ba76656d21
+3895	4143	7647266697899879	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4144	4248	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4144	4248	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+62	323	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+62	323	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+62	323	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+62	323	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+62	323	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+62	323	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+62	323	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+62	323	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+72	750	7647268781067865	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+751	831	7647268782185338	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+832	2712	7647268800763933	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+832	2712	7647268800763933	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2713	3881	7647268812283385	FourWheelSteering.elf	62dc3cb3b0754b5d
+3885	4149	7647268815293142	.bin_timestamp	141209ba76656d21
+3885	4149	7647268815293142	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4150	4265	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4150	4265	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+65	321	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+65	321	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+65	321	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+65	321	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+65	321	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+65	321	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+65	321	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+65	321	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+78	767	7647270707846607	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+768	873	7647270709276568	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+874	2777	7647270728166136	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+874	2777	7647270728166136	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2777	4241	7647270742421291	FourWheelSteering.elf	62dc3cb3b0754b5d
+4244	4509	7647270745596749	.bin_timestamp	141209ba76656d21
+4244	4509	7647270745596749	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4511	4680	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4511	4680	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+62	291	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+62	291	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+62	291	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+62	291	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+62	291	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+62	291	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+62	291	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+62	291	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+75	755	7647272222746017	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+757	836	7647272224247107	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+837	3375	7647272249079925	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+837	3375	7647272249079925	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+3376	4583	7647272261235459	FourWheelSteering.elf	62dc3cb3b0754b5d
+4585	4844	7647272264343314	.bin_timestamp	141209ba76656d21
+4585	4844	7647272264343314	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4846	4996	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4846	4996	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+55	288	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+55	288	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+55	288	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+55	288	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+55	288	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+55	288	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+55	288	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+55	288	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+68	682	7647277490939159	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+683	776	7647277492350442	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+777	2740	7647277511787529	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+777	2740	7647277511787529	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2740	3856	7647277522803140	FourWheelSteering.elf	62dc3cb3b0754b5d
+3857	4177	7647277526306529	.bin_timestamp	141209ba76656d21
+3857	4177	7647277526306529	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4180	4345	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4180	4345	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+65	193	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+65	193	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+54	265	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	265	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+54	265	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+54	265	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+54	265	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	265	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+54	265	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+54	265	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+54	259	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	259	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+54	259	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+54	259	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+54	259	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	259	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+54	259	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+54	259	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+64	663	7647279575101186	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+663	736	7647279576269030	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+736	2783	7647279596707669	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+736	2783	7647279596707669	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2784	3984	7647279608122925	FourWheelSteering.elf	62dc3cb3b0754b5d
+3989	4306	7647279612015763	.bin_timestamp	141209ba76656d21
+3989	4306	7647279612015763	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4310	4441	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4310	4441	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+57	325	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+57	325	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+57	325	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+57	325	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+57	325	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+57	325	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+57	325	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+57	325	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+68	769	7647281076681637	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+770	850	7647281078029155	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+850	2905	7647281098424667	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+850	2905	7647281098424667	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2905	4072	7647281109730252	FourWheelSteering.elf	62dc3cb3b0754b5d
+4076	4389	7647281113389799	.bin_timestamp	141209ba76656d21
+4076	4389	7647281113389799	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4390	4539	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4390	4539	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+70	286	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+70	286	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+70	286	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+70	286	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+70	286	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+70	286	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+70	286	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+70	286	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+82	696	7647282233728797	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+696	784	7647282234988819	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+785	3160	7647282258588052	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+785	3160	7647282258588052	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+3160	4380	7647282270182731	FourWheelSteering.elf	62dc3cb3b0754b5d
+4385	4684	7647282274014700	.bin_timestamp	141209ba76656d21
+4385	4684	7647282274014700	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4685	4804	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4685	4804	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+73	366	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+73	366	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+73	366	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+73	366	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+73	366	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+73	366	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+73	366	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+73	366	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+89	798	7647284248809713	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+798	889	7647284250342747	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+890	2974	7647284271041749	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+890	2974	7647284271041749	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2974	4100	7647284282180267	FourWheelSteering.elf	62dc3cb3b0754b5d
+4101	4383	7647284285182204	.bin_timestamp	141209ba76656d21
+4101	4383	7647284285182204	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4385	4577	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4385	4577	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+65	293	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+65	293	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+65	293	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+65	293	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+65	293	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+65	293	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+65	293	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+65	293	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+76	768	7647284860284729	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+769	886	7647284861904464	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+887	3047	7647284883482028	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+887	3047	7647284883482028	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+3048	4157	7647284894409171	FourWheelSteering.elf	62dc3cb3b0754b5d
+4159	4461	7647284897733247	.bin_timestamp	141209ba76656d21
+4159	4461	7647284897733247	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4463	4610	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4463	4610	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+59	298	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+59	298	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+59	298	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+59	298	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+59	298	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+59	298	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+59	298	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+59	298	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+70	721	7647285959657994	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+722	805	7647285961160154	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+806	2880	7647285981688763	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+806	2880	7647285981688763	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+2881	4066	7647285993287669	FourWheelSteering.elf	62dc3cb3b0754b5d
+4071	4445	7647285997461303	.bin_timestamp	141209ba76656d21
+4071	4445	7647285997461303	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4448	4725	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4448	4725	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+54	308	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	308	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+54	308	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+54	308	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+54	308	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+54	308	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+54	308	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+54	308	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+55	338	7612805510280697	bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+55	338	7612805510280697	bootloader/bootloader.elf	1494027e4d62a784
+55	338	7612805510280697	bootloader/bootloader.bin	1494027e4d62a784
+55	338	7612805510280697	bootloader/bootloader.map	1494027e4d62a784
+55	338	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	1494027e4d62a784
+55	338	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.elf	1494027e4d62a784
+55	338	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.bin	1494027e4d62a784
+55	338	7612805510280697	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/bootloader/bootloader.map	1494027e4d62a784
+66	797	7647290558612567	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	39a59c083c9557a3
+799	941	7647290560770683	esp-idf/main/libmain.a	3d1a8adfe51c1c5
+941	3004	7647290581221871	esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+941	3004	7647290581221871	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esp_system/ld/sections.ld	e4cb2aadb96ab118
+3005	4123	7647290592333273	FourWheelSteering.elf	62dc3cb3b0754b5d
+4127	4441	7647290595654881	.bin_timestamp	141209ba76656d21
+4127	4441	7647290595654881	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/.bin_timestamp	141209ba76656d21
+4443	4588	0	esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
+4443	4588	0	C:/Users/Chapa/OneDrive/Desktop/UTA/2025/Spring 25/MAE 4287 SENIOR DESIGN 1/Code/ESP32_FWS_Build/FourWheelSteering/build/esp-idf/esptool_py/CMakeFiles/app_check_size	498b9f790d6db184
