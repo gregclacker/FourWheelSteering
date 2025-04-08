@@ -28,7 +28,6 @@ double deadband = 0;
 //double Gain_Input;    //Not sure if this will be used
 //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
 int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
-double time;
 
 
 #define LED_PIN 2       //This is for the onboard LED (Status LED)
@@ -53,12 +52,6 @@ typedef struct {
 double Kp = 0.16;        //The Kp value of the PID
 double Ki = 0.000;       //The Ki value of the PID
 double Kd = 0.016;        //The Kd value of the PID
-
-/*
-double Kp_min = #;
-double Kp_max = #;
-
-*/
 
 PID pid;
 
@@ -103,21 +96,6 @@ double compute_pid(PID *pid, double error)
     return output;
 }
 
-
-
-/*
-void move_forward(){
-    gpio_set_level(MOTOR_DRIVER_1PIN, 1);
-    gpio_set_level(MOTOR_DRIVER_2PIN,0);
-}
-*/
-/*
-void move_backward(){
-    gpio_set_level(MOTOR_DRIVER_1PIN, 0);
-    gpio_set_level(MOTOR_DRIVER_2PIN, 1);
-}
-*/
-
 int duty_cycle_convert(double pid_output)
 {
     int duty = (int)(fabs(pid_output) * (PWM_MAX_DUTY / 15)); // 🔹 Adjusted scaling factor
@@ -126,7 +104,6 @@ int duty_cycle_convert(double pid_output)
     if (duty > PWM_MAX_DUTY) duty = PWM_MAX_DUTY;
     
     if (duty > 0 && duty < 300) duty = 400;  // Minimum force to actually move
-
 
     return duty;
 }
@@ -179,8 +156,6 @@ double READ_RS_POT()
     }
 }
 
-
-
 int POT_ADJUSTMENT()
 {
     int ADJUSTMENT_RAW_VAL = adc1_get_raw(ADJUSTMENT_POT_PIN);  // Get raw ADC value
@@ -207,31 +182,6 @@ void WheelAngleRight(double FS_SteeringAngle)       //The equation for the right
 {
     RW_Angle = WA_RW_Slope*((-1*FS_SteeringAngle))+WA_RW_Intercept;
 }
-
-/*
-double IdealRearAngle(double FS_SteeringAngle)
-{
-    if (FS_SteeringAngle > deadband)    //Left Turn Steering Percentage Calc
-    {
-        LT_Percentage = -50 * tanh(0.1 * (TR_RW_Coefficient * pow(FS_SteeringAngle, TR_RW_Power)) - 4.5) + 50;
-        double RearAngle = (LT_Percentage / 100.0) * 6.0;
-        RS_Deg = RearAngle * (60.0 / 6.0);
-        return RS_Deg;
-    }
-    else if (FS_SteeringAngle < -deadband)  // Right Turn Steering Percentage Calc
-    {
-        RT_Percentage = -50 * tanh(0.1 * (TR_LW_Coefficient * pow(-FS_SteeringAngle, TR_LW_Power)) - 4.5) + 50;
-        double RearAngle = (RT_Percentage / 100.0) * 6.0;
-        RS_Deg = RearAngle * (60.0 / 6.0) * -1;
-        return RS_Deg;
-    }
-    else
-    {
-        RS_Deg = 0.0;
-        return RS_Deg;
-    }
-}
-*/
 
 double IdealRearAngle(double FS_SteeringAngle)
 {
@@ -289,8 +239,7 @@ double IdealRearAngle(double FS_SteeringAngle)
         if (fabs(error) < 1.2) {
         error = 0;
         }
-
-               
+ 
         double pid_output = compute_pid(&pid, error);
 
         // Convert PID output into a PWM duty cycle
@@ -311,15 +260,12 @@ double IdealRearAngle(double FS_SteeringAngle)
         ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
 
-        time = time + 0.04;
-
-
         // Debugging output to verify PID response
         /*printf("FS: %.2lf, RS: %.2lf, IdealRS: %.2lf, Error: %.2lf, PID: %.2lf\n",
             FS_SteeringAngle, RS_SteeringAngle, IDEAL_RS_ANGLE, error, pid_output);
      
         */
-        printf("%.2lf\t %.2lf \t %.2lf \n", IDEAL_RS_ANGLE, RS_SteeringAngle, time);
+        printf("%.2lf\t %.2lf\n", IDEAL_RS_ANGLE, RS_SteeringAngle);
         // LED Blink for Status (indicates loop is running)
         gpio_set_level(LED_PIN, 1);
         vTaskDelay(10 / portTICK_PERIOD_MS);
