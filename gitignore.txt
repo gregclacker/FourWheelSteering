@@ -1,2 +1,31 @@
 */build
 *.devcontainer
+
+# Build artifacts
+/build/
+/flash_project_args
+/sdkconfig
+/sdkconfig.old
+/sdkconfig.defaults
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.bak
+
+# Log files and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Dependency files (if not managed by Git submodules or component registry)
+/components/*/build/
+/components/*/sdkconfig
+/components/*/sdkconfig.old
+
+# OS-specific files
+.DS_Store
+Thumbs.db
