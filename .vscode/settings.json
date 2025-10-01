@@ -1,10 +1,12 @@
 {
     "C_Cpp.intelliSenseEngine": "default",
-    "idf.espIdfPathWin": "C:\\Users\\Chapa\\esp\\v4.4.6\\esp-idf",
+    "idf.espIdfPathWin": "C:\\Users\\turtl\\esp\\v5.4.2\\esp-idf",
     "idf.openOcdConfigs": [
         "board/esp32-wrover-kit-3.3v.cfg"
     ],
-    "idf.portWin": "COM5",
-    "idf.toolsPathWin": "C:\\Users\\Chapa\\.espressif",
-    "idf.flashType": "UART"
+    "idf.portWin": "COM8",
+    "idf.toolsPathWin": "C:\\Espressif",
+    "idf.flashType": "UART",
+    "idf.pythonInstallPath": "C:\\Espressif\\tools\\idf-python\\3.11.2\\python.exe",
+    "idf.monitorPort": "COM8"
 }
