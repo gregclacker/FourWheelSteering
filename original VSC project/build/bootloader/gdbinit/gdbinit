@@ -1,0 +1,2 @@
+source D:/repos/FourWheelSteering/build/bootloader/gdbinit/symbols
+source D:/repos/FourWheelSteering/build/bootloader/gdbinit/connect
