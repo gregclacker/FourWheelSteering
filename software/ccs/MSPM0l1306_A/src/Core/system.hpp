@@ -50,9 +50,9 @@
 
 /*--- meta ---------------------------------------------*/
 
-#define PROJECT_NAME            "Voltage Tap MSPM0L1305"
-#define PROJECT_DESCRIPTION     "github.com/Gregification/BeeMS"
-#define PROJECT_VERSION         "B.2.0" // [project version].[hardware version].[software version]
+#define PROJECT_NAME            "UTA Racing F16, 4 wheel steering using MSPM0L1306"
+#define PROJECT_DESCRIPTION     "github.com/gregclacker/FourWheelSteering"
+#define PROJECT_VERSION         "0.0" // [project version].[hardware version].[software version]
 
 /*--- shorthand ----------------------------------------*/
 
@@ -76,6 +76,16 @@
 /*--- general configuration ----------------------------*/
 
 #define NEWLINE                     "\n\r"
+#define CLIERROR                    "\033[38;2;255;0;0m"
+#define CLIHIGHLIGHT                "\033[38;2;255;255;0m"
+#define CLIGOOD                     "\033[38;2;0;255;0m"
+#define CLIYES                      "\033[38;2;0;255;255m"
+#define CLINO                       "\033[38;2;255;0;255m"
+#define CLIWARN                     "\033[38;2;255;100;0m"
+#define CLIRESET                    "\033[0m"
+#define CLICLEAR                    "\033[2J\033[H\033[0m"
+
+
 #define MAX_STR_LEN_COMMON          125   // assumed max length of a string if not specified. to minimize the damage of overruns.
 #define MAX_STR_ERROR_LEN           (MAX_STR_LEN_COMMON * 2)
 #define POWER_STARTUP_DELAY         16
