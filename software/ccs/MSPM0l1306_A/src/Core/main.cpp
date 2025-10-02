@@ -14,7 +14,7 @@
 #include "system.hpp"
 
 void thing( void * ){
-    auto &led = System::GPIO::PA26;
+    auto &led = System::GPIO::PA27;
     DL_GPIO_initDigitalOutputFeatures(
             led.iomux,
             DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
@@ -42,6 +42,19 @@ void thing( void * ){
 
 
 /*************************************************************/
+GPTIMER_Regs * PWMTimer = TIMG1;
+constexpr uint32_t PWMMAX = 0xFFFF;
+
+void setPWM(uint32_t val){
+    if(val >= PWMMAX)
+        val = PWMMAX - 1;
+
+    if(val == 0)
+        val = PWMMAX;
+
+    DL_Timer_setCaptureCompareValue(PWMTimer, val, DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX);
+}
+
 
 int main(){
     System::init();
@@ -52,8 +65,6 @@ int main(){
     /*** PWM config *******************************************/
     /* PA26 used as PWM output. driven by TIMER-1 C0
      */
-    GPTIMER_Regs * PWMTimer = TIMG1;
-    constexpr uint32_t PWMMAX = 100;
 
     // setup PA26 as PWM output
     DL_GPIO_initPeripheralOutputFunctionFeatures(
@@ -73,7 +84,7 @@ int main(){
         constexpr DL_Timer_ClockConfig clkConfig = {
                 .clockSel      = DL_TIMER_CLOCK::DL_TIMER_CLOCK_BUSCLK,
                 .divideRatio   = DL_TIMER_CLOCK_DIVIDE::DL_TIMER_CLOCK_DIVIDE_1,
-                .prescale      = 255,
+                .prescale      = 0,
             };
         DL_Timer_setClockConfig(PWMTimer, &clkConfig);
     }
@@ -97,7 +108,7 @@ int main(){
     DL_Timer_setCaptureCompareOutCtl(
             PWMTimer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
-            DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
+            DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
             DL_TIMER_CC_OCTL_SRC_FUNCVAL,
             DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
         );
@@ -106,25 +117,33 @@ int main(){
             DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
             DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
         );
-    DL_Timer_setCaptureCompareValue(
-            PWMTimer,
-            PWMMAX * 0.7,
-            DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
-        );
-    DL_Timer_setCaptCompUpdateMethod(
-            PWMTimer,
-            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_EVT,
-            DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
-        );
 
-    DL_Timer_setCaptureCompareValue(PWMTimer, PWMMAX * 1, DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX);
+    setPWM(0);
     DL_Timer_enableClock(PWMTimer);
     DL_Timer_setCCPDirection(PWMTimer, DL_TIMER_CC0_OUTPUT);
-
+    DL_Timer_startCounter(PWMTimer);
 
     /**********************************************************/
 
-    thing(0);
+    while(1){
+        static double duty = 0;
+        static double dir = 0.01;
+
+        duty += dir;
+
+        if(duty > 1){
+            duty = 1;
+            dir = -0.01;
+        }
+        if(duty < 0){
+            duty = 0;
+            dir = 0.01;
+        }
+
+        setPWM(PWMMAX * duty);
+
+        delay_cycles(System::CLK::CPUCLK/20);
+    }
 
     while(true) {
         System::FailHard("reached end of main" NEWLINE);
