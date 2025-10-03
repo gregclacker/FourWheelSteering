@@ -118,28 +118,181 @@ int main(){
             DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
         );
 
+    double IDEAL_RS_ANGLE;
+    double FS_SteeringAngle; //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
+    double RS_SteeringAngle;        //Input Rear Steering Angle
+    // defines values for PID and calculus
+    typedef struct {
+        double Kp;
+        double Ki;
+        double Kd;
+        double previous_error;
+        double integral;
+
+    } PID;
+
+    double Kp = 0.16;        //The Kp value of the PID
+    double Ki = 0.000;       //The Ki value of the PID
+    double Kd = 0.016;        //The Kd value of the PID
+
+    PID pid;
+
+    void setup_pid(PID *pid) {
+    pid->Kp = Kp;
+    pid->Ki = Ki;
+    pid->Kd = Kd;
+    pid->previous_error = 0;
+    pid->integral = 0;
+    }
+
+    //TODO: Make sure to fill this in
+    double READ_FS_POT()
+    {
+
+    }
+    double READ_RS_POT()
+      {
+
+      }
+    double compute_pid(PID *pid, double error)
+        {
+            double P_out = pid->Kp * error;
+
+            // **Reset integral when error direction changes**
+            if ((pid->previous_error > 0 && error < 0) || (pid->previous_error < 0 && error > 0)) {
+                pid->integral = 0;
+            } else {
+                pid->integral += error;
+            }
+
+            // **Clamp integral to prevent windup**
+            if (pid->integral > INTEGRAL_LIMIT) pid->integral = INTEGRAL_LIMIT;
+            if (pid->integral < -INTEGRAL_LIMIT) pid->integral = -INTEGRAL_LIMIT;
+
+            double I_out = pid->Ki * pid->integral;
+
+            double derivative = (error - pid->previous_error);
+            double D_out = pid->Kd * derivative;
+
+            pid->previous_error = error;
+
+            double output = P_out + I_out + D_out;
+            // Math to find the Ideal angle under the intergral math things
+            double IdealRearAngle(double FS_SteeringAngle)
+            {
+                if (FS_SteeringAngle > deadband)    //Left Turn Steering Percentage Calc
+                {
+                    LT_Percentage = -50 * tanh(0.1 * (TR_RW_Coefficient * pow(FS_SteeringAngle, TR_RW_Power)) - 4.5) + 50;
+                    double RearAngle = (LT_Percentage / 100.0) * 135.0;
+                    RS_Deg = RearAngle;
+                    return RS_Deg;
+                }
+                else if (FS_SteeringAngle < -deadband)  // Right Turn Steering Percentage Calc
+                {
+                    RT_Percentage = -50 * tanh(0.1 * (TR_LW_Coefficient * pow(-FS_SteeringAngle, TR_LW_Power)) - 4.5) + 50;
+                    double RearAngle = (RT_Percentage / 100.0) * 135.0;
+                    RS_Deg = RearAngle * -1 ;
+                    return RS_Deg;
+                }
+                {
+                    RS_Deg = 0.0;
+                    return RS_Deg;
+                }
+                //compute pid function for things
+                double compute_pid(PID *pid, double error)
+                {
+                    double P_out = pid->Kp * error;
+
+                    // **Reset integral when error direction changes**
+                    if ((pid->previous_error > 0 && error < 0) || (pid->previous_error < 0 && error > 0)) {
+                        pid->integral = 0;
+                    } else {
+                        pid->integral += error;
+                    }
+
+                    // **Clamp integral to prevent windup**
+                    if (pid->integral > INTEGRAL_LIMIT) pid->integral = INTEGRAL_LIMIT;
+                    if (pid->integral < -INTEGRAL_LIMIT) pid->integral = -INTEGRAL_LIMIT;
+
+                    double I_out = pid->Ki * pid->integral;
+
+                    double derivative = (error - pid->previous_error);
+                    double D_out = pid->Kd * derivative;
+
+                    pid->previous_error = error;
+
+                    double output = P_out + I_out + D_out;
+
+                    // Debug Output
+                    /*printf("PID Debug - Error: %lf, P: %lf, I: %lf, D: %lf, PID Output: %lf\n",
+                           error, P_out, I_out, D_out, output);
+                    */
+                    return output;
+                }
+            // Debug Output
+            /*printf("PID Debug - Error: %lf, P: %lf, I: %lf, D: %lf, PID Output: %lf\n",
+                   error, P_out, I_out, D_out, output);
+            */
+            return output;
+        }
+
     setPWM(0);
     DL_Timer_enableClock(PWMTimer);
     DL_Timer_setCCPDirection(PWMTimer, DL_TIMER_CC0_OUTPUT);
     DL_Timer_startCounter(PWMTimer);
+    //this gpio is going to be binded to the motor that steer the rear wheels
+    auto &motor_dir = System::GPIO::PA23;
+        DL_GPIO_initDigitalOutputFeatures(
+                motor_dir.iomux,
+                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+            );
+        DL_GPIO_clearPins(GPIOPINPUX(motor_dir));
+        DL_GPIO_enableOutput(GPIOPINPUX(motor_dir));
+
+ //TODO: add pin later for ac/dc for the something that is analog to digitl cause its on the car
+//Analog pins are PA1 - PA9
+        auto &adc_o = System::GPIO::PA7;
+               DL_GPIO_initDigitalOutputFeatures(
+                       adc_o.iomux,
+                       DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                       DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                       DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                       DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+                   );
+               DL_GPIO_clearPins(GPIOPINPUX(adc_o));
+               DL_GPIO_enableOutput(GPIOPINPUX(adc_o));
+               setup_pid(&pid);
 
     /**********************************************************/
 
     while(1){
+        FS_SteeringAngle = READ_FS_POT();  // Front steering input
+        RS_SteeringAngle = READ_RS_POT();  // Rear steering feedback
+
+        // Calculate ideal rear steering angle
+               IDEAL_RS_ANGLE = IdealRearAngle(FS_SteeringAngle);
+       // Compute PID error (Difference between actual and ideal rear steering)
+        double error = RS_SteeringAngle - IDEAL_RS_ANGLE ;
+        // Apply deadband
+          if (fabs(error) < 1.2) {
+          error = 0;
+          }
+
+          double pid_output = compute_pid(&pid, error);
+
+          // Convert PID output into a PWM duty cycle
+          //int duty_cycle = duty_cycle_convert(pid_output); TODO: Consider defining this for LED (dunno what LED does)
+        /*
         static double duty = 0;
-        static double dir = 0.01;
 
-        duty += dir;
-
-        if(duty > 1){
-            duty = 1;
-            dir = -0.01;
-        }
-        if(duty < 0){
+        if(duty == 1){
             duty = 0;
-            dir = 0.01;
-        }
-
+        } else {
+            duty = 1;
+        }*/
         setPWM(PWMMAX * duty);
 
         delay_cycles(System::CLK::CPUCLK/20);
