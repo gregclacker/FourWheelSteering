@@ -254,8 +254,8 @@ int main(){
 
  //TODO: add pin later for ac/dc for the something that is analog to digitl cause its on the car
 //Analog pins are PA1 - PA9
-        auto &adc_o = System::GPIO::PA7;
-               DL_GPIO_initDigitalOutputFeatures(
+        auto &adc_o_A = System::GPIO::PA7; //accounts for the MA button
+              DL_GPIO_initDigitalOutputFeatures(
                        adc_o.iomux,
                        DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
                        DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
@@ -264,13 +264,30 @@ int main(){
                    );
                DL_GPIO_clearPins(GPIOPINPUX(adc_o));
                DL_GPIO_enableOutput(GPIOPINPUX(adc_o));
+
+        auto &adc_o_B = System::GPIO::PA8; //accounts for the MB button
+                DL_GPIO_initDigitalOutputFeatures(
+                        adc_o.iomux,
+                        DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                        DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                        DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                        DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+                );
+
+
                setup_pid(&pid);
+
+
 
     /**********************************************************/
 
     while(1){
         FS_SteeringAngle = READ_FS_POT();  // Front steering input
         RS_SteeringAngle = READ_RS_POT();  // Rear steering feedback
+
+
+
+
 
         // Calculate ideal rear steering angle
                IDEAL_RS_ANGLE = IdealRearAngle(FS_SteeringAngle);
@@ -293,6 +310,19 @@ int main(){
         } else {
             duty = 1;
         }*/
+
+          //if turns left "press" MA "Button"
+          //NEED TO KNOW IF IDEAL_RS_ANGLE RETURNS NEGATIVE VALUES WHEN TURNING LEFT
+          //IDEAL_RS_ANGLE < 0 or IDEAL_RS_ANGLE < 180 such and such...
+          //inputting true for now so the code still runs
+          if(true)
+          {
+                     //something with adc_o_A
+          }
+          else if(true) //else if turns right "press" MB "Button"
+          {
+                     //something with adc_o_B
+          }
         setPWM(PWMMAX * duty);
 
         delay_cycles(System::CLK::CPUCLK/20);
