@@ -2,11 +2,54 @@
 	(version 20241209)
 	(generator "kicad_symbol_editor")
 	(generator_version "9.0")
-	(symbol "FDMS8333L"
+	(symbol "BD933N1WG"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "U"
+			(at 0.254 6.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BD933N1G-CTR"
+			(at -5.08 7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:TSOP-5_1.65x3.05mm_P0.95mm"
+			(at -5.08 7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at -5.08 7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at -5.08 7.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/ROHM-Semiconductor/BD933N1WG-CTR?qs=tlsG%2FOw5FFiLuuL0kFG8qg%3D%3D"
 			(at 0 0 0)
 			(effects
 				(font
@@ -15,7 +58,126 @@
 				(hide yes)
 			)
 		)
-		(property "Value" ""
+		(symbol "BD933N1WG_0_1"
+			(rectangle
+				(start -6.35 5.08)
+				(end 6.35 -7.62)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "BD933N1WG_1_1"
+			(pin passive line
+				(at -8.89 2.54 0)
+				(length 2.54)
+				(name "VIN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -8.89 -1.27 0)
+				(length 2.54)
+				(name "EN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -8.89 -5.08 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 8.89 2.54 180)
+				(length 2.54)
+				(name "VOUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 8.89 -5.08 180)
+				(length 2.54)
+				(name "ADJ"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "FDMS8333L"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U"
+			(at 3.048 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "FDMS8333L"
 			(at 0 0 0)
 			(effects
 				(font
@@ -23,7 +185,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Library:Untitled_1"
+		(property "Footprint" "FWS_footprints:Power 56"
 			(at 0 0 0)
 			(effects
 				(font
@@ -50,10 +212,19 @@
 				(hide yes)
 			)
 		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/onsemi-Fairchild/FDMS8333L?qs=RjkIPPesXz1fD2cMmMLWZg%3D%3D"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(symbol "FDMS8333L_0_1"
 			(polyline
 				(pts
-					(xy -1.016 1.905) (xy -1.016 -1.905)
+					(xy -2.286 1.905) (xy -2.286 -1.905)
 				)
 				(stroke
 					(width 0.254)
@@ -65,7 +236,7 @@
 			)
 			(polyline
 				(pts
-					(xy -1.016 0) (xy -3.81 0)
+					(xy -2.286 0) (xy -5.08 0)
 				)
 				(stroke
 					(width 0)
@@ -77,7 +248,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.508 2.286) (xy -0.508 1.27)
+					(xy -1.778 2.286) (xy -1.778 1.27)
 				)
 				(stroke
 					(width 0.254)
@@ -89,7 +260,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.508 0.508) (xy -0.508 -0.508)
+					(xy -1.778 0.508) (xy -1.778 -0.508)
 				)
 				(stroke
 					(width 0.254)
@@ -101,7 +272,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.508 -1.27) (xy -0.508 -2.286)
+					(xy -1.778 -1.27) (xy -1.778 -2.286)
 				)
 				(stroke
 					(width 0.254)
@@ -113,7 +284,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.508 -1.778) (xy 2.032 -1.778) (xy 2.032 1.778) (xy -0.508 1.778)
+					(xy -1.778 -1.778) (xy 0.762 -1.778) (xy 0.762 1.778) (xy -1.778 1.778)
 				)
 				(stroke
 					(width 0)
@@ -125,7 +296,7 @@
 			)
 			(polyline
 				(pts
-					(xy -0.254 0) (xy 0.762 0.381) (xy 0.762 -0.381) (xy -0.254 0)
+					(xy -1.524 0) (xy -0.508 0.381) (xy -0.508 -0.381) (xy -1.524 0)
 				)
 				(stroke
 					(width 0)
@@ -136,7 +307,7 @@
 				)
 			)
 			(circle
-				(center 0.381 0)
+				(center -0.889 0)
 				(radius 2.794)
 				(stroke
 					(width 0.254)
@@ -148,7 +319,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 2.54) (xy 1.27 1.778)
+					(xy 0 2.54) (xy 0 1.778)
 				)
 				(stroke
 					(width 0)
@@ -159,7 +330,7 @@
 				)
 			)
 			(circle
-				(center 1.27 1.778)
+				(center 0 1.778)
 				(radius 0.254)
 				(stroke
 					(width 0)
@@ -170,7 +341,7 @@
 				)
 			)
 			(circle
-				(center 1.27 -1.778)
+				(center 0 -1.778)
 				(radius 0.254)
 				(stroke
 					(width 0)
@@ -182,7 +353,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.27 -2.54) (xy 1.27 0) (xy -0.508 0)
+					(xy 0 -2.54) (xy 0 0) (xy -1.778 0)
 				)
 				(stroke
 					(width 0)
@@ -194,7 +365,7 @@
 			)
 			(polyline
 				(pts
-					(xy 1.524 0.508) (xy 1.651 0.381) (xy 2.413 0.381) (xy 2.54 0.254)
+					(xy 0.381 0.381) (xy 1.143 0.381)
 				)
 				(stroke
 					(width 0)
@@ -206,7 +377,7 @@
 			)
 			(polyline
 				(pts
-					(xy 2.032 0.381) (xy 1.651 -0.254) (xy 2.413 -0.254) (xy 2.032 0.381)
+					(xy 0.762 0.381) (xy 0.381 -0.254) (xy 1.143 -0.254) (xy 0.762 0.381)
 				)
 				(stroke
 					(width 0)
@@ -219,7 +390,7 @@
 		)
 		(symbol "FDMS8333L_1_1"
 			(pin input line
-				(at -6.35 0 0)
+				(at -7.62 0 0)
 				(length 2.54)
 				(name "G"
 					(effects
@@ -237,7 +408,7 @@
 				)
 			)
 			(pin passive line
-				(at 1.27 5.08 270)
+				(at 0 5.08 270)
 				(length 2.54)
 				(name "D"
 					(effects
@@ -255,7 +426,7 @@
 				)
 			)
 			(pin passive line
-				(at 1.27 -5.08 90)
+				(at 0 -5.08 90)
 				(length 2.54)
 				(name "S"
 					(effects
@@ -275,213 +446,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "NGD4300GCJ"
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(property "Reference" "U"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Library:NGD4300GCJ_2"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "NGD4300GCJ_1_1"
-			(rectangle
-				(start 0.508 10.16)
-				(end 9.652 1.27)
-				(stroke
-					(width 0)
-					(type solid)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin input line
-				(at -1.27 8.89 0)
-				(length 1.6764)
-				(name "VDD"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "1"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at -1.27 6.35 0)
-				(length 1.6764)
-				(name "HB"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "2"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -1.27 5.08 0)
-				(length 1.6764)
-				(name "HO"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "3"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at -1.27 2.54 0)
-				(length 1.6764)
-				(name "HS"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "4"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 11.43 8.89 180)
-				(length 1.6764)
-				(name "LO"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "8"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at 11.43 6.35 180)
-				(length 1.6764)
-				(name "Vss"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "7"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at 11.43 5.08 180)
-				(length 1.6764)
-				(name "LI"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "6"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at 11.43 2.54 180)
-				(length 1.6764)
-				(name "HI"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-				(number "5"
-					(effects
-						(font
-							(size 0.508 0.508)
-						)
-					)
-				)
-			)
-		)
-		(embedded_fonts no)
-	)
 	(symbol "XMSM0L1306SRGER"
 		(pin_names
 			(offset 0.254)
@@ -490,7 +454,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "U"
-			(at 33.02 10.16 0)
+			(at 0.508 20.828 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -498,15 +462,15 @@
 			)
 		)
 		(property "Value" "XMSM0L1306SRGER"
-			(at 33.02 7.62 0)
+			(at 0.508 18.288 0)
 			(effects
 				(font
 					(size 1.524 1.524)
 				)
 			)
 		)
-		(property "Footprint" "Library:VQFN24_RGE_TEX"
-			(at 0 0 0)
+		(property "Footprint" "FWS_footprints:VQFN24_RGE_TEX"
+			(at -22.86 13.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -516,7 +480,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/lit/gpn/mspm0l1306"
-			(at 0 0 0)
+			(at -22.86 13.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -526,7 +490,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at -22.86 13.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -553,48 +517,11 @@
 			)
 		)
 		(symbol "XMSM0L1306SRGER_0_1"
-			(polyline
-				(pts
-					(xy 7.62 5.08) (xy 7.62 -35.56)
-				)
+			(rectangle
+				(start -15.24 16.51)
+				(end 15.24 -19.05)
 				(stroke
-					(width 0.127)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy 7.62 -35.56) (xy 58.42 -35.56)
-				)
-				(stroke
-					(width 0.127)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy 58.42 5.08) (xy 7.62 5.08)
-				)
-				(stroke
-					(width 0.127)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy 58.42 -35.56) (xy 58.42 5.08)
-				)
-				(stroke
-					(width 0.127)
+					(width 0)
 					(type default)
 				)
 				(fill
@@ -602,7 +529,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 0 0)
+				(at -22.86 13.97 0)
 				(length 7.62)
 				(name "PA1"
 					(effects
@@ -620,7 +547,7 @@
 				)
 			)
 			(pin input line
-				(at 0 -2.54 0)
+				(at -22.86 11.43 0)
 				(length 7.62)
 				(name "NRST"
 					(effects
@@ -638,7 +565,7 @@
 				)
 			)
 			(pin power_in line
-				(at 0 -5.08 0)
+				(at -22.86 8.89 0)
 				(length 7.62)
 				(name "VDD"
 					(effects
@@ -656,7 +583,7 @@
 				)
 			)
 			(pin power_out line
-				(at 0 -7.62 0)
+				(at -22.86 6.35 0)
 				(length 7.62)
 				(name "VSS"
 					(effects
@@ -674,7 +601,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -10.16 0)
+				(at -22.86 3.81 0)
 				(length 7.62)
 				(name "PA2/ROSC"
 					(effects
@@ -692,7 +619,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -12.7 0)
+				(at -22.86 1.27 0)
 				(length 7.62)
 				(name "PA3"
 					(effects
@@ -710,7 +637,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -15.24 0)
+				(at -22.86 -1.27 0)
 				(length 7.62)
 				(name "PA4"
 					(effects
@@ -728,7 +655,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -17.78 0)
+				(at -22.86 -3.81 0)
 				(length 7.62)
 				(name "PA9"
 					(effects
@@ -746,7 +673,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -20.32 0)
+				(at -22.86 -6.35 0)
 				(length 7.62)
 				(name "PA10"
 					(effects
@@ -764,7 +691,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -22.86 0)
+				(at -22.86 -8.89 0)
 				(length 7.62)
 				(name "PA11"
 					(effects
@@ -782,7 +709,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -25.4 0)
+				(at -22.86 -11.43 0)
 				(length 7.62)
 				(name "PA15/A9"
 					(effects
@@ -800,7 +727,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 0 -27.94 0)
+				(at -22.86 -13.97 0)
 				(length 7.62)
 				(name "PA16/A8"
 					(effects
@@ -818,7 +745,7 @@
 				)
 			)
 			(pin power_out line
-				(at 66.04 0 180)
+				(at 22.86 13.97 180)
 				(length 7.62)
 				(name "VSS"
 					(effects
@@ -836,7 +763,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -2.54 180)
+				(at 22.86 11.43 180)
 				(length 7.62)
 				(name "PA0"
 					(effects
@@ -854,7 +781,7 @@
 				)
 			)
 			(pin power_in line
-				(at 66.04 -5.08 180)
+				(at 22.86 8.89 180)
 				(length 7.62)
 				(name "VCORE"
 					(effects
@@ -872,7 +799,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -7.62 180)
+				(at 22.86 6.35 180)
 				(length 7.62)
 				(name "PA26/A1"
 					(effects
@@ -890,7 +817,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -10.16 180)
+				(at 22.86 3.81 180)
 				(length 7.62)
 				(name "PA25/A2"
 					(effects
@@ -908,7 +835,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -12.7 180)
+				(at 22.86 1.27 180)
 				(length 7.62)
 				(name "PA24/A3"
 					(effects
@@ -926,7 +853,7 @@
 				)
 			)
 			(pin power_in line
-				(at 66.04 -15.24 180)
+				(at 22.86 -1.27 180)
 				(length 7.62)
 				(name "PA23/VREF+"
 					(effects
@@ -944,7 +871,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -17.78 180)
+				(at 22.86 -3.81 180)
 				(length 7.62)
 				(name "PA22/A4"
 					(effects
@@ -962,7 +889,7 @@
 				)
 			)
 			(pin power_in line
-				(at 66.04 -20.32 180)
+				(at 22.86 -6.35 180)
 				(length 7.62)
 				(name "PA21/A5/VREF-"
 					(effects
@@ -980,7 +907,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -22.86 180)
+				(at 22.86 -8.89 180)
 				(length 7.62)
 				(name "PA20/A6/SWCLK"
 					(effects
@@ -998,7 +925,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -25.4 180)
+				(at 22.86 -11.43 180)
 				(length 7.62)
 				(name "PA19/SWDIO"
 					(effects
@@ -1016,7 +943,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -27.94 180)
+				(at 22.86 -13.97 180)
 				(length 7.62)
 				(name "PA18/A7"
 					(effects
@@ -1034,7 +961,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 66.04 -30.48 180)
+				(at 22.86 -16.51 180)
 				(length 7.62)
 				(name "PA17"
 					(effects
