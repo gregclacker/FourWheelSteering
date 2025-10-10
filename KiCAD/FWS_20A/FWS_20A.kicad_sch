@@ -6091,16 +6091,6 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 46.99) (xy 29.21 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2705be8b-2d07-4517-b97e-00bec94d880a")
-	)
-	(wire
-		(pts
 			(xy 24.13 88.9) (xy 25.4 88.9)
 		)
 		(stroke
@@ -6618,6 +6608,16 @@
 			(type default)
 		)
 		(uuid "81b0346a-1087-4ac5-a822-a444a3879f44")
+	)
+	(wire
+		(pts
+			(xy 29.21 52.07) (xy 40.64 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83620f29-8612-45d5-8480-a22b44ba97ba")
 	)
 	(wire
 		(pts
@@ -7700,7 +7700,7 @@
 		(uuid "6d6cc07a-2e8b-4bf7-84ab-acddbfab295b")
 	)
 	(label "Sensor Bias"
-		(at 29.21 46.99 0)
+		(at 29.21 52.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -14712,7 +14712,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 44.45 46.99 270)
+		(at 40.64 52.07 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14721,7 +14721,7 @@
 		(fields_autoplaced yes)
 		(uuid "984a2463-1253-414e-967c-833b70cc2792")
 		(property "Reference" "#PWR018"
-			(at 40.64 46.99 0)
+			(at 36.83 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14730,7 +14730,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 48.26 46.9899 90)
+			(at 44.45 52.0699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14739,7 +14739,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 46.99 0)
+			(at 40.64 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14748,7 +14748,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 46.99 0)
+			(at 40.64 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14757,7 +14757,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 44.45 46.99 0)
+			(at 40.64 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17242,7 +17242,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 29.21 52.07 270)
+		(at 29.21 46.99 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -17250,7 +17250,7 @@
 		(dnp no)
 		(uuid "eef349d0-8859-439b-b54e-c4a72c9dcc2e")
 		(property "Reference" "TP2"
-			(at 35.814 52.07 90)
+			(at 35.814 46.99 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17258,7 +17258,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 31.2421 54.61 0)
+			(at 31.2421 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17268,7 +17268,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Loop_D2.50mm_Drill1.0mm_LowProfile"
-			(at 29.21 57.15 0)
+			(at 29.21 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17277,7 +17277,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 57.15 0)
+			(at 29.21 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17286,7 +17286,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 29.21 52.07 0)
+			(at 29.21 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17295,7 +17295,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 29.21 52.07 0)
+			(at 29.21 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17304,7 +17304,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 29.21 52.07 0)
+			(at 29.21 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
