@@ -267,7 +267,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector:Conn_01x03_Pin"
+		(symbol "Connector:Conn_01x02_Pin"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -276,14 +276,14 @@
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "J"
-				(at 0 5.08 0)
+				(at 0 2.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "Conn_01x03_Pin"
+			(property "Value" "Conn_01x02_Pin"
 				(at 0 -5.08 0)
 				(effects
 					(font
@@ -309,7 +309,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Generic connector, single row, 01x03, script generated"
+			(property "Description" "Generic connector, single row, 01x02, script generated"
 				(at 0 0 0)
 				(effects
 					(font
@@ -344,18 +344,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "Conn_01x03_Pin_1_1"
-				(rectangle
-					(start 0.8636 2.667)
-					(end 0 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
+			(symbol "Conn_01x02_Pin_1_1"
 				(rectangle
 					(start 0.8636 0.127)
 					(end 0 -0.127)
@@ -376,18 +365,6 @@
 					)
 					(fill
 						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 2.54) (xy 0.8636 2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
 					)
 				)
 				(polyline
@@ -415,7 +392,7 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 2.54 180)
+					(at 5.08 0 180)
 					(length 3.81)
 					(name "Pin_1"
 						(effects
@@ -433,7 +410,7 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 0 180)
+					(at 5.08 -2.54 180)
 					(length 3.81)
 					(name "Pin_2"
 						(effects
@@ -443,24 +420,6 @@
 						)
 					)
 					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 3.81)
-					(name "Pin_3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4307,211 +4266,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:BC846"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "BC846"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-				(at 5.08 -1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(italic yes)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BC846_SER.pdf"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "0.1A Ic, 65V Vce, NPN Transistor, SOT-23"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "NPN Transistor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOT?23*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "BC846_0_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy 0.635 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 1.905) (xy 0.635 -1.905)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 1.27 0)
-					(radius 2.8194)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "BC846_1_1"
-				(polyline
-					(pts
-						(xy 0.635 0.635) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 -0.635) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Transistor_FET:DMN32D2LDF"
 			(pin_names
 				(hide yes)
@@ -5354,6 +5108,131 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+BATT"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+BATT"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+BATT\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power battery"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+BATT_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+BATT_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers
@@ -5455,12 +5334,202 @@
 			)
 			(embedded_fonts no)
 		)
-	)
-	(junction
-		(at 41.91 129.54)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "020f375a-ab8c-4d71-8f24-61ac91806054")
+		(symbol "zzLocalLibrary:FCX485_NPN_BJT"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 3.81 0.762 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "FCX495"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.mouser.com/datasheet/2/115/FCX495-3215865.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "1A continuous, BVce > 150V"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "mouser" "https://www.mouser.com/ProductDetail/Diodes-Incorporated/FCX495TA?qs=fpoYs8%2FwAu9bxDJK3FfPWA%3D%3D"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "unit x10" "0.34"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "FCX485_NPN_BJT_0_1"
+				(polyline
+					(pts
+						(xy -3.81 0) (xy -0.635 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.635 1.905) (xy -0.635 -1.905)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.635 0.635) (xy 1.27 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.635 -0.635) (xy 1.27 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 0 0)
+					(radius 2.8194)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.778) (xy 0.508 -1.27) (xy 1.016 -2.286) (xy 0 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "FCX485_NPN_BJT_1_1"
+				(pin input line
+					(at -6.35 0 0)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 5.08 270)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 -5.08 90)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 262.89 34.29)
@@ -5475,10 +5544,16 @@
 		(uuid "055ce0ec-6698-439c-99c0-083fe0df6f8f")
 	)
 	(junction
-		(at 46.99 129.54)
+		(at 83.82 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "06275352-49db-4d30-bff3-202ef7ad5fdd")
+		(uuid "09c9b2d2-74b3-4a76-8f68-5365d586f8e7")
+	)
+	(junction
+		(at 147.32 29.21)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0a20dc8d-c250-4123-b383-557eef0d7238")
 	)
 	(junction
 		(at 25.4 157.48)
@@ -5511,22 +5586,10 @@
 		(uuid "2073509d-d5ff-489f-b912-1b1571f6e2f6")
 	)
 	(junction
-		(at 83.82 142.24)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2686fac9-eed2-42d1-8b41-96724d47fd4a")
-	)
-	(junction
 		(at 222.25 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "27861adb-3924-472e-b223-347d6d6bad85")
-	)
-	(junction
-		(at 83.82 157.48)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3001c126-97a3-4407-a51b-ff668ed83043")
 	)
 	(junction
 		(at 95.25 149.86)
@@ -5565,12 +5628,6 @@
 		(uuid "5740e5ec-6829-45cf-b9e9-2e0f23e64b96")
 	)
 	(junction
-		(at 78.74 104.14)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "59ae0dad-5a76-48b1-bffa-d64fe928ee72")
-	)
-	(junction
 		(at 95.25 96.52)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5595,7 +5652,7 @@
 		(uuid "5f58d7c0-fca7-4b8c-9d53-e5ed18270b6e")
 	)
 	(junction
-		(at 31.75 58.42)
+		(at 29.21 63.5)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "62d1b68a-fd81-4008-a5b0-c34debdce51b")
@@ -5619,16 +5676,10 @@
 		(uuid "6c90b2e7-4493-4b82-a316-c958e7c01da5")
 	)
 	(junction
-		(at 78.74 157.48)
+		(at 83.82 157.48)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "78d7d1f3-2ae5-4a7e-99d1-a5f0318bf656")
-	)
-	(junction
-		(at 41.91 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7b884230-6b3e-42b3-b897-46cd8a849c52")
+		(uuid "76285c3c-9d76-4a56-be65-9094dae17c44")
 	)
 	(junction
 		(at 214.63 39.37)
@@ -5640,25 +5691,13 @@
 		(at 78.74 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "7f1c7acd-eb71-4f09-a5a2-d3a63fb9c4d7")
-	)
-	(junction
-		(at 223.52 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "837aa1a6-494f-4367-8743-15ac742f38a2")
+		(uuid "7f70e2e1-d865-49c0-b632-664e61453000")
 	)
 	(junction
 		(at 63.5 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "85035f75-5822-4760-be06-0b1f70d09630")
-	)
-	(junction
-		(at 83.82 104.14)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "902457b3-52a9-479e-968f-12a70e01b6a8")
 	)
 	(junction
 		(at 119.38 38.1)
@@ -5673,16 +5712,16 @@
 		(uuid "92e41506-acbf-4c3e-beea-9f894651d240")
 	)
 	(junction
-		(at 215.9 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "96e2cfff-cfe2-4f6d-8b65-29b89e8c04fb")
-	)
-	(junction
 		(at 63.5 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9a269918-c55f-4337-801a-150a29e92a31")
+	)
+	(junction
+		(at 83.82 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9ae3140b-b853-4694-92cc-3c674b022510")
 	)
 	(junction
 		(at 138.43 71.12)
@@ -5751,13 +5790,19 @@
 		(uuid "d12b5795-8b68-41dc-a14f-d42ddb8b376c")
 	)
 	(junction
+		(at 78.74 104.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d481a19a-f45e-4948-ba3f-923748027fc0")
+	)
+	(junction
 		(at 29.21 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d6680111-90f0-4a3c-99c4-88417e2b2d25")
 	)
 	(junction
-		(at 26.67 58.42)
+		(at 24.13 63.5)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "da86df94-fd37-41b0-87f3-faacceec1374")
@@ -5769,16 +5814,16 @@
 		(uuid "e02fc147-7cab-424e-bc55-c198340342e0")
 	)
 	(junction
-		(at 46.99 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e3d8686b-da2a-4444-b9c7-0fdc3ced21ca")
-	)
-	(junction
 		(at 220.98 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eba35fc0-8f2c-438a-b83f-fefb081d29c8")
+	)
+	(junction
+		(at 78.74 157.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f9f0f99c-d429-4d95-8d21-6773f05d8c02")
 	)
 	(junction
 		(at 25.4 104.14)
@@ -5813,6 +5858,16 @@
 	(no_connect
 		(at 214.63 96.52)
 		(uuid "e879889a-bb47-4eb8-9108-b03d183bf2ba")
+	)
+	(wire
+		(pts
+			(xy 149.86 29.21) (xy 149.86 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0277d5d6-0821-4381-a922-00632080a862")
 	)
 	(wire
 		(pts
@@ -5946,7 +6001,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 38.1) (xy 29.21 38.1)
+			(xy 44.45 44.45) (xy 29.21 44.45)
 		)
 		(stroke
 			(width 0)
@@ -6036,7 +6091,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 40.64) (xy 29.21 40.64)
+			(xy 44.45 46.99) (xy 29.21 46.99)
 		)
 		(stroke
 			(width 0)
@@ -6116,6 +6171,16 @@
 	)
 	(wire
 		(pts
+			(xy 153.67 29.21) (xy 152.4 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30089124-0f29-40bb-9911-2f236e461ee9")
+	)
+	(wire
+		(pts
 			(xy 237.49 25.4) (xy 237.49 26.67)
 		)
 		(stroke
@@ -6186,6 +6251,16 @@
 	)
 	(wire
 		(pts
+			(xy 52.07 29.21) (xy 54.61 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39a74398-5e23-4267-aa50-43cb0277c619")
+	)
+	(wire
+		(pts
 			(xy 204.47 41.91) (xy 227.33 41.91)
 		)
 		(stroke
@@ -6226,7 +6301,7 @@
 	)
 	(wire
 		(pts
-			(xy 22.86 58.42) (xy 26.67 58.42)
+			(xy 20.32 63.5) (xy 24.13 63.5)
 		)
 		(stroke
 			(width 0)
@@ -6316,16 +6391,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 73.66) (xy 46.99 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "550915e8-c2a8-4ae4-a0d1-8ea1a780202f")
-	)
-	(wire
-		(pts
 			(xy 24.13 142.24) (xy 25.4 142.24)
 		)
 		(stroke
@@ -6406,16 +6471,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 29.21) (xy 148.59 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cc8bfb2-1725-4b12-bdd1-afe9d78432ea")
-	)
-	(wire
-		(pts
 			(xy 237.49 25.4) (xy 262.89 25.4)
 		)
 		(stroke
@@ -6456,16 +6511,6 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 127) (xy 41.91 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "63b570c5-9304-449b-b9ab-a2fa028cc52d")
-	)
-	(wire
-		(pts
 			(xy 74.93 149.86) (xy 95.25 149.86)
 		)
 		(stroke
@@ -6496,13 +6541,23 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 57.15) (xy 31.75 58.42)
+			(xy 29.21 62.23) (xy 29.21 63.5)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "7178aef1-4660-4a8a-9238-db8739e9f10d")
+	)
+	(wire
+		(pts
+			(xy 144.78 24.13) (xy 144.78 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "744593c6-9833-46f8-bfb4-c75cbdf1c930")
 	)
 	(wire
 		(pts
@@ -6516,7 +6571,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 58.42) (xy 31.75 59.69)
+			(xy 29.21 63.5) (xy 29.21 64.77)
 		)
 		(stroke
 			(width 0)
@@ -6563,6 +6618,16 @@
 			(type default)
 		)
 		(uuid "81b0346a-1087-4ac5-a822-a444a3879f44")
+	)
+	(wire
+		(pts
+			(xy 147.32 29.21) (xy 149.86 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "85857856-f58e-4750-9bef-cd0312f2e0cc")
 	)
 	(wire
 		(pts
@@ -6663,16 +6728,6 @@
 			(type default)
 		)
 		(uuid "90ab69b2-c568-4fe2-a0d8-010a3362b4e7")
-	)
-	(wire
-		(pts
-			(xy 41.91 73.66) (xy 41.91 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "933c27df-d025-477a-bfc4-e998f35c50da")
 	)
 	(wire
 		(pts
@@ -6936,6 +6991,16 @@
 	)
 	(wire
 		(pts
+			(xy 152.4 29.21) (xy 152.4 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b9cbdc6d-2768-4fbd-98d3-542a8a0bd67b")
+	)
+	(wire
+		(pts
 			(xy 72.39 152.4) (xy 72.39 142.24)
 		)
 		(stroke
@@ -7016,16 +7081,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 140.97) (xy 215.9 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c241fff8-c298-47cf-a81b-9e822d3fea0a")
-	)
-	(wire
-		(pts
 			(xy 119.38 38.1) (xy 129.54 38.1)
 		)
 		(stroke
@@ -7086,16 +7141,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 140.97) (xy 223.52 144.78)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c72923e9-54cb-4771-8109-303ff382efd2")
-	)
-	(wire
-		(pts
 			(xy 247.65 34.29) (xy 262.89 34.29)
 		)
 		(stroke
@@ -7116,7 +7161,7 @@
 	)
 	(wire
 		(pts
-			(xy 26.67 58.42) (xy 26.67 59.69)
+			(xy 24.13 63.5) (xy 24.13 64.77)
 		)
 		(stroke
 			(width 0)
@@ -7186,7 +7231,7 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 25.4) (xy 144.78 30.48)
+			(xy 147.32 29.21) (xy 147.32 30.48)
 		)
 		(stroke
 			(width 0)
@@ -7196,7 +7241,7 @@
 	)
 	(wire
 		(pts
-			(xy 35.56 58.42) (xy 31.75 58.42)
+			(xy 33.02 63.5) (xy 29.21 63.5)
 		)
 		(stroke
 			(width 0)
@@ -7226,7 +7271,7 @@
 	)
 	(wire
 		(pts
-			(xy 26.67 57.15) (xy 26.67 58.42)
+			(xy 24.13 62.23) (xy 24.13 63.5)
 		)
 		(stroke
 			(width 0)
@@ -7246,7 +7291,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 25.4) (xy 142.24 29.21)
+			(xy 142.24 24.13) (xy 142.24 29.21)
 		)
 		(stroke
 			(width 0)
@@ -7273,16 +7318,6 @@
 			(type default)
 		)
 		(uuid "e614be8d-f805-4f1b-b61e-55b558df26e5")
-	)
-	(wire
-		(pts
-			(xy 147.32 29.21) (xy 147.32 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e64920b4-70f4-4100-9c05-b7f5aee18733")
 	)
 	(wire
 		(pts
@@ -7366,6 +7401,16 @@
 	)
 	(wire
 		(pts
+			(xy 147.32 29.21) (xy 144.78 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f00ea851-1411-4319-9ac7-6d1be653db45")
+	)
+	(wire
+		(pts
 			(xy 76.2 29.21) (xy 83.82 29.21)
 		)
 		(stroke
@@ -7396,16 +7441,6 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 29.21) (xy 54.61 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f4b6e286-344c-4d1f-ad11-4cbbc3796faa")
-	)
-	(wire
-		(pts
 			(xy 63.5 154.94) (xy 74.93 154.94)
 		)
 		(stroke
@@ -7413,16 +7448,6 @@
 			(type default)
 		)
 		(uuid "f90eb10d-3c3c-459a-af87-04d03d4e94a7")
-	)
-	(wire
-		(pts
-			(xy 46.99 127) (xy 46.99 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f9124998-735c-4ca4-8f05-8196ae2005a1")
 	)
 	(wire
 		(pts
@@ -7515,7 +7540,7 @@
 		(uuid "1d53d699-3db5-4197-9e78-52d24e5ceb46")
 	)
 	(label "TIMG2_C0"
-		(at 46.99 99.06 180)
+		(at 46.99 101.6 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7595,7 +7620,7 @@
 		(uuid "5356b092-978c-4e18-93ba-093814688232")
 	)
 	(label "TIMG4_C1"
-		(at 46.99 154.94 180)
+		(at 46.99 152.4 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7635,7 +7660,7 @@
 		(uuid "5c5c1d3f-47f8-48d4-bbc9-5f56441c5bf1")
 	)
 	(label "XDS_3v_supply"
-		(at 148.59 29.21 0)
+		(at 153.67 29.21 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7675,7 +7700,7 @@
 		(uuid "6d6cc07a-2e8b-4bf7-84ab-acddbfab295b")
 	)
 	(label "Sensor Bias"
-		(at 29.21 40.64 0)
+		(at 29.21 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7695,7 +7720,7 @@
 		(uuid "73d17719-a104-4052-9379-03b20374b79a")
 	)
 	(label "M+"
-		(at 22.86 58.42 180)
+		(at 20.32 63.5 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7705,7 +7730,7 @@
 		(uuid "774bcc28-785e-4593-a970-6d3f55a4d3e8")
 	)
 	(label "M-"
-		(at 29.21 21.59 0)
+		(at 29.21 26.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7765,7 +7790,7 @@
 		(uuid "8f341e71-13df-4fa4-8e93-ec3d38103c33")
 	)
 	(label "TIMG4_C0"
-		(at 46.99 152.4 180)
+		(at 46.99 154.94 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7795,7 +7820,7 @@
 		(uuid "9cfb14e1-8b8a-4cbf-ad34-e17536f846cd")
 	)
 	(label "Sensor GND"
-		(at 29.21 38.1 0)
+		(at 29.21 44.45 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7825,7 +7850,7 @@
 		(uuid "a7332f3a-2c21-4076-a0e4-f0268d796dea")
 	)
 	(label "S_Front"
-		(at 29.21 35.56 0)
+		(at 29.21 41.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7835,7 +7860,7 @@
 		(uuid "ab10ca13-02bb-4e2e-869f-9150b780561a")
 	)
 	(label "S_Feedback"
-		(at 29.21 33.02 0)
+		(at 29.21 39.37 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7845,7 +7870,7 @@
 		(uuid "abe45f3e-bcf6-46bb-b87e-d0f72af7eb96")
 	)
 	(label "M-"
-		(at 35.56 58.42 0)
+		(at 33.02 63.5 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7865,7 +7890,7 @@
 		(uuid "c0a94119-ef86-4d5f-a733-57687c9f1bc0")
 	)
 	(label "TIMG2_C1"
-		(at 46.99 101.6 180)
+		(at 46.99 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8002,72 +8027,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 144.78 30.48 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "01cfc774-eded-49d2-be6a-92040e53769e")
-		(property "Reference" "#PWR05"
-			(at 144.78 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 144.78 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 144.78 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "75ea0f4b-03ab-488a-b3f9-c480aec7dec2")
-		)
-		(instances
-			(project ""
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 254 158.75 270)
 		(unit 1)
@@ -8075,9 +8034,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "02a2406f-8a37-4aec-940a-e1c03bb30aae")
-		(property "Reference" "R25"
-			(at 253.111 154.051 90)
+		(uuid "008b056a-1c66-4d6f-a9f5-da099c30eee5")
+		(property "Reference" "R9"
+			(at 251.079 161.671 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8085,8 +8044,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "750"
-			(at 253.111 156.591 90)
+		(property "Value" "2.49k"
+			(at 251.079 164.211 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8094,7 +8053,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 253.746 159.766 90)
 			(effects
 				(font
@@ -8103,7 +8062,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/ProductDetail/Panasonic/ERJ-P08F6800V?qs=iIVTEDlrHA3SVAPfz%2FMedg%3D%3D"
+		(property "Datasheet" ""
 			(at 254 158.75 0)
 			(effects
 				(font
@@ -8139,8 +8098,8 @@
 				(hide yes)
 			)
 		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/RC1206JR-13750RL?qs=sGAEpiMZZMvdGkrng054t8AJgcdMkx7xRBGyMWDk%2FFM%3D"
-			(at 254 158.75 90)
+		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/CPF0603F2K49C1?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMCVJDuP7Cycc%3D"
+			(at 254 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8148,8 +8107,8 @@
 				(hide yes)
 			)
 		)
-		(property "specs" "750mOhm, 250mW, 5%, 100PPM, 200C, -55C, +155C"
-			(at 254 158.75 90)
+		(property "specs" ""
+			(at 254 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8157,25 +8116,91 @@
 				(hide yes)
 			)
 		)
-		(property "unit x10" "0.022"
-			(at 254 158.75 90)
+		(property "unit x10" ".03"
+			(at 254 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
-		)
-		(pin "2"
-			(uuid "43733023-bd2f-47ee-b2ea-a0f5a8301072")
 		)
 		(pin "1"
-			(uuid "ac4729ee-e5b5-4d4d-8010-bf23fbe8c567")
+			(uuid "de7880be-003e-4ba7-aa36-d75744352b3f")
+		)
+		(pin "2"
+			(uuid "a4d4269b-057f-4f23-8c5e-cb4727c2b40f")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R25")
+					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 147.32 30.48 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "01cfc774-eded-49d2-be6a-92040e53769e")
+		(property "Reference" "#PWR05"
+			(at 147.32 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 147.32 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 147.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 147.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 147.32 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "75ea0f4b-03ab-488a-b3f9-c480aec7dec2")
+		)
+		(instances
+			(project ""
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -8343,6 +8368,266 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 81.28 157.48 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "07e8c0c6-1473-46c1-b917-7ce5756283e2")
+		(property "Reference" "R8"
+			(at 81.28 152.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1"
+			(at 81.28 154.94 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 81.28 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 81.28 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 81.28 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
+			(at 81.28 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 81.28 157.48 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "61bc6ef4-fe2e-4480-a9c0-395584ffd6ec")
+		)
+		(pin "2"
+			(uuid "90fa8c59-110b-4931-a74f-f442fe7b8a6f")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+BATT")
+		(at 29.21 21.59 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "07f780dd-261b-4493-962b-8e72a523482d")
+		(property "Reference" "#PWR021"
+			(at 25.4 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 33.02 21.5899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 29.21 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 29.21 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 29.21 21.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "da73cdfb-2906-408b-895f-adff1c303947")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR021")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "zzLocalLibrary:FCX485_NPN_BJT")
+		(at 71.12 30.48 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "091b82ba-c32f-4388-a2af-4cb25e8b4fdb")
+		(property "Reference" "U11"
+			(at 69.85 27.178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FCX495"
+			(at 72.39 27.178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/115/FCX495-3215865.pdf"
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "1A continuous, BVce > 150V"
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/Diodes-Incorporated/FCX495TA?qs=fpoYs8%2FwAu9bxDJK3FfPWA%3D%3D"
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" "0.34"
+			(at 71.12 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "de6dda4f-73bb-4b83-acfe-879b73d47347")
+		)
+		(pin "2"
+			(uuid "938796b7-26ae-42aa-a9bf-225e59011f6c")
+		)
+		(pin "3"
+			(uuid "d608376a-96f1-471c-a59b-9b1613281145")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "U11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Switch:SW_Push")
 		(at 148.59 63.5 0)
 		(unit 1)
@@ -8441,6 +8726,120 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "SW2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 254 133.35 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0c109bd9-63ed-40ec-8dc2-367343d57ec6")
+		(property "Reference" "R13"
+			(at 251.079 136.271 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2.49k"
+			(at 251.079 138.811 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 253.746 134.366 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 254 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 254 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/CPF0603F2K49C1?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMCVJDuP7Cycc%3D"
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" ""
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" ".03"
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e2634bfd-7916-4cc4-a29d-1317a5c59ba9")
+		)
+		(pin "2"
+			(uuid "afa2adbc-9c41-4d34-a8e6-55a537a2e6d8")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -8590,6 +8989,72 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR035")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+BATT")
+		(at 95.25 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0df3d361-a146-4c57-801b-d7db0f334fa6")
+		(property "Reference" "#PWR011"
+			(at 95.25 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 95.25 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 95.25 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 95.25 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 95.25 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9db25ae2-383a-43b3-a540-f50d4dcef24f")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -9507,120 +9972,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 254 123.19 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "1d786fe8-55aa-4a33-9fec-bbe876c6ace8")
-		(property "Reference" "R18"
-			(at 253.111 118.491 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "750"
-			(at 253.111 121.031 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 253.746 124.206 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/ProductDetail/Panasonic/ERJ-P08F6800V?qs=iIVTEDlrHA3SVAPfz%2FMedg%3D%3D"
-			(at 254 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 254 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 254 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 254 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/RC1206JR-13750RL?qs=sGAEpiMZZMvdGkrng054t8AJgcdMkx7xRBGyMWDk%2FFM%3D"
-			(at 254 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "750mOhm, 250mW, 5%, 100PPM, 200C, -55C, +155C"
-			(at 254 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.022"
-			(at 254 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "16277a4b-318e-4821-8042-7178ccb0ccdc")
-		)
-		(pin "1"
-			(uuid "81ea4294-48bc-4099-8f68-14087fe1fecf")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 25.4 149.86 0)
 		(mirror y)
@@ -9795,6 +10146,91 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 81.28 142.24 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "202eeb09-f74f-4a3c-a560-a031a17f4a9b")
+		(property "Reference" "R7"
+			(at 81.28 147.32 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1"
+			(at 81.28 144.78 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 81.28 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 81.28 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 81.28 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
+			(at 81.28 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 81.28 142.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ad9d32dc-bd9b-462f-aa39-0a280cc45aa3")
+		)
+		(pin "2"
+			(uuid "2dd8c392-0e9d-419c-8fa4-a97408d71cda")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -10430,120 +10866,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 219.71 140.97 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3066c6aa-60be-4bf1-a8b2-5cd8f868067a")
-		(property "Reference" "R22"
-			(at 216.789 135.001 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "4.99k"
-			(at 216.789 137.541 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 219.964 139.954 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 219.71 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 219.71 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 219.71 140.97 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 219.71 140.97 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/SEI-Stackpole/RNCP1206FTD4K99?qs=sGAEpiMZZMvdGkrng054tyMPH50YnZ95yR%2FF2bQQIaAb5UdPiGbTtQ%3D%3D"
-			(at 219.71 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "4.99kOhm, 200V, 500mW, 1%, 100PPM, -55C, +155C"
-			(at 219.71 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.017"
-			(at 219.71 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dd7bd155-bc8a-4007-a5d6-c8daa65f2bbe")
-		)
-		(pin "2"
-			(uuid "707ac838-4b70-48a3-b343-f7d6726b80d5")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 214.63 35.56 0)
 		(mirror x)
@@ -10747,34 +11069,35 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+12V")
-		(at 95.25 134.62 0)
+		(lib_id "Device:R_US")
+		(at 195.58 41.91 270)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "32d6d15f-e1fb-4b86-b892-16a78fbf9477")
-		(property "Reference" "#PWR011"
-			(at 95.25 138.43 0)
+		(uuid "3389e78e-2577-4b69-94ef-0c401f974efe")
+		(property "Reference" "R5"
+			(at 194.31 44.45 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
+				(justify left)
 			)
 		)
-		(property "Value" "+12V"
-			(at 95.25 129.54 0)
+		(property "Value" "49.9k"
+			(at 193.04 46.482 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 95.25 134.62 0)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 195.326 40.894 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10783,7 +11106,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 95.25 134.62 0)
+			(at 195.58 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10791,22 +11114,70 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 95.25 134.62 0)
+		(property "Description" "0.1% , +155C, 255mW, 200V"
+			(at 195.58 41.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
+		)
+		(property "Sim.Device" ""
+			(at 195.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 195.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/SEI-Stackpole/RNCP1206FTD49K9?qs=sGAEpiMZZMtlubZbdhIBIA%252B43obPAL0t%252Bb%2FrZA8g8Pk%3D"
+			(at 195.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "49.9kOhms, 500mW, 1%, 200V, 100PPM, -55C, +155C"
+			(at 195.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" "0.014"
+			(at 195.58 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "95b672ab-597b-49e9-a064-cfffeea0ad5c")
 		)
 		(pin "1"
-			(uuid "7685f756-ee33-4d0b-a8c1-771dbf90d552")
+			(uuid "4f58863a-983d-49e6-b75f-5803c9d03bca")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR011")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -10922,83 +11293,6 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "R20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 44.45 76.2 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "35432f1f-f6bd-40b5-bf8c-d3269f74eda5")
-		(property "Reference" "R2"
-			(at 44.45 82.55 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "8.2"
-			(at 44.45 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2816_7142Metric_Pad3.20x4.45mm_HandSolder"
-			(at 44.45 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 44.45 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 44.45 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35408R2JT?qs=gZXFycFWdAP1AdhJAV6y2Q%3D%3D"
-			(at 44.45 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "953bdecd-9c54-495e-9240-d062b2ff4d02")
-		)
-		(pin "2"
-			(uuid "0fe83784-0316-426f-9c72-71d9e5b9fc54")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -11137,7 +11431,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_Wago:Wago_734-134_1x04_P3.50mm_Vertical"
+		(property "Footprint" "Connector_Wire:SolderWire-0.75sqmm_1x04_P4.8mm_D1.25mm_OD2.3mm"
 			(at 24.13 24.13 0)
 			(effects
 				(font
@@ -11180,120 +11474,6 @@
 			(project ""
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 254 97.79 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "37e15e66-8622-4305-a805-ede3668eb3ae")
-		(property "Reference" "R16"
-			(at 253.111 93.091 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "750"
-			(at 253.111 95.631 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 253.746 98.806 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/ProductDetail/Panasonic/ERJ-P08F6800V?qs=iIVTEDlrHA3SVAPfz%2FMedg%3D%3D"
-			(at 254 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 254 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 254 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 254 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/RC1206JR-13750RL?qs=sGAEpiMZZMvdGkrng054t8AJgcdMkx7xRBGyMWDk%2FFM%3D"
-			(at 254 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "750mOhm, 250mW, 5%, 100PPM, 200C, -55C, +155C"
-			(at 254 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.022"
-			(at 254 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "35964260-5723-4b62-a3de-ba5dc4aa50cf")
-		)
-		(pin "1"
-			(uuid "7bd1e307-9383-47cd-9ca5-60a97f7b04f0")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -11529,7 +11709,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_Zener_Small")
-		(at 29.21 59.69 0)
+		(at 26.67 64.77 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11538,7 +11718,7 @@
 		(dnp no)
 		(uuid "3af1b8c0-5912-4267-a24a-31af95fc4e37")
 		(property "Reference" "D7"
-			(at 29.21 63.5 0)
+			(at 26.67 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11546,7 +11726,7 @@
 			)
 		)
 		(property "Value" "39V 10W"
-			(at 29.21 66.04 0)
+			(at 26.67 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11554,7 +11734,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SMC_Handsoldering"
-			(at 29.21 59.69 90)
+			(at 26.67 64.77 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11563,7 +11743,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 59.69 90)
+			(at 26.67 64.77 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11572,7 +11752,7 @@
 			)
 		)
 		(property "Description" "Zener diode, small symbol"
-			(at 29.21 59.69 0)
+			(at 26.67 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11581,7 +11761,7 @@
 			)
 		)
 		(property "mouser" "https://www.mouser.com/ProductDetail/Central-Semiconductor/CMZ5366B-TR13-PBFREE?qs=u16ybLDytRaP9XL8jOPrMg%3D%3D"
-			(at 29.21 59.69 0)
+			(at 26.67 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11791,147 +11971,35 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 195.58 39.37 90)
+		(lib_id "power:+12V")
+		(at 250.19 158.75 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "45cabc94-8926-4474-b434-970450c2c122")
-		(property "Reference" "R17"
-			(at 197.485 37.465 90)
+		(fields_autoplaced yes)
+		(uuid "4744a05c-1ba8-4091-a6f7-4683b9a92c1e")
+		(property "Reference" "#PWR032"
+			(at 254 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 246.38 158.7499 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-		(property "Value" "150"
-			(at 197.485 34.925 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 195.834 38.354 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 195.58 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 195.58 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 195.58 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 195.58 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/AC1206FR-7W150RL?qs=sGAEpiMZZMtlubZbdhIBICFms2LWLh%252Bq5GguBuup7BI%3D"
-			(at 195.58 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "150Ohm, 500mW, 1%, 200V, -55C, +155C"
-			(at 195.58 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.032"
-			(at 195.58 39.37 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d5a552bb-cb99-4de3-ba10-41e927c31313")
-		)
-		(pin "2"
-			(uuid "a473586f-3a85-4587-a9c9-20f94e8325a2")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 250.19 123.19 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "49ea2a2e-b66b-48f0-b4e4-b2f2bc9f1e81")
-		(property "Reference" "#PWR033"
-			(at 254 123.19 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 245.11 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(property "Footprint" ""
-			(at 250.19 123.19 0)
+			(at 250.19 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11940,7 +12008,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 250.19 123.19 0)
+			(at 250.19 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11948,8 +12016,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 250.19 123.19 0)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 250.19 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11958,12 +12026,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "188aa019-b06a-4caa-a86b-1040c300237f")
+			(uuid "fad5e129-21d4-4d3c-806f-2305ab639df8")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR033")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -12189,77 +12257,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x03_Pin")
-		(at 144.78 20.32 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4d5b94b4-cc34-48f6-ab87-8a89fe82149d")
-		(property "Reference" "J4"
-			(at 144.78 15.24 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x03_Pin"
-			(at 144.78 17.78 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 144.78 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 144.78 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x03, script generated"
-			(at 144.78 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "afc2de3a-5175-4a02-8d2a-42eaf1741bb1")
-		)
-		(pin "1"
-			(uuid "ed768172-d11b-4b72-9137-766b371f88fe")
-		)
-		(pin "3"
-			(uuid "c079f208-ee39-40fb-9c84-7f0f2da28475")
-		)
-		(instances
-			(project ""
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 151.13 76.2 0)
 		(unit 1)
@@ -12319,6 +12316,73 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+BATT")
+		(at 52.07 29.21 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5112d24a-8cca-440d-8f80-7a188f943fa5")
+		(property "Reference" "#PWR020"
+			(at 55.88 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+BATT"
+			(at 48.26 29.2099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 52.07 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 52.07 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 52.07 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "461f00a6-1ea3-4449-b7f0-d25e8814724d")
+		)
+		(instances
+			(project ""
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -12508,7 +12572,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 29.21 43.18 270)
+		(at 29.21 49.53 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -12516,7 +12580,7 @@
 		(dnp no)
 		(uuid "550063e0-50ef-4d97-a357-b4c24426a6e0")
 		(property "Reference" "TP1"
-			(at 35.814 43.18 90)
+			(at 35.814 49.53 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12524,7 +12588,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 31.2421 45.72 0)
+			(at 31.2421 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12534,7 +12598,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Loop_D2.50mm_Drill1.0mm_LowProfile"
-			(at 29.21 48.26 0)
+			(at 29.21 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12543,7 +12607,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 48.26 0)
+			(at 29.21 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12552,7 +12616,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 29.21 43.18 0)
+			(at 29.21 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12561,7 +12625,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 29.21 43.18 0)
+			(at 29.21 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12570,7 +12634,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 29.21 43.18 0)
+			(at 29.21 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13018,32 +13082,31 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small_US")
-		(at 44.45 129.54 270)
-		(mirror x)
+		(at 44.45 76.2 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5e781938-fb90-4e1f-ac34-6a677907a77b")
-		(property "Reference" "R6"
-			(at 44.45 135.89 90)
+		(uuid "62c0b2df-164e-451e-9543-8aa98650499b")
+		(property "Reference" "R2"
+			(at 44.45 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "8.2"
-			(at 44.45 133.35 90)
+		(property "Value" "5.1"
+			(at 44.45 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_2816_7142Metric_Pad3.20x4.45mm_HandSolder"
-			(at 44.45 129.54 0)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 44.45 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13052,7 +13115,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 44.45 129.54 0)
+			(at 44.45 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13061,7 +13124,7 @@
 			)
 		)
 		(property "Description" "Resistor, small US symbol"
-			(at 44.45 129.54 0)
+			(at 44.45 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13069,8 +13132,17 @@
 				(hide yes)
 			)
 		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35408R2JT?qs=gZXFycFWdAP1AdhJAV6y2Q%3D%3D"
-			(at 44.45 129.54 0)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
+			(at 44.45 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 44.45 76.2 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13079,195 +13151,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "cb546b10-f1a6-42ad-b694-594e485cd8b0")
+			(uuid "1480af26-4ea0-4f6f-8d78-66885a61a5b2")
 		)
 		(pin "2"
-			(uuid "f00f7e15-42b7-4af4-ad95-0a482342443a")
+			(uuid "a3d9a0b6-ae30-46c7-a3ce-f389de46c385")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 254 133.35 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "60ce2b97-ee43-43c8-bc57-25a781205781")
-		(property "Reference" "R24"
-			(at 253.111 128.651 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "750"
-			(at 253.111 131.191 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 253.746 134.366 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/ProductDetail/Panasonic/ERJ-P08F6800V?qs=iIVTEDlrHA3SVAPfz%2FMedg%3D%3D"
-			(at 254 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 254 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 254 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 254 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/RC1206JR-13750RL?qs=sGAEpiMZZMvdGkrng054t8AJgcdMkx7xRBGyMWDk%2FFM%3D"
-			(at 254 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "750mOhm, 250mW, 5%, 100PPM, 200C, -55C, +155C"
-			(at 254 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.022"
-			(at 254 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "50061f10-96c2-4cbf-b629-39a41dcba772")
-		)
-		(pin "1"
-			(uuid "517b92bd-2014-40e4-afa5-b4f714a5c541")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R24")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 95.25 81.28 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "63f0d877-c627-4380-a2b4-754fadaef92c")
-		(property "Reference" "#PWR06"
-			(at 95.25 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+12V"
-			(at 95.25 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 95.25 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 95.25 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 95.25 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "70c05162-eba8-4917-b564-8f2c175c6224")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR06")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -13351,120 +13243,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 195.58 41.91 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "683b6384-ce25-49a8-a9cb-1f091fb7fb2d")
-		(property "Reference" "R9"
-			(at 197.485 46.355 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "150"
-			(at 197.485 43.815 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
-			(at 195.326 42.926 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 195.58 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 195.58 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" ""
-			(at 195.58 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Type" ""
-			(at 195.58 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/YAGEO/AC1206FR-7W150RL?qs=sGAEpiMZZMtlubZbdhIBICFms2LWLh%252Bq5GguBuup7BI%3D"
-			(at 195.58 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "specs" "150Ohm, 500mW, 1%, 200V, -55C, +155C"
-			(at 195.58 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "unit x10" "0.032"
-			(at 195.58 41.91 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6c1857b5-a251-45e9-bb04-23ac27e711ea")
-		)
-		(pin "2"
-			(uuid "7738bd3a-2675-4da5-8c9b-fdede7bc121e")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 237.49 49.53 0)
 		(unit 1)
@@ -13524,6 +13302,73 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+12V")
+		(at 250.19 97.79 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "695ac0e0-3c1e-4c65-aa98-b45594a2c1ec")
+		(property "Reference" "#PWR038"
+			(at 254 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 246.38 97.7899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 250.19 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0dca2dc9-bfb8-4828-9723-327c9f9d30c4")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -13788,7 +13633,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 29.21 26.67 90)
+		(at 29.21 29.21 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13797,7 +13642,7 @@
 		(fields_autoplaced yes)
 		(uuid "82c785d1-dc7b-4031-b8e8-31a4ca7e499c")
 		(property "Reference" "#PWR02"
-			(at 35.56 26.67 0)
+			(at 35.56 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13806,7 +13651,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 33.02 26.6699 90)
+			(at 33.02 29.2099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13815,7 +13660,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 29.21 26.67 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13824,7 +13669,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 29.21 26.67 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13833,7 +13678,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 29.21 26.67 0)
+			(at 29.21 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13854,87 +13699,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Polarized_Small_US")
-		(at 63.5 147.32 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8499bb0b-d274-40fe-9624-131f602d39b0")
-		(property "Reference" "C7"
-			(at 66.04 145.6181 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "44uF 63V"
-			(at 66.04 148.1581 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm"
-			(at 63.5 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 63.5 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Polarized capacitor, small US symbol"
-			(at 63.5 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/KYOCERA-AVX/RPF0609470M063K?qs=sGAEpiMZZMs9%2FSpGH%2Fyc7H4DtwGVYQ5J%2FskJqe%252B%2Fx2SkoOfSnHhOfg%3D%3D"
-			(at 63.5 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "12ddb8e7-64fd-4342-9202-f079b321fe5b")
-		)
-		(pin "1"
-			(uuid "f9ebc250-78b4-47e5-8289-c65fdd76cd4d")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "C7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:Conn_01x06_Pin")
-		(at 24.13 38.1 0)
+		(at 24.13 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13942,7 +13708,7 @@
 		(dnp no)
 		(uuid "8b67ceda-b69f-43e5-88a3-74288c7d1c19")
 		(property "Reference" "J5"
-			(at 21.082 36.576 0)
+			(at 21.082 42.926 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13950,7 +13716,7 @@
 			)
 		)
 		(property "Value" "sense"
-			(at 21.082 39.116 0)
+			(at 21.082 45.466 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13958,7 +13724,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Molex:Molex_Micro-Fit_3.0_43045-0600_2x03_P3.00mm_Horizontal"
-			(at 24.13 38.1 0)
+			(at 24.13 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13967,7 +13733,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 24.13 38.1 0)
+			(at 24.13 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13976,7 +13742,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated"
-			(at 24.13 38.1 0)
+			(at 24.13 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14036,7 +13802,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
 			(at 81.28 88.9 0)
 			(effects
 				(font
@@ -14063,8 +13829,17 @@
 				(hide yes)
 			)
 		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35205R1JT?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMn%2FTALBQz7Fk%3D"
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
 			(at 81.28 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 81.28 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14540,7 +14315,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 44.45 38.1 90)
+		(at 44.45 44.45 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14548,7 +14323,7 @@
 		(dnp no)
 		(uuid "914d1819-c9da-44f6-b6e4-423f7fa0d26e")
 		(property "Reference" "#PWR014"
-			(at 50.8 38.1 0)
+			(at 50.8 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14557,7 +14332,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 49.53 38.1 90)
+			(at 49.53 44.45 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14565,7 +14340,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 38.1 0)
+			(at 44.45 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14574,7 +14349,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 38.1 0)
+			(at 44.45 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14583,7 +14358,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 44.45 38.1 0)
+			(at 44.45 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14598,89 +14373,6 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR014")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:BC846")
-		(at 71.12 31.75 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "93634be2-4993-44cc-bcb0-194e2ee40905")
-		(property "Reference" "Q2"
-			(at 71.12 22.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BC846"
-			(at 71.12 25.4 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 73.025 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/BC846_SER.pdf"
-			(at 71.12 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "0.1A Ic, 65V Vce, NPN Transistor, SOT-23"
-			(at 71.12 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/Nexperia/BC846BW135?qs=sGAEpiMZZMv4z0HnGdrLjpWggMMFKCXPYJ17dWd%2Fg00%3D"
-			(at 71.12 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ead7bc9f-8768-4b51-b7a7-ea6b2ef21e69")
-		)
-		(pin "2"
-			(uuid "208b0774-fcfb-4912-aea1-5b0ebcab31f8")
-		)
-		(pin "3"
-			(uuid "502e5353-f0e2-402c-bde7-4ea00237a90d")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -14746,6 +14438,91 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 44.45 129.54 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "95f9a0d8-a461-4dc1-b32d-c331157aa7d7")
+		(property "Reference" "R6"
+			(at 44.45 124.46 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1"
+			(at 44.45 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 44.45 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 44.45 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 44.45 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
+			(at 44.45 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 44.45 129.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "60c910b4-a4af-4aa4-b10f-b5e21e3e478d")
+		)
+		(pin "2"
+			(uuid "478ea1a6-ca41-4f9e-9855-317d70902c18")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -14819,26 +14596,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 44.45 40.64 270)
+		(lib_id "Device:R_US")
+		(at 195.58 39.37 90)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "984a2463-1253-414e-967c-833b70cc2792")
-		(property "Reference" "#PWR018"
-			(at 40.64 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 48.26 40.6399 90)
+		(uuid "97b17188-72f2-4cd3-91c8-3894162ea03f")
+		(property "Reference" "R1"
+			(at 197.104 34.798 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14846,8 +14614,17 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 44.45 40.64 0)
+		(property "Value" "49.9k"
+			(at 198.374 36.83 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 195.834 40.386 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14856,7 +14633,122 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 40.64 0)
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "0.1% , +155C, 255mW, 200V"
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/SEI-Stackpole/RNCP1206FTD49K9?qs=sGAEpiMZZMtlubZbdhIBIA%252B43obPAL0t%252Bb%2FrZA8g8Pk%3D"
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "49.9kOhms, 500mW, 1%, 200V, 100PPM, -55C, +155C"
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" "0.014"
+			(at 195.58 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8ef44984-af39-4d98-b3d9-e72ebaad0da5")
+		)
+		(pin "1"
+			(uuid "3b5aed01-5213-4b4d-af77-554ac72a31bb")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 44.45 46.99 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "984a2463-1253-414e-967c-833b70cc2792")
+		(property "Reference" "#PWR018"
+			(at 40.64 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 48.26 46.9899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 44.45 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 44.45 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14865,7 +14757,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 44.45 40.64 0)
+			(at 44.45 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15028,7 +14920,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_Zener_Small")
-		(at 29.21 57.15 0)
+		(at 26.67 62.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15037,7 +14929,7 @@
 		(fields_autoplaced yes)
 		(uuid "a145c086-1a00-445f-8e52-ed75f610efbf")
 		(property "Reference" "D6"
-			(at 29.21 50.8 0)
+			(at 26.67 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15045,7 +14937,7 @@
 			)
 		)
 		(property "Value" "39V 10W"
-			(at 29.21 53.34 0)
+			(at 26.67 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15053,7 +14945,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SMC_Handsoldering"
-			(at 29.21 57.15 90)
+			(at 26.67 62.23 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15062,7 +14954,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 57.15 90)
+			(at 26.67 62.23 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15071,7 +14963,7 @@
 			)
 		)
 		(property "Description" "Zener diode, small symbol"
-			(at 29.21 57.15 0)
+			(at 26.67 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15080,7 +14972,7 @@
 			)
 		)
 		(property "mouser" "https://www.mouser.com/ProductDetail/Central-Semiconductor/CMZ5366B-TR13-PBFREE?qs=u16ybLDytRaP9XL8jOPrMg%3D%3D"
-			(at 29.21 57.15 0)
+			(at 26.67 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15219,16 +15111,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 250.19 133.35 90)
+		(lib_id "power:+BATT")
+		(at 95.25 81.28 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a728cb21-3b0b-426b-bf96-d4dac4df46a6")
-		(property "Reference" "#PWR044"
-			(at 254 133.35 0)
+		(fields_autoplaced yes)
+		(uuid "a9e54f7a-924d-4df8-9580-cac46c5d559d")
+		(property "Reference" "#PWR06"
+			(at 95.25 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15236,8 +15129,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 245.11 133.35 90)
+		(property "Value" "+BATT"
+			(at 95.25 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15245,7 +15138,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 250.19 133.35 0)
+			(at 95.25 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15254,7 +15147,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 250.19 133.35 0)
+			(at 95.25 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15262,8 +15155,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 250.19 133.35 0)
+		(property "Description" "Power symbol creates a global label with name \"+BATT\""
+			(at 95.25 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15272,12 +15165,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "92b4edc8-9a9c-4108-a6e3-4a86949cf60d")
+			(uuid "31a4c0f6-3eec-4d2c-af01-b84a463492e0")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR044")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -15464,6 +15357,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 152.4 19.05 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b0a2e240-e1c3-4230-ba16-81f39865ea07")
+		(property "Reference" "J4"
+			(at 153.67 18.4149 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02_Pin"
+			(at 153.67 20.9549 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 152.4 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 152.4 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 152.4 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6fb1dabb-7a5c-4e63-a5be-3cbeb691f229")
+		)
+		(pin "2"
+			(uuid "8013772e-7a67-4e49-9226-a6da9a47c535")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+12V")
 		(at 24.13 142.24 90)
 		(unit 1)
@@ -15525,225 +15489,6 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 250.19 97.79 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b5725588-c488-445c-991e-0dfcbd9b94cf")
-		(property "Reference" "#PWR032"
-			(at 254 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 245.11 97.79 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 250.19 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 250.19 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "73651234-0ff7-48fc-b008-4c50e3d1d0d2")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR032")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 44.45 127 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b7b9bdc8-1d3c-43af-85ea-91a16eee5b2f")
-		(property "Reference" "R5"
-			(at 44.45 120.65 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "8.2"
-			(at 44.45 123.19 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2816_7142Metric_Pad3.20x4.45mm_HandSolder"
-			(at 44.45 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 44.45 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 44.45 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35408R2JT?qs=gZXFycFWdAP1AdhJAV6y2Q%3D%3D"
-			(at 44.45 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9b45bff5-f748-41d3-9fea-038f57557418")
-		)
-		(pin "2"
-			(uuid "1818827c-90bc-4cea-8105-f610bd330272")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 81.28 104.14 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b7c99f48-85b3-4dac-ab66-014ab2c4967e")
-		(property "Reference" "R4"
-			(at 81.28 99.06 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "5.1"
-			(at 81.28 101.6 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
-			(at 81.28 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 81.28 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 81.28 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35205R1JT?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMn%2FTALBQz7Fk%3D"
-			(at 81.28 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "636f1b15-0e8a-492d-853f-d863a2e7fe94")
-		)
-		(pin "2"
-			(uuid "af9bcc15-a1c7-48bc-a8c1-b8d8d0e93ff7")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -15882,7 +15627,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4.99k"
+		(property "Value" "2.49k"
 			(at 216.789 150.241 90)
 			(effects
 				(font
@@ -15891,7 +15636,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 219.456 145.796 90)
 			(effects
 				(font
@@ -15936,7 +15681,7 @@
 				(hide yes)
 			)
 		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/SEI-Stackpole/RNCP1206FTD4K99?qs=sGAEpiMZZMvdGkrng054tyMPH50YnZ95yR%2FF2bQQIaAb5UdPiGbTtQ%3D%3D"
+		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/CPF0603F2K49C1?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMCVJDuP7Cycc%3D"
 			(at 219.71 144.78 0)
 			(effects
 				(font
@@ -15945,7 +15690,7 @@
 				(hide yes)
 			)
 		)
-		(property "specs" "4.99kOhm, 200V, 500mW, 1%, 100PPM, -55C, +155C"
+		(property "specs" ""
 			(at 219.71 144.78 0)
 			(effects
 				(font
@@ -15954,7 +15699,7 @@
 				(hide yes)
 			)
 		)
-		(property "unit x10" "0.017"
+		(property "unit x10" ".03"
 			(at 219.71 144.78 0)
 			(effects
 				(font
@@ -16006,7 +15751,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Radial_D6.3mm_H11.0mm_P2.50mm"
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 63.5 93.98 0)
 			(effects
 				(font
@@ -16124,6 +15869,120 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 254 123.19 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "badfbc66-3d79-4d21-88a6-80e4574794ed")
+		(property "Reference" "R16"
+			(at 251.079 126.111 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2.49k"
+			(at 251.079 128.651 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 253.746 124.206 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 254 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 254 123.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/CPF0603F2K49C1?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMCVJDuP7Cycc%3D"
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" ""
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" ".03"
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0cbc801c-00aa-48fa-b477-c5e4a6bdc3c2")
+		)
+		(pin "2"
+			(uuid "cfc8b757-0991-429e-935e-c717c2d4209a")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 231.14 144.78 90)
 		(unit 1)
@@ -16183,6 +16042,91 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 81.28 104.14 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bedc93d0-af61-4135-9b9e-067a954aba4c")
+		(property "Reference" "R4"
+			(at 81.28 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "5.1"
+			(at 81.28 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder"
+			(at 81.28 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 81.28 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 81.28 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KOA-Speer/SG73P2BTTD5R1J?qs=sGAEpiMZZMtlubZbdhIBIDpxrO%2FtJElW9WeAuIA3B4s%3D"
+			(at 81.28 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" "5.1Ohm, 0.33W, 5%, 200ppm, Anti-pulse"
+			(at 81.28 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c879a3ee-279e-4157-a9f3-d1ee0581fe53")
+		)
+		(pin "2"
+			(uuid "268f0851-95c3-4923-a688-eaf49caccede")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -16304,82 +16248,6 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "D18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 81.28 142.24 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c3b0a27c-7b00-486b-96f1-3e09f04ad7b4")
-		(property "Reference" "R7"
-			(at 81.28 147.32 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "5.1"
-			(at 81.28 144.78 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
-			(at 81.28 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 81.28 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 81.28 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35205R1JT?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMn%2FTALBQz7Fk%3D"
-			(at 81.28 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ea3fa630-4b49-4aa4-a146-3efc8326ca0c")
-		)
-		(pin "2"
-			(uuid "eac62378-c275-4e95-846a-4c2197eeef71")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -16829,83 +16697,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 44.45 73.66 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d4e82ef8-20e5-478c-8486-5f2f615a56de")
-		(property "Reference" "R1"
-			(at 44.45 67.31 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "8.2"
-			(at 44.45 69.85 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2816_7142Metric_Pad3.20x4.45mm_HandSolder"
-			(at 44.45 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 44.45 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 44.45 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35408R2JT?qs=gZXFycFWdAP1AdhJAV6y2Q%3D%3D"
-			(at 44.45 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0cb2828f-bcc2-4fc6-8c10-17e675343502")
-		)
-		(pin "2"
-			(uuid "9f379975-560f-4360-b44f-fe6557130666")
-		)
-		(instances
-			(project ""
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 29.21 149.86 0)
 		(mirror x)
@@ -17088,6 +16879,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+12V")
+		(at 250.19 133.35 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "de6054e6-6bb0-48da-92fa-30e903d06237")
+		(property "Reference" "#PWR033"
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 246.38 133.3499 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 250.19 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cf058479-0d1c-49b3-94d8-c46bdc9bf1fe")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR033")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_US")
 		(at 222.25 48.26 0)
 		(unit 1)
@@ -17202,33 +17060,34 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 250.19 158.75 90)
+		(lib_id "Device:R_US")
+		(at 254 97.79 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ea921c6f-7b3e-4f35-9978-1483273c260d")
-		(property "Reference" "#PWR045"
-			(at 254 158.75 0)
+		(uuid "ea5cd235-0eb7-4cad-9e9b-c2afe65c45b7")
+		(property "Reference" "R17"
+			(at 251.079 100.711 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
+				(justify left)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 245.11 158.75 90)
+		(property "Value" "2.49k"
+			(at 251.079 103.251 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 250.19 158.75 0)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 253.746 98.806 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17237,7 +17096,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 250.19 158.75 0)
+			(at 254 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17245,8 +17104,53 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 250.19 158.75 0)
+		(property "Description" "Resistor, US symbol"
+			(at 254 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 254 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 254 97.79 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/CPF0603F2K49C1?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMCVJDuP7Cycc%3D"
+			(at 254 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "specs" ""
+			(at 254 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "unit x10" ".03"
+			(at 254 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17255,12 +17159,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "485b00d3-9ca6-4f51-a5ab-3737bb99edc7")
+			(uuid "83ee8323-e7f6-4ab6-acb8-12c61954fd37")
+		)
+		(pin "2"
+			(uuid "6478b7e8-0df9-458f-bf63-a754ef334dd4")
 		)
 		(instances
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "#PWR045")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -17335,7 +17242,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 29.21 45.72 270)
+		(at 29.21 52.07 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
@@ -17343,7 +17250,7 @@
 		(dnp no)
 		(uuid "eef349d0-8859-439b-b54e-c4a72c9dcc2e")
 		(property "Reference" "TP2"
-			(at 35.814 45.72 90)
+			(at 35.814 52.07 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17351,7 +17258,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 31.2421 48.26 0)
+			(at 31.2421 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17361,7 +17268,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Loop_D2.50mm_Drill1.0mm_LowProfile"
-			(at 29.21 50.8 0)
+			(at 29.21 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17370,7 +17277,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 29.21 50.8 0)
+			(at 29.21 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17379,7 +17286,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 29.21 45.72 0)
+			(at 29.21 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17388,7 +17295,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 29.21 45.72 0)
+			(at 29.21 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17397,7 +17304,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 29.21 45.72 0)
+			(at 29.21 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17412,6 +17319,144 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "TP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+12V")
+		(at 250.19 123.19 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ef8ddfdd-ee52-46c4-a7d8-1fe4ec01c577")
+		(property "Reference" "#PWR037"
+			(at 254 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+12V"
+			(at 246.38 123.1899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+12V\""
+			(at 250.19 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "73d40dd1-7454-4151-9058-79c48eefd6ba")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "#PWR037")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 144.78 19.05 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "efb625b1-cdc3-4adc-ac80-224d582b2c9b")
+		(property "Reference" "J2"
+			(at 146.05 18.4149 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x02_Pin"
+			(at 146.05 20.9549 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 144.78 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 144.78 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ee3b0180-38b6-4b38-9f5a-37e238f41ff8")
+		)
+		(pin "2"
+			(uuid "1265e46c-a3e8-4845-8e06-8f036ea5892e")
+		)
+		(instances
+			(project ""
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -17479,83 +17524,6 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR09")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small_US")
-		(at 81.28 157.48 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f8d357c2-c9dc-441e-aff9-729d7f7b5740")
-		(property "Reference" "R8"
-			(at 81.28 152.4 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "5.1"
-			(at 81.28 154.94 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
-			(at 81.28 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 81.28 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small US symbol"
-			(at 81.28 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "mouser" "https://www.mouser.com/ProductDetail/TE-Connectivity-Holsworthy/35205R1JT?qs=sGAEpiMZZMvdGkrng054t%252BGQy31YLTNMn%2FTALBQz7Fk%3D"
-			(at 81.28 157.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dbc2c751-8c5e-45e0-95db-7e5611579cfa")
-		)
-		(pin "2"
-			(uuid "131e5531-7bd5-4d8d-8a40-2036f4c86c30")
-		)
-		(instances
-			(project "FWS_20A"
-				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
-					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -18050,6 +18018,85 @@
 			(project ""
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "U4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized_Small_US")
+		(at 63.5 147.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ff64636a-d391-4fa9-8911-98c80eac0ff3")
+		(property "Reference" "C7"
+			(at 66.04 145.6181 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "44uF 63V"
+			(at 66.04 148.1581 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+			(at 63.5 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 63.5 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor, small US symbol"
+			(at 63.5 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/KYOCERA-AVX/RPF0609470M063K?qs=sGAEpiMZZMs9%2FSpGH%2Fyc7H4DtwGVYQ5J%2FskJqe%252B%2Fx2SkoOfSnHhOfg%3D%3D"
+			(at 63.5 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "278f25b0-ff1b-4937-9a34-e1b4f9cf7dba")
+		)
+		(pin "1"
+			(uuid "078a4931-ed3b-4c61-afd9-a34ee891ad0b")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "C7")
 					(unit 1)
 				)
 			)
