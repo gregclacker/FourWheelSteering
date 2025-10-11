@@ -18,8 +18,8 @@ end
 
 # Load bootloader symbols
 set confirm off
-    add-symbol-file D:/repos/FourWheelSteering/build/bootloader/bootloader.elf
+    add-symbol-file D:/repos/FourWheelSteering/original VSC project/build/bootloader/bootloader.elf
 set confirm on
 
 # Load application symbols
-file D:/repos/FourWheelSteering/build/FourWheelSteering.elf
+file D:/repos/FourWheelSteering/original VSC project/build/FourWheelSteering.elf

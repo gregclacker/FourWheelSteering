@@ -1,2 +1,2 @@
-source D:/repos/FourWheelSteering/build/gdbinit/symbols
-source D:/repos/FourWheelSteering/build/gdbinit/connect
+source D:/repos/FourWheelSteering/original VSC project/build/gdbinit/symbols
+source D:/repos/FourWheelSteering/original VSC project/build/gdbinit/connect

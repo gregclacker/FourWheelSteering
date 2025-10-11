@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: D:\repos\FourWheelSteering\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: D:\repos\FourWheelSteering\original VSC project\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

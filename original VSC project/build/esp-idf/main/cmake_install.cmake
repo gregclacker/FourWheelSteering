@@ -1,4 +1,4 @@
-# Install script for directory: D:/repos/FourWheelSteering/main
+# Install script for directory: D:/repos/FourWheelSteering/original VSC project/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

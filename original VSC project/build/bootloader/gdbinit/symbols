@@ -22,4 +22,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file D:/repos/FourWheelSteering/build/bootloader/bootloader.elf
+file D:/repos/FourWheelSteering/original VSC project/build/bootloader/bootloader.elf

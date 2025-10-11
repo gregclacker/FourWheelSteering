@@ -10,18 +10,18 @@ if(NOT EXISTS "C:/Users/turtl/esp/v5.4.2/esp-idf/components/bootloader/subprojec
   file(MAKE_DIRECTORY "C:/Users/turtl/esp/v5.4.2/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "D:/repos/FourWheelSteering/build/bootloader"
-  "D:/repos/FourWheelSteering/build/bootloader-prefix"
-  "D:/repos/FourWheelSteering/build/bootloader-prefix/tmp"
-  "D:/repos/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp"
-  "D:/repos/FourWheelSteering/build/bootloader-prefix/src"
-  "D:/repos/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/tmp"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/src"
+  "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/repos/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/repos/FourWheelSteering/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/repos/FourWheelSteering/original VSC project/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()
