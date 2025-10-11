@@ -5544,6 +5544,12 @@
 		(uuid "055ce0ec-6698-439c-99c0-083fe0df6f8f")
 	)
 	(junction
+		(at 217.17 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "087f78d3-5f6b-4633-b8e1-8c63cdb8f046")
+	)
+	(junction
 		(at 83.82 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5640,12 +5646,6 @@
 		(uuid "5aa10ada-e2f9-42ae-a62b-542aa4ffd951")
 	)
 	(junction
-		(at 214.63 31.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5b60597a-d2b7-40ed-a92c-115e74415a46")
-	)
-	(junction
 		(at 62.23 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5676,16 +5676,16 @@
 		(uuid "6c90b2e7-4493-4b82-a316-c958e7c01da5")
 	)
 	(junction
+		(at 217.17 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6ed64f57-1ea2-4895-bd18-2318a6c4794e")
+	)
+	(junction
 		(at 83.82 157.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "76285c3c-9d76-4a56-be65-9094dae17c44")
-	)
-	(junction
-		(at 214.63 39.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7d4a809f-63e5-44c8-a690-b7a4558e5bba")
 	)
 	(junction
 		(at 78.74 142.24)
@@ -5730,6 +5730,12 @@
 		(uuid "9fcc9743-9de6-494d-b2fe-ee8745081a97")
 	)
 	(junction
+		(at 204.47 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a0ca78e0-4796-42bd-96b0-c272243fe7a4")
+	)
+	(junction
 		(at 62.23 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5748,16 +5754,16 @@
 		(uuid "aca4472c-25c7-4aec-b4ab-ec83cdbd3f62")
 	)
 	(junction
-		(at 204.47 41.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "adb6db40-cc7e-4501-bb2c-fba2026bb884")
-	)
-	(junction
 		(at 29.21 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "afd08da5-857c-48fa-9721-c818f3d197ef")
+	)
+	(junction
+		(at 200.66 41.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b039f04b-14ef-4fcc-8cb3-8aced43c029f")
 	)
 	(junction
 		(at 144.78 71.12)
@@ -5772,10 +5778,28 @@
 		(uuid "b2a99b68-2515-442d-976a-55d7953db48c")
 	)
 	(junction
+		(at 204.47 19.05)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bbe48a26-d687-4c47-b49a-e03ebc79dd26")
+	)
+	(junction
 		(at 78.74 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4657cb3-bbaa-458a-b4ad-202d531d0051")
+	)
+	(junction
+		(at 208.28 41.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cc3a6694-6546-44e2-a807-f2ed6385795e")
+	)
+	(junction
+		(at 217.17 19.05)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cecf9d9d-052a-43fb-b3df-bc3d4752cb8e")
 	)
 	(junction
 		(at 29.21 88.9)
@@ -5861,6 +5885,16 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 22.86) (xy 200.66 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00b03858-f994-4ef2-8555-321076741f4e")
+	)
+	(wire
+		(pts
 			(xy 149.86 29.21) (xy 149.86 24.13)
 		)
 		(stroke
@@ -5941,13 +5975,23 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 33.02) (xy 214.63 31.75)
+			(xy 217.17 33.02) (xy 217.17 31.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "132ea71c-7753-445d-a832-2b1a9f788dc7")
+	)
+	(wire
+		(pts
+			(xy 200.66 41.91) (xy 208.28 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13bb20f4-489e-41c3-8f09-d4e230303755")
 	)
 	(wire
 		(pts
@@ -5961,7 +6005,7 @@
 	)
 	(wire
 		(pts
-			(xy 199.39 39.37) (xy 214.63 39.37)
+			(xy 199.39 39.37) (xy 204.47 39.37)
 		)
 		(stroke
 			(width 0)
@@ -6131,7 +6175,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 39.37) (xy 214.63 38.1)
+			(xy 217.17 39.37) (xy 217.17 38.1)
 		)
 		(stroke
 			(width 0)
@@ -6251,13 +6295,13 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 41.91) (xy 227.33 41.91)
+			(xy 204.47 30.48) (xy 204.47 39.37)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3c5c1b51-5951-4de7-bbd4-ba95eb06dd2f")
+		(uuid "3d5f1974-cd50-45a9-a995-f54d2175b1d9")
 	)
 	(wire
 		(pts
@@ -6301,6 +6345,16 @@
 	)
 	(wire
 		(pts
+			(xy 219.71 19.05) (xy 217.17 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "433d9332-601d-454b-b136-225677733d28")
+	)
+	(wire
+		(pts
 			(xy 40.64 52.07) (xy 44.45 52.07)
 		)
 		(stroke
@@ -6328,6 +6382,26 @@
 			(type default)
 		)
 		(uuid "4617dd40-87a0-4ba4-85c5-cef0510df3e5")
+	)
+	(wire
+		(pts
+			(xy 204.47 19.05) (xy 217.17 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47330bb8-8bd5-446e-8f65-f21771d620df")
+	)
+	(wire
+		(pts
+			(xy 200.66 19.05) (xy 204.47 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "49c3d898-fe02-4293-b8d6-ca53189ab402")
 	)
 	(wire
 		(pts
@@ -6571,7 +6645,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 41.91) (xy 204.47 38.1)
+			(xy 208.28 41.91) (xy 208.28 38.1)
 		)
 		(stroke
 			(width 0)
@@ -6731,6 +6805,16 @@
 	)
 	(wire
 		(pts
+			(xy 204.47 22.86) (xy 204.47 19.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8da2ec7f-d053-47c9-b4df-5099bb901eaa")
+	)
+	(wire
+		(pts
 			(xy 267.97 97.79) (xy 267.97 100.33)
 		)
 		(stroke
@@ -6761,7 +6845,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 31.75) (xy 204.47 31.75)
+			(xy 208.28 31.75) (xy 217.17 31.75)
 		)
 		(stroke
 			(width 0)
@@ -6801,7 +6885,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 33.02) (xy 204.47 31.75)
+			(xy 208.28 33.02) (xy 208.28 31.75)
 		)
 		(stroke
 			(width 0)
@@ -6931,6 +7015,16 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 30.48) (xy 200.66 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a96bcaa3-ab05-4e07-8056-5d054535df15")
+	)
+	(wire
+		(pts
 			(xy 78.74 107.95) (xy 78.74 104.14)
 		)
 		(stroke
@@ -6968,6 +7062,16 @@
 			(type default)
 		)
 		(uuid "adc9608e-9605-41ae-b935-9e1cabdc82d3")
+	)
+	(wire
+		(pts
+			(xy 217.17 39.37) (xy 227.33 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b08a44a6-f8b9-4fb6-aada-4766bc9eea4f")
 	)
 	(wire
 		(pts
@@ -7111,6 +7215,16 @@
 	)
 	(wire
 		(pts
+			(xy 204.47 39.37) (xy 217.17 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c162008e-e753-4c7d-a61b-28e505fddb90")
+	)
+	(wire
+		(pts
 			(xy 119.38 38.1) (xy 129.54 38.1)
 		)
 		(stroke
@@ -7211,23 +7325,13 @@
 	)
 	(wire
 		(pts
-			(xy 199.39 41.91) (xy 204.47 41.91)
+			(xy 199.39 41.91) (xy 200.66 41.91)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "c93f27ea-a9f5-46fd-bd2f-58bdb6d01167")
-	)
-	(wire
-		(pts
-			(xy 214.63 39.37) (xy 227.33 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ca5f9959-b57d-49dd-84d2-3a45e1c830fe")
 	)
 	(wire
 		(pts
@@ -7481,6 +7585,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 41.91) (xy 227.33 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faa86686-f898-406b-b73f-bffc85ecb1cf")
+	)
+	(wire
+		(pts
 			(xy 138.43 88.9) (xy 138.43 93.98)
 		)
 		(stroke
@@ -7491,7 +7605,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 31.75) (xy 214.63 30.48)
+			(xy 217.17 31.75) (xy 217.17 19.05)
 		)
 		(stroke
 			(width 0)
@@ -7528,6 +7642,16 @@
 			(justify right bottom)
 		)
 		(uuid "0635839e-b62c-4830-b7fe-8f9307657319")
+	)
+	(label "TIMG4_C0"
+		(at 171.45 110.49 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0e3120be-bc0f-4ec6-822f-7132084da80b")
 	)
 	(label "TIMG2_C1"
 		(at 260.35 151.13 180)
@@ -7588,6 +7712,16 @@
 			(justify left bottom)
 		)
 		(uuid "2b0a2337-ea86-40ba-9c51-1af3edbdf88f")
+	)
+	(label "TIMG4_C1"
+		(at 171.45 113.03 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3a801a22-ead0-42e0-bc4d-68b0d5842eb2")
 	)
 	(label "TIMG2_C0"
 		(at 168.91 78.74 180)
@@ -7749,6 +7883,16 @@
 		)
 		(uuid "73d17719-a104-4052-9379-03b20374b79a")
 	)
+	(label "TIMG2_C0"
+		(at 171.45 102.87 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "760890e6-badf-42fa-9368-f7847e57ef50")
+	)
 	(label "M+"
 		(at 20.32 63.5 180)
 		(effects
@@ -7768,6 +7912,16 @@
 			(justify left bottom)
 		)
 		(uuid "78e72e26-4501-4026-851f-c1098e67ffeb")
+	)
+	(label "TIMG2_C1"
+		(at 171.45 105.41 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "7a4dcafa-592d-4082-ac69-56813a03e45c")
 	)
 	(label "XDS_BSL_INVOKE"
 		(at 214.63 93.98 0)
@@ -10268,7 +10422,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 204.47 35.56 0)
+		(at 208.28 35.56 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10277,7 +10431,7 @@
 		(dnp no)
 		(uuid "2407d520-56f6-4eae-9f47-dd8cbecdb19b")
 		(property "Reference" "C13"
-			(at 207.01 36.8238 0)
+			(at 210.82 36.8238 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10286,7 +10440,7 @@
 			)
 		)
 		(property "Value" "220n"
-			(at 207.01 34.2838 0)
+			(at 210.82 34.2838 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10295,7 +10449,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10304,7 +10458,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.mouser.com/ProductDetail/Samsung-Electro-Mechanics/CL31B224KBFNNNF?qs=sGAEpiMZZMsh%252B1woXyUXj7iNKXiFkBmw7C%252BUlKpuDJ8%3D"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10313,7 +10467,7 @@
 			)
 		)
 		(property "Description" "50Vdc, 10%, +125C"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10322,7 +10476,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10331,7 +10485,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10340,7 +10494,7 @@
 			)
 		)
 		(property "mouser" "https://www.mouser.com/ProductDetail/Samsung-Electro-Mechanics/CL31B224KBFNNNF?qs=sGAEpiMZZMsh%252B1woXyUXj7iNKXiFkBmw7C%252BUlKpuDJ8%3D"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10349,7 +10503,7 @@
 			)
 		)
 		(property "specs" "50VDC, X7R, 10%, -55C, +125C, 220nF"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10358,7 +10512,7 @@
 			)
 		)
 		(property "unit x10" "0.05"
-			(at 204.47 35.56 0)
+			(at 208.28 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10897,7 +11051,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 214.63 35.56 0)
+		(at 217.17 35.56 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10906,7 +11060,7 @@
 		(dnp no)
 		(uuid "31775ebd-280f-4efc-98fb-25498560f9a5")
 		(property "Reference" "C12"
-			(at 217.17 36.8238 0)
+			(at 219.71 36.8238 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10915,7 +11069,7 @@
 			)
 		)
 		(property "Value" "220n"
-			(at 217.17 34.2838 0)
+			(at 219.71 34.2838 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10924,7 +11078,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10933,7 +11087,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.mouser.com/ProductDetail/Samsung-Electro-Mechanics/CL31B224KBFNNNF?qs=sGAEpiMZZMsh%252B1woXyUXj7iNKXiFkBmw7C%252BUlKpuDJ8%3D"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10942,7 +11096,7 @@
 			)
 		)
 		(property "Description" "50Vdc, 10%, +125C"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10951,7 +11105,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10960,7 +11114,7 @@
 			)
 		)
 		(property "Sim.Type" ""
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10969,7 +11123,7 @@
 			)
 		)
 		(property "mouser" "https://www.mouser.com/ProductDetail/Samsung-Electro-Mechanics/CL31B224KBFNNNF?qs=sGAEpiMZZMsh%252B1woXyUXj7iNKXiFkBmw7C%252BUlKpuDJ8%3D"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10978,7 +11132,7 @@
 			)
 		)
 		(property "specs" "50VDC, X7R, 10%, -55C, +125C, 220nF"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10987,7 +11141,7 @@
 			)
 		)
 		(property "unit x10" "0.05"
-			(at 214.63 35.56 0)
+			(at 217.17 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13394,6 +13548,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_Zener")
+		(at 204.47 26.67 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6491cccd-e912-42fa-813a-d4534a1970f0")
+		(property "Reference" "D15"
+			(at 207.01 25.3999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "3.3V"
+			(at 207.01 27.9399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323"
+			(at 204.47 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 204.47 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Zener diode"
+			(at 204.47 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/onsemi/MM3Z3V3ST1G?qs=HVbQlW5zcXUr40rey9MAng%3D%3D"
+			(at 204.47 26.67 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7a9d3e02-8aed-48ce-8fc3-76c4c0b447d7")
+		)
+		(pin "1"
+			(uuid "e519973f-ce55-4edd-8d7d-934d55d65a17")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "D15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:D_Schottky_Small")
 		(at 53.34 129.54 180)
 		(unit 1)
@@ -14175,6 +14408,90 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 171.45 113.03 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "8dcced89-cf67-4864-9353-27e0014ad9a5")
+		(property "Reference" "TP9"
+			(at 178.054 113.03 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 173.4821 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 171.45 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 171.45 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 171.45 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 171.45 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8bc1ba7d-47e8-4e27-9df5-4bc42d0f4659")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+12V")
 		(at 209.55 44.45 90)
 		(unit 1)
@@ -14691,8 +15008,92 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 171.45 105.41 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "93813af3-fff2-45cc-b8a6-bdd44494d542")
+		(property "Reference" "TP6"
+			(at 178.054 105.41 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 173.4821 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 171.45 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 171.45 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 171.45 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 171.45 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c8ecde9a-62f2-4c8f-94df-c7f616b642f1")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
-		(at 214.63 30.48 180)
+		(at 219.71 19.05 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14700,7 +15101,7 @@
 		(dnp no)
 		(uuid "94a7f6e6-906f-412b-aa34-34c6a97bef70")
 		(property "Reference" "#PWR015"
-			(at 214.63 24.13 0)
+			(at 226.06 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14709,7 +15110,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 214.63 25.4 90)
+			(at 224.79 19.05 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14717,7 +15118,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 214.63 30.48 0)
+			(at 219.71 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14726,7 +15127,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 214.63 30.48 0)
+			(at 219.71 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14735,7 +15136,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 214.63 30.48 0)
+			(at 219.71 19.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14902,6 +15303,85 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR042")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Zener")
+		(at 200.66 26.67 270)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "96b2511a-bd97-4523-b817-6e07b50e2af1")
+		(property "Reference" "D17"
+			(at 198.12 25.3999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "3.3V"
+			(at 198.12 27.9399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-323"
+			(at 200.66 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 200.66 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Zener diode"
+			(at 200.66 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "mouser" "https://www.mouser.com/ProductDetail/onsemi/MM3Z3V3ST1G?qs=HVbQlW5zcXUr40rey9MAng%3D%3D"
+			(at 200.66 26.67 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "edf1f884-9cf5-4ea1-9bc0-1dd1238f7378")
+		)
+		(pin "1"
+			(uuid "7ed95c1a-25a5-4020-abe9-a34dcdcd72a6")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "D17")
 					(unit 1)
 				)
 			)
@@ -17372,6 +17852,90 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 171.45 102.87 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "e700b261-4c54-4308-bdc2-7f4b95d3a852")
+		(property "Reference" "TP7"
+			(at 178.054 102.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 173.4821 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 171.45 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 171.45 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 171.45 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 171.45 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "efd1bce8-2f7a-42d1-9e7b-8c4878b1329c")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_US")
 		(at 254 97.79 270)
 		(unit 1)
@@ -17836,6 +18400,90 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 171.45 110.49 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "f21924f0-9bf0-47b7-8b11-1d7f13bbab4f")
+		(property "Reference" "TP8"
+			(at 178.054 110.49 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 173.4821 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 171.45 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 171.45 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 171.45 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 171.45 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 171.45 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "60482fc8-5c44-42e5-8931-f83756b7177f")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP8")
 					(unit 1)
 				)
 			)
