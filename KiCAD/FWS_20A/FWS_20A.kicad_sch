@@ -6421,6 +6421,16 @@
 	)
 	(wire
 		(pts
+			(xy 134.62 91.44) (xy 134.62 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "57cad3d7-adc1-4610-b856-322d26ed1102")
+	)
+	(wire
+		(pts
 			(xy 134.62 91.44) (xy 168.91 91.44)
 		)
 		(stroke
@@ -6688,6 +6698,16 @@
 			(type default)
 		)
 		(uuid "88f8915a-4925-4120-85f2-9d3a70dda66d")
+	)
+	(wire
+		(pts
+			(xy 138.43 93.98) (xy 138.43 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8974254d-82eb-4d49-abf0-424cefd1a852")
 	)
 	(wire
 		(pts
@@ -11981,6 +12001,90 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 138.43 97.79 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "40f8323f-b4a6-43fa-aa8a-94d42e17916b")
+		(property "Reference" "TP5"
+			(at 138.43 104.394 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 135.89 99.8221 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 133.35 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 133.35 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 138.43 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 138.43 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 138.43 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "226dfb63-59a3-48eb-b47c-f27802e2e93b")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+12V")
 		(at 250.19 158.75 90)
 		(unit 1)
@@ -13635,6 +13739,90 @@
 			(project "FWS_20A"
 				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
 					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 134.62 97.79 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "742a510a-4d82-41df-94ff-b62550b1d979")
+		(property "Reference" "TP4"
+			(at 134.62 104.394 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 132.08 99.8221 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
+			(at 129.54 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 129.54 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 134.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 134.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Type" ""
+			(at 134.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "695916a9-ef00-4acd-9aed-8ad9ac142110")
+		)
+		(instances
+			(project "FWS_20A"
+				(path "/bd07da4b-c018-42fa-9039-1b3b7c5adf19"
+					(reference "TP4")
 					(unit 1)
 				)
 			)
