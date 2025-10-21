@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "FourWheelSteering",
-    "project_version":    "27d07ec-dirty",
+    "project_version":    "486d99e-dirty",
     "project_path":       "D:/repos/FourWheelSteering/original VSC project",
     "idf_path":           "C:/Users/turtl/esp/v5.4.2/esp-idf",
     "build_dir":          "D:/repos/FourWheelSteering/original VSC project/build",

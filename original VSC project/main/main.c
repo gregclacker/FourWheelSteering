@@ -255,10 +255,11 @@ double IdealRearAngle(double FS_SteeringAngle)
         } else {
             gpio_set_level(DIR_PIN, 0); // Move backward
         }
+        gpio_set_level(DIR_PIN, 1); // Move forward
+duty_cycle = PWM_MAX_DUTY / 2;
 
         // Apply PWM to control motor speed
-        // ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
-        ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, 0);
+        ledc_set_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0, duty_cycle);
         ledc_update_duty(LEDC_HIGH_SPEED_MODE, LEDC_CHANNEL_0);
 
         // Debugging output to verify PID response
