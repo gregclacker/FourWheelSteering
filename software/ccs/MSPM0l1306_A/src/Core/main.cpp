@@ -72,6 +72,14 @@ double deadband = 0;
 //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
 int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
 
+#define ESP_OK 0
+System::GPIO::GPIO ADC2_CHANNEL_7;
+System::GPIO::GPIO ADC2_CHANNEL_5;
+System::GPIO::GPIO ADC1_CHANNEL_4;
+
+#define ADC12_0_INST                                                        ADC0
+#define ADC12_0_INST_IRQHandler                                  ADC0_IRQHandler
+#define ADC12_0_INST_INT_IRQN                                    (ADC0_INT_IRQn)
 
 #define LED_PIN 2       //This is for the onboard LED (Status LED)
 #define FAN_PIN 23      //This is for the constant fan to cool the controller
@@ -84,7 +92,6 @@ int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be 
 #define DIR_PIN 19
 #define ADJUSTMENT_AMOUNT 7     //The amount of clicks the potentiometer will have, this only needs to be adjusted right here
 
-#ifndef TURNRADIUSCALC_H
 #define TURNRADIUSCALC_H
 
 #define WA_LW_Slope 0.3117f     //This is the slope of the left wheel, wheel angle vs turn radius
@@ -103,10 +110,12 @@ typedef struct {
     double previous_error;
     double integral;
 } PID;
-PID pid;
+
 double Kp = 0.16;        //The Kp value of the PID
 double Ki = 0.000;       //The Ki value of the PID
 double Kd = 0.016;        //The Kd value of the PID
+
+PID pid;
 
 void setup_pid(PID *pid) {
     pid->Kp = Kp;
@@ -118,13 +127,30 @@ void setup_pid(PID *pid) {
 //PA0 - Digital Output | A7 - Analog Input
 //Go forward when A7 <= 180 or A7 >= 0
 //Go backward when A7 > 180 or A7 < 0
-void setDirection(System::GPIO::GPIO p_pin, uint8_t p_dir) {
+int setDirection(System::GPIO::GPIO p_pin, uint8_t p_dir) {
     //p_pin
     //p_dir
 }
 
-void getADCOut(System::GPIO::GPIO p_pin, int *p_volt) {
-    p_pin.set();
+/** THIS IS FOR REFRENCE
+ *
+ * @brief Returns the conversion result for the selected memory index
+ *
+ * @param[in] adc12     Pointer to the register overlay for the peripheral
+ * @param[in] idx       Memory conversion index. @ref DL_ADC12_MEM_IDX.
+ *
+ * @return Conversion result
+ *
+__STATIC_INLINE uint16_t DL_ADC12_getMemResult(
+    const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+{
+    volatile const uint32_t *pReg = &adc12->ULLMEM.MEMRES[idx];
+
+    return (uint16_t)(*(pReg + DL_ADC12_SVT_OFFSET));
+}
+*/
+int getADCOut(System::GPIO::GPIO p_pin, int *p_volt) {
+    return DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0); //_digitalOut
 }
 
 
@@ -143,7 +169,7 @@ double READ_FS_POT() {
 
 double READ_RS_POT() {
     int raw_rs_val = 0;
-    if (getADCOut(REAR_STEERING_POT_PIN, ADC_WIDTH_BIT_12, &raw_rs_val) == ESP_OK) {
+    if (getADCOut(REAR_STEERING_POT_PIN, &raw_rs_val) == ESP_OK) {
         double rear_voltage = (raw_rs_val / 4095.0) * 3.3;
         double rs_angle = (rear_voltage / 3.3) * 270 - 135;
         return rs_angle;
@@ -202,7 +228,9 @@ double IdealRearAngle(double FS_SteeringAngle) {
 
 }
 
-int main(){
+volatile bool gCheckADC;
+
+int main() {
     System::init();
 
     System::uart_ui.setBaudTarget(115200);
@@ -265,25 +293,6 @@ int main(){
             DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
         );
 
-    double IDEAL_RS_ANGLE;
-    double FS_SteeringAngle; //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
-    double RS_SteeringAngle;        //Input Rear Steering Angle
-    // defines values for PID and calculus
-    typedef struct {
-        double Kp;
-        double Ki;
-        double Kd;
-        double previous_error;
-        double integral;
-
-    } PID;
-
-    double Kp = 0.16;        //The Kp value of the PID
-    double Ki = 0.000;       //The Ki value of the PID
-    double Kd = 0.016;        //The Kd value of the PID
-
-    PID pid;
-
     setPWM(0);
     DL_Timer_enableClock(PWMTimer);
     DL_Timer_setCCPDirection(PWMTimer, DL_TIMER_CC0_OUTPUT);
@@ -325,29 +334,37 @@ int main(){
     DL_GPIO_clearPins(GPIOPINPUX(adc_o_B));
     DL_GPIO_enableOutput(GPIOPINPUX(adc_o_B));
     setup_pid(&pid);
+
+    double IDEAL_RS_ANGLE;
+    double FS_SteeringAngle; //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
+    double RS_SteeringAngle;        //Input Rear Steering Angle
+    // defines values for PID and calculus
+
+    NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
+    gCheckADC = false;
     /**********************************************************/
 
     while(1){
+        DL_ADC12_startConversion(ADC12_0_INST);
+
         FS_SteeringAngle = READ_FS_POT();  // Front steering input
         RS_SteeringAngle = READ_RS_POT();  // Rear steering feedback
 
         // Calculate ideal rear steering angle
        IDEAL_RS_ANGLE = IdealRearAngle(FS_SteeringAngle);
        // Compute PID error (Difference between actual and ideal rear steering)
-        double error = RS_SteeringAngle - IDEAL_RS_ANGLE ;
+        double error = RS_SteeringAngle - IDEAL_RS_ANGLE;
         // Apply deadband
         if (fabs(error) < 1.2) {
             error = 0;
         }
 
         double pid_output = compute_pid(&pid, error);
-
-        double pid_output = compute_pid(&pid, error);
         // Determine motor direction based on PID output
         if (pid_output > 0) {
-            gpio_set_level(motor_dir, 1); // Move forward
+            DL_GPIO_writePinsVal(motor_dir.port, DL_GPIO_PIN_0, 1); // Move forward
         } else {
-            gpio_set_level(motor_dir, 0); // Move backward
+            DL_GPIO_writePinsVal(motor_dir.port, DL_GPIO_PIN_0, 0); // Move backward
         }
 
         //if turns left "press" MA "Button"
@@ -355,6 +372,7 @@ int main(){
         //IDEAL_RS_ANGLE < 0 or IDEAL_RS_ANGLE < 180 such and such...
         //inputting true for now so the code still runs
         // Determine motor direction based on PID output
+        static double duty = 0;
         setPWM(PWMMAX * duty);
 
         delay_cycles(System::CLK::CPUCLK/20);
@@ -374,5 +392,15 @@ int main(){
     while(true) {
         System::FailHard("reached end of main" NEWLINE);
         delay_cycles(20e6);
+    }
+}
+
+void ADC12_0_INST_IRQHandler(void) {
+    switch (DL_ADC12_getPendingInterrupt(ADC12_0_INST)) {
+        case DL_ADC12_IIDX_MEM0_RESULT_LOADED:
+            gCheckADC = true;
+            break;
+        default:
+            break;
     }
 }
