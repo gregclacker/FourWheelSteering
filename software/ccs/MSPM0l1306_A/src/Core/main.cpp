@@ -134,6 +134,19 @@ int setDirection(System::GPIO::GPIO p_pin, uint8_t p_dir) {
 
 /** THIS IS FOR REFRENCE
  *
+ * ADC Methods:
+    __STATIC_INLINE DL_ADC12_getMemResult(
+        const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+
+    __STATIC_INLINE void DL_GPIO_writePinsVal(
+        GPIO_Regs* gpio, uint32_t pinsMask, uint32_t pinsVal)
+
+    Pin Methods:
+    __STATIC_INLINE uint32_t DL_GPIO_readPins(GPIO_Regs* gpio, uint32_t pins)
+    __STATIC_INLINE void DL_GPIO_setPins(GPIO_Regs* gpio, uint32_t pins)
+    __STATIC_INLINE void DL_GPIO_clearPins(GPIO_Regs* gpio, uint32_t pins)
+    __STATIC_INLINE void DL_GPIO_togglePins(GPIO_Regs* gpio, uint32_t pins) // Flips pins in that registor mask
+ *
  * @brief Returns the conversion result for the selected memory index
  *
  * @param[in] adc12     Pointer to the register overlay for the peripheral
