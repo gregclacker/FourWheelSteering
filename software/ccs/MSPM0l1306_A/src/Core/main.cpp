@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <cstdio>
+
 
 #include "system.hpp"
 
@@ -73,9 +75,10 @@ double deadband = 0;
 int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
 
 #define ESP_OK 0
-System::GPIO::GPIO ADC2_CHANNEL_7;
-System::GPIO::GPIO ADC2_CHANNEL_5;
-System::GPIO::GPIO ADC1_CHANNEL_4;
+//PA1 - PA9
+System::GPIO::GPIO ADC2_CHANNEL_1 = System::GPIO::PA1;
+System::GPIO::GPIO ADC2_CHANNEL_2 = System::GPIO::PA2;
+System::GPIO::GPIO ADC1_CHANNEL_3 = System::GPIO::PA3;
 
 #define ADC12_0_INST                                                        ADC0
 #define ADC12_0_INST_IRQHandler                                  ADC0_IRQHandler
@@ -83,9 +86,9 @@ System::GPIO::GPIO ADC1_CHANNEL_4;
 
 #define LED_PIN 2       //This is for the onboard LED (Status LED)
 #define FAN_PIN 23      //This is for the constant fan to cool the controller
-#define FRONT_STEERING_POT_PIN ADC2_CHANNEL_7 //This is the front steering pot       ADC1_CHANNEL_7 Corresponds to GPIO35 on the pinout diagram
-#define REAR_STEERING_POT_PIN ADC2_CHANNEL_5 //This is the rear steering pot        ADC1_CHANNEL_6 Corresponds to GPIO34 on the pinout diagram
-#define ADJUSTMENT_POT_PIN ADC1_CHANNEL_4 //This is the adjustment pot      ADC1_CHANNEL_4 Corresponds to GPIO32 on the pinout diagram
+#define FRONT_STEERING_POT_PIN ADC2_CHANNEL_1 //This is the front steering pot       ADC1_CHANNEL_1 Corresponds to GPIO35 on the pinout diagram
+#define REAR_STEERING_POT_PIN ADC2_CHANNEL_2 //This is the rear steering pot        ADC1_CHANNEL_2 Corresponds to GPIO34 on the pinout diagram
+#define ADJUSTMENT_POT_PIN ADC1_CHANNEL_3 //This is the adjustment pot      ADC1_CHANNEL_3 Corresponds to GPIO32 on the pinout diagram
 //#define MOTOR_DRIVER_1PIN  25      //This is the Motor Driver 1 pin correspodning to GPIO27
 //#define MOTOR_DRIVER_2PIN 14        //This is the Motor Driver 2 pin corresponding to GPIO14
 #define MOTOR_PWM_PIN 18        //This is the PWM pin corresponding to GPIO12
@@ -136,16 +139,16 @@ int setDirection(System::GPIO::GPIO p_pin, uint8_t p_dir) {
  *
  * ADC Methods:
     __STATIC_INLINE DL_ADC12_getMemResult(
-        const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)
+        const ADC12_Regs *adc12, DL_ADC12_MEM_IDX idx)                          // Read Digial output from the ADC
 
     __STATIC_INLINE void DL_GPIO_writePinsVal(
-        GPIO_Regs* gpio, uint32_t pinsMask, uint32_t pinsVal)
+        GPIO_Regs* gpio, uint32_t pinsMask, uint32_t pinsVal)                   //
 
     Pin Methods:
-    __STATIC_INLINE uint32_t DL_GPIO_readPins(GPIO_Regs* gpio, uint32_t pins)
-    __STATIC_INLINE void DL_GPIO_setPins(GPIO_Regs* gpio, uint32_t pins)
-    __STATIC_INLINE void DL_GPIO_clearPins(GPIO_Regs* gpio, uint32_t pins)
-    __STATIC_INLINE void DL_GPIO_togglePins(GPIO_Regs* gpio, uint32_t pins) // Flips pins in that registor mask
+    __STATIC_INLINE uint32_t DL_GPIO_readPins(GPIO_Regs* gpio, uint32_t pins)   // Reads GPIO Pin
+    __STATIC_INLINE void DL_GPIO_setPins(GPIO_Regs* gpio, uint32_t pins)        // Sets GPIO to Input
+    __STATIC_INLINE void DL_GPIO_clearPins(GPIO_Regs* gpio, uint32_t pins)      // Sets GPIO to an Output
+    __STATIC_INLINE void DL_GPIO_togglePins(GPIO_Regs* gpio, uint32_t pins)     // Flips pins in that registor mask
  *
  * @brief Returns the conversion result for the selected memory index
  *
@@ -162,33 +165,26 @@ __STATIC_INLINE uint16_t DL_ADC12_getMemResult(
     return (uint16_t)(*(pReg + DL_ADC12_SVT_OFFSET));
 }
 */
-int getADCOut(System::GPIO::GPIO p_pin, int *p_volt) {
-    return DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0); //_digitalOut
-}
 
+void getADCOut(System::GPIO::GPIO p_pin, int *p_volt) {
+    *p_volt = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+}
 
 //TODO: Make sure to fill this in
 double READ_FS_POT() {
     int raw_fs_val = 0;
-    if (getADCOut(FRONT_STEERING_POT_PIN, &raw_fs_val) == ESP_OK) {
-        double front_voltage = (raw_fs_val / 4095.0) * 3.3;
-        double fs_angle = (front_voltage / 3.3) * 270.0 - 131.0;
-        return fs_angle;
-    } else {
-        // Handle error (return 0, NAN, or a special value)
-        return 0.0;
-    }
+    getADCOut(FRONT_STEERING_POT_PIN, &raw_fs_val);
+    double front_voltage = (raw_fs_val / 4095.0) * 3.3;
+    double fs_angle = (front_voltage / 3.3) * 270.0 - 131.0;
+    return fs_angle;
 }
 
 double READ_RS_POT() {
     int raw_rs_val = 0;
-    if (getADCOut(REAR_STEERING_POT_PIN, &raw_rs_val) == ESP_OK) {
-        double rear_voltage = (raw_rs_val / 4095.0) * 3.3;
-        double rs_angle = (rear_voltage / 3.3) * 270 - 135;
-        return rs_angle;
-    } else {
-        return 0.0;
-    }
+    getADCOut(REAR_STEERING_POT_PIN, &raw_rs_val);
+    double rear_voltage = (raw_rs_val / 4095.0) * 3.3;
+    double rs_angle = (rear_voltage / 3.3) * 270.0 - 131.0;
+    return rs_angle;
 }
 
 #define INTEGRAL_LIMIT 100 // Adjust based on testing
@@ -325,7 +321,7 @@ int main() {
 
     //TODO: add pin later for ac/dc for the something that is analog to digitl cause its on the car
     //Analog pins are PA1 - PA9
-    auto &adc_o_A = System::GPIO::PA7; //accounts for the MA button
+    auto &adc_o_A = System::GPIO::PA6; //accounts for the MA button
     DL_GPIO_initDigitalOutputFeatures(
         adc_o_A.iomux,
        DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
@@ -336,7 +332,7 @@ int main() {
     DL_GPIO_clearPins(GPIOPINPUX(adc_o_A));
     DL_GPIO_enableOutput(GPIOPINPUX(adc_o_A));
 
-    auto &adc_o_B = System::GPIO::PA8; //accounts for the MB button
+    auto &adc_o_B = System::GPIO::PA7; //accounts for the MB button
     DL_GPIO_initDigitalOutputFeatures(
         adc_o_B.iomux,
         DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
@@ -346,17 +342,70 @@ int main() {
     );
     DL_GPIO_clearPins(GPIOPINPUX(adc_o_B));
     DL_GPIO_enableOutput(GPIOPINPUX(adc_o_B));
+
     setup_pid(&pid);
+
+
+    auto &adc_fs_pot_pin = FRONT_STEERING_POT_PIN;
+    DL_GPIO_initDigitalOutputFeatures(
+            adc_fs_pot_pin.iomux,
+            DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+            DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+            DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+            DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+        );
+    DL_GPIO_clearPins(GPIOPINPUX(adc_fs_pot_pin));
+    DL_GPIO_enableOutput(GPIOPINPUX(adc_fs_pot_pin));
+
+    auto &adc_rs_pot_pin = REAR_STEERING_POT_PIN;
+    DL_GPIO_initDigitalOutputFeatures(
+            adc_rs_pot_pin.iomux,
+            DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+            DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+            DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+            DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+        );
+    DL_GPIO_clearPins(GPIOPINPUX(adc_rs_pot_pin));
+    DL_GPIO_enableOutput(GPIOPINPUX(adc_rs_pot_pin));
+
+    auto &adc_adjust_pot_pin = ADJUSTMENT_POT_PIN;
+    DL_GPIO_initDigitalOutputFeatures(
+            adc_adjust_pot_pin.iomux,
+            DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+            DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+            DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+            DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+        );
+    DL_GPIO_clearPins(GPIOPINPUX(adc_adjust_pot_pin));
+    DL_GPIO_enableOutput(GPIOPINPUX(adc_adjust_pot_pin));
 
     double IDEAL_RS_ANGLE;
     double FS_SteeringAngle; //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
     double RS_SteeringAngle;        //Input Rear Steering Angle
     // defines values for PID and calculus
 
+    DL_ADC12_configConversionMem(ADC12_0_INST,
+                                 DL_ADC12_MEM_IDX_0,
+                                 DL_ADC12_INPUT_CHAN_0,
+                                 DL_ADC12_REFERENCE_VOLTAGE_VDDA,
+                                 DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0,
+                                 DL_ADC12_AVERAGING_MODE_DISABLED,
+                                 DL_ADC12_BURN_OUT_SOURCE_DISABLED,
+                                 DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT,
+                                 DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+
     NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
+    DL_ADC12_enableConversions(ADC12_0_INST);
+    DL_ADC12_startConversion(ADC12_0_INST);
+    delay_cycles(32e6);
+    //while (!DL_ADC12_getStatus(ADC12_0_INST) & DL_ADC12_STATUS_CONVERSION_ACTIVE) {}
+    uint16_t adcValue = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+    char str1[100];
+    snprintf(ARRANDN(str1), "First: %6d\n", adcValue);
+    System::uart_ui.nputs(ARRANDN(str1));
     gCheckADC = false;
     /**********************************************************/
-
+/*
     while(1){
         DL_ADC12_startConversion(ADC12_0_INST);
 
@@ -400,6 +449,15 @@ int main() {
         } else {'';
             duty = 1;
         }*/
+    //}
+
+    char str[100];
+    int _value = 0;
+    getADCOut(FRONT_STEERING_POT_PIN, &_value);
+    snprintf(ARRANDN(str), "%6d\n", DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0));
+    while(true) {
+        System::uart_ui.nputs(ARRANDN(str));
+        delay_cycles(32e6);
     }
 
     while(true) {
