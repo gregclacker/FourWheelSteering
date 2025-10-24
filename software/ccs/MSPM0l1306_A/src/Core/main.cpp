@@ -83,6 +83,7 @@ System::GPIO::GPIO ADC1_CHANNEL_3 = System::GPIO::PA3;
 #define ADC12_0_INST                                                        ADC0
 #define ADC12_0_INST_IRQHandler                                  ADC0_IRQHandler
 #define ADC12_0_INST_INT_IRQN                                    (ADC0_INT_IRQn)
+#define ADC12_0_ADCMEM_0                                      DL_ADC12_MEM_IDX_0
 
 #define LED_PIN 2       //This is for the onboard LED (Status LED)
 #define FAN_PIN 23      //This is for the constant fan to cool the controller
@@ -384,25 +385,72 @@ int main() {
     double RS_SteeringAngle;        //Input Rear Steering Angle
     // defines values for PID and calculus
 
-    DL_ADC12_configConversionMem(ADC12_0_INST,
-                                 DL_ADC12_MEM_IDX_0,
-                                 DL_ADC12_INPUT_CHAN_0,
-                                 DL_ADC12_REFERENCE_VOLTAGE_VDDA,
-                                 DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0,
-                                 DL_ADC12_AVERAGING_MODE_DISABLED,
-                                 DL_ADC12_BURN_OUT_SOURCE_DISABLED,
-                                 DL_ADC12_TRIGGER_MODE_TRIGGER_NEXT,
-                                 DL_ADC12_WINDOWS_COMP_MODE_DISABLED);
+    //SYSCFG_DL_initPower
+    // 1. Reset and power up ADC
+        DL_ADC12_reset(ADC12_0_INST);
+        DL_ADC12_enablePower(ADC12_0_INST);
+        delay_cycles(POWER_STARTUP_DELAY);
 
-    NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
-    DL_ADC12_enableConversions(ADC12_0_INST);
-    DL_ADC12_startConversion(ADC12_0_INST);
-    delay_cycles(32e6);
+        // 2. Configure ADC clock (example config)
+        static const DL_ADC12_ClockConfig gADC12_0ClockConfig = {
+            .clockSel    = DL_ADC12_CLOCK_ULPCLK,
+            .divideRatio = DL_ADC12_CLOCK_DIVIDE_8,
+            .freqRange   = DL_ADC12_CLOCK_FREQ_RANGE_24_TO_32,
+        };
+        DL_ADC12_setClockConfig(ADC12_0_INST, (DL_ADC12_ClockConfig *)&gADC12_0ClockConfig);
+
+        // 3. Configure PA0 as analog input
+        DL_GPIO_initPeripheralAnalogFunction(IOMUX_PINCM1); // IOMUX_PINCM1 maps to PA0
+
+        // 4. Configure conversion memory for channel 0
+        DL_ADC12_configConversionMem(
+            ADC12_0_INST,
+            DL_ADC12_MEM_IDX_0,             // Memory index
+            DL_ADC12_INPUT_CHAN_0,          // ADC channel 0 = PA0
+            DL_ADC12_REFERENCE_VOLTAGE_VDDA,// Vref = 3.3V
+            DL_ADC12_SAMPLE_TIMER_SOURCE_SCOMP0,
+            DL_ADC12_AVERAGING_MODE_DISABLED,
+            DL_ADC12_BURN_OUT_SOURCE_DISABLED,
+            DL_ADC12_TRIGGER_MODE_AUTO_NEXT,
+            DL_ADC12_WINDOWS_COMP_MODE_DISABLED
+        );
+
+        // 5. Set manual power-down mode and sample time
+        DL_ADC12_setPowerDownMode(ADC12_0_INST, DL_ADC12_POWER_DOWN_MODE_MANUAL);
+        DL_ADC12_setSampleTime0(ADC12_0_INST, 1000-1);
+
+        // 6. Enable ADC conversions
+        DL_ADC12_enableConversions(ADC12_0_INST);
+    /* Enable ADC12 interrupt */
+    //DL_ADC12_clearInterruptStatus(ADC12_0_INST,(DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED));
+    //DL_ADC12_enableInterrupt(ADC12_0_INST,(DL_ADC12_INTERRUPT_MEM0_RESULT_LOADED));
+
+    //main
+    //NVIC_EnableIRQ(ADC12_0_INST_INT_IRQN);
     //while (!DL_ADC12_getStatus(ADC12_0_INST) & DL_ADC12_STATUS_CONVERSION_ACTIVE) {}
+    char str[100];
+    while (1) {
+        DL_ADC12_startConversion(ADC12_0_INST);
+        System::uart_ui.nputs(ARRANDN(str));
+        uint16_t adcValue = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
+        double voltage = ((adcValue / 4095.0) * 3.3);
+        snprintf(ARRANDN(str), "ADC Out: %d; Voltage: %f\n", adcValue, voltage);
+
+        if(adcValue > 0x7FF) {
+            System::uart_ui.nputs(ARRANDN("High"));
+        } else {
+            System::uart_ui.nputs(ARRANDN("Low"));
+        }
+        //snprintf(ARRANDN(str), "Voltage: %f\n", voltage);
+        //System::uart_ui.nputs(ARRANDN(str));
+        delay_cycles(32e6);
+
+        DL_ADC12_enableConversions(ADC12_0_INST);
+    }
     uint16_t adcValue = DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0);
-    char str1[100];
-    snprintf(ARRANDN(str1), "First: %6d\n", adcValue);
-    System::uart_ui.nputs(ARRANDN(str1));
+    snprintf(ARRANDN(str), "ADC Out: %6d\n", adcValue);
+    System::uart_ui.nputs(ARRANDN(str));
+
     gCheckADC = false;
     /**********************************************************/
 /*
@@ -451,10 +499,14 @@ int main() {
         }*/
     //}
 
+    /*
     char str[100];
     int _value = 0;
-    getADCOut(FRONT_STEERING_POT_PIN, &_value);
+    //getADCOut(FRONT_STEERING_POT_PIN, &_value);
+
+    DL_ADC12_startConversion(ADC12_0_INST);
     snprintf(ARRANDN(str), "%6d\n", DL_ADC12_getMemResult(ADC12_0_INST, DL_ADC12_MEM_IDX_0));
+    //snprintf(ARRANDN(str), "%6d\n", DL_ADC12_getMemResultAddress(ADC12_0_INST, DL_ADC12_MEM_IDX_0));
     while(true) {
         System::uart_ui.nputs(ARRANDN(str));
         delay_cycles(32e6);
@@ -463,7 +515,7 @@ int main() {
     while(true) {
         System::FailHard("reached end of main" NEWLINE);
         delay_cycles(20e6);
-    }
+    }*/
 }
 
 void ADC12_0_INST_IRQHandler(void) {
