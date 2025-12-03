@@ -8,16 +8,18 @@
 #include "system.hpp"
 #include "fourwheelsteer_defs.hpp"
 
-//fs - Front Steer ADC Angle
-//Go forward when fs <= 180 or fs >= 0
-//Go backward when fs > 180 or fs < 0
-void FWS_Utils::SteerMotor() {
-    float _fsangle = FWS_Utils::READ_FS_POT();
+/* Four Wheel Steering Information
+ * fs - Front Steer ADC Angle
+ * Go forward when fs <= 180 or fs >= 0
+ * Go backward when fs > 180 or fs < 0
+ * */
+void FWS_Utils::Motor::steer_motor() {
+    double _fsangle = FWS_Utils::PID::fs_POT();
     if(_fsangle <= 180 || _fsangle >= 0) {
-        MotorForward();
+        motor_right();
     }
     if(_fsangle < 180 || _fsangle > 0) {
-        MotorReverse();
+        motor_left();
     }
 }
 
@@ -28,25 +30,25 @@ void FWS_Utils::SteerMotor() {
 //    /\
 //   9  6
 //
-void FWS_Utils::MotorForward() {
+void FWS_Utils::Motor::motor_right() {
     //Set Pins
-    System::GPIO::PA6.set();
-    System::GPIO::PA10.set();
+    GateDriver1_PIN.set();
+    GateDriver4_PIN.set();
 
 }
-void FWS_Utils::MotorReverse() {
+void FWS_Utils::Motor::motor_left() {
     //Set Pins
-    System::GPIO::PA7.set();
-    System::GPIO::PA9.set();
+    GateDriver2_PIN.set();
+    GateDriver3_PIN.set();
 }
 
 /* ADC Information
  * 120 SPS Minimum ~ 12 Bit Resolution
  * 3.3 Vref
 */
-constexpr float REFVOLTAGE = 3.3f;
-constexpr float MAXBITS = 2048.0f; // Currently 12 bits unsigned
-void FWS_Utils::getADCOut(uint8_t p_adcAddr, int16_t *_raw) {
+constexpr double REFVOLTAGE = 3.3f;
+constexpr double MAXBITS = 2048.0f; // Currently 12 bits unsigned
+void FWS_Utils::ADC::get_ADC_raw(uint8_t p_adcAddr, int16_t *_raw) {
     uint8_t config = 0x80;       // example config byte | 1000000 Ready
     System::i2c1.tx(p_adcAddr, &config, 1);
     uint8_t _dataBuffer[2];
@@ -59,51 +61,56 @@ void FWS_Utils::getADCOut(uint8_t p_adcAddr, int16_t *_raw) {
         *_raw = (_dataBuffer[0] & 0x7F << 5) | (_dataBuffer[1] >> 3);
     }
 }
-
 // Eventually this will replace 'front_voltage'/'rear_voltage' just don't wanna replace it yet
-float FWS_Utils::getADCVoltage(uint8_t p_adcAddr) {
+double FWS_Utils::ADC::get_ADC_voltage(uint8_t p_adcAddr) {
     int16_t _raw;
-    getADCOut(p_adcAddr, &_raw);
+    FWS_Utils::ADC::get_ADC_raw(p_adcAddr, &_raw);
     return (_raw / MAXBITS) * REFVOLTAGE;
 }
 
-double FWS_Utils::READ_FS_POT() {
+double FWS_Utils::PID::fs_POT() {
     int16_t raw_fs_val = 0;
-    getADCOut(ADC_1_ADDR, &raw_fs_val);
+    FWS_Utils::ADC::get_ADC_raw(ADC_1_ADDR, &raw_fs_val);
     double front_voltage = (raw_fs_val / MAXBITS) * REFVOLTAGE;
     double fs_angle = (front_voltage / REFVOLTAGE) * 270.0 - 131.0;
     return fs_angle;
 }
-
-double FWS_Utils::READ_RS_POT() {
+double FWS_Utils::PID::rs_POT() {
     int16_t raw_rs_val = 0;
-    getADCOut(ADC_2_ADDR, &raw_rs_val);
+    FWS_Utils::ADC::get_ADC_raw(ADC_2_ADDR, &raw_rs_val);
     double rear_voltage = (raw_rs_val / MAXBITS) * REFVOLTAGE;
     double rs_angle = (rear_voltage / REFVOLTAGE) * 270.0 - 131.0;
     return rs_angle;
 }
 
+void FWS_Utils::PID::INITPID(PID *pid) {
+    pid->Kp = KP;
+    pid->Ki = KI;
+    pid->Kd = KD;
+    pid->previous_error = 0;
+    pid->integral = 0;
+}
 #define INTEGRAL_LIMIT 100 // Adjust based on testing
-double FWS_Utils::compute_pid(PID *pid, double error) {
-    double P_out = pid->Kp * error;
+double FWS_Utils::PID::caclulate_PID(PID *p_pid, double p_err) {
+    double P_out = p_pid->Kp * p_err;
 
     // **Reset integral when error direction changes**
-    if ((pid->previous_error > 0 && error < 0) || (pid->previous_error < 0 && error > 0)) {
-        pid->integral = 0;
+    if ((p_pid->previous_error > 0 && p_err < 0) || (p_pid->previous_error < 0 && p_err > 0)) {
+        p_pid->integral = 0;
     } else {
-        pid->integral += error;
+        p_pid->integral += p_err;
     }
 
     // **Clamp integral to prevent windup**
-    if (pid->integral > INTEGRAL_LIMIT) pid->integral = INTEGRAL_LIMIT;
-    if (pid->integral < -INTEGRAL_LIMIT) pid->integral = -INTEGRAL_LIMIT;
+    if (p_pid->integral > INTEGRAL_LIMIT) p_pid->integral = INTEGRAL_LIMIT;
+    if (p_pid->integral < -INTEGRAL_LIMIT) p_pid->integral = -INTEGRAL_LIMIT;
 
-    double I_out = pid->Ki * pid->integral;
+    double I_out = p_pid->Ki * p_pid->integral;
 
-    double derivative = (error - pid->previous_error);
-    double D_out = pid->Kd * derivative;
+    double derivative = (p_err - p_pid->previous_error);
+    double D_out = p_pid->Kd * derivative;
 
-    pid->previous_error = error;
+    p_pid->previous_error = p_err;
 
     double output = P_out + I_out + D_out;
 
@@ -113,8 +120,7 @@ double FWS_Utils::compute_pid(PID *pid, double error) {
     */
     return output;
 }
-
-double FWS_Utils::IdealRearAngle(double FS_SteeringAngle, FWS *fws) {
+double FWS_Utils::PID::target_rear_angle(double FS_SteeringAngle, FWS *fws) {
     if (fws->FS_SteeringAngle > fws->deadband) { //Left Turn Steering Percentage Calc
         fws->LT_Percentage = -50 * tanh(0.1 * (TR_RW_Coefficient * pow(fws->FS_SteeringAngle, TR_RW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of left turn
         double RearAngle = (fws->LT_Percentage / 100.0) * 135.0;
@@ -123,23 +129,91 @@ double FWS_Utils::IdealRearAngle(double FS_SteeringAngle, FWS *fws) {
     } else if (fws->FS_SteeringAngle < -fws->deadband) { // Right Turn Steering Percentage Calc
         fws->RT_Percentage = -50 * tanh(0.1 * (TR_LW_Coefficient * pow(-fws->FS_SteeringAngle, TR_LW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of right turn
         double RearAngle = (fws->RT_Percentage / 100.0) * 135.0;
-        fws->RS_Deg = RearAngle * -1 ;
+        fws->RS_Deg = RearAngle * -1;
         return fws->RS_Deg;
     }
-    {
-        fws->RS_Deg = 0.0;
-        return fws->RS_Deg;
-    }
+    fws->RS_Deg = 0.0;
+    return fws->RS_Deg;
 }
 
-void FWS_Utils::SetupFWS(FWS *fws) {
+
+void FWS_Utils::PWM::INITPWMTIMER(GPTIMER_Regs *p_timer, DL_TIMER_CC_INDEX p_TIMER_CCx_INDEX, uint32_t p_TIMER_CCx_OUTPUT) {
+    // setup Timer_x for PWM
+    DL_Timer_enablePower(p_timer);
+    DL_Timer_enableClock(p_timer);
+
+    //DL_GPIO_setPinFunction(IOMUX_PINCM25, IOMUX_PINCM25_PF_TIMG0_CCP1); CHECK THIS
+
+    delay_cycles(POWER_STARTUP_DELAY);
+    constexpr DL_Timer_ClockConfig clkConfig = {
+        .clockSel      = DL_TIMER_CLOCK_BUSCLK,
+        .divideRatio   = DL_TIMER_CLOCK_DIVIDE_1,
+        .prescale      = 0,
+    };
+    //PWMMAX & 0xFF
+    DL_Timer_setClockConfig(p_timer, &clkConfig);
+    constexpr DL_Timer_PWMConfig pwmConfig = {
+        .period     =  0xFF,
+        .pwmMode    = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
+        .isTimerWithFourCC = false,
+        .startTimer = DL_TIMER::DL_TIMER_START,
+    };
+    DL_Timer_initPWMMode(p_timer, &pwmConfig);
+
+    // PWM level triggers
+    DL_Timer_setCounterControl(
+            p_timer,
+        DL_TIMER_CZC::DL_TIMER_CZC_CCCTL0_ZCOND,
+        DL_TIMER_CAC::DL_TIMER_CAC_CCCTL0_ACOND,
+        DL_TIMER_CLC::DL_TIMER_CLC_CCCTL0_LCOND
+    );
+    DL_Timer_setCaptureCompareOutCtl(
+            p_timer,
+        DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+        DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+        DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+        p_TIMER_CCx_INDEX
+    );//IOMUX_PINCM24_PF_TIMG0_CCP0
+    DL_Timer_setCaptCompUpdateMethod(
+            p_timer,
+        DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
+        p_TIMER_CCx_INDEX
+    );
+    //PWMTIMERx_REG
+    FWS_Utils::PWM::set_PWM(p_timer, 0, p_TIMER_CCx_INDEX);
+    DL_Timer_setCCPDirection(p_timer, p_TIMER_CCx_OUTPUT);
+    DL_Timer_startCounter(p_timer);
+}
+uint32_t FWS_Utils::PWM::get_PWM(GPTIMER_Regs *p_timer) {
+    return DL_Timer_getCaptureCompareValue(p_timer, DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX);
+}
+void FWS_Utils::PWM::set_PWM(GPTIMER_Regs *p_timer, uint32_t p_duty, DL_TIMER_CC_INDEX p_TIMER_CC_INDEX) {
+    uint32_t _PWM_duty = PWMMAX * p_duty;
+    if(_PWM_duty >= PWMMAX) _PWM_duty = PWMMAX - 1;
+    if(_PWM_duty == 0) _PWM_duty = PWMMAX;
+    DL_Timer_setCaptureCompareValue(p_timer, _PWM_duty, p_TIMER_CC_INDEX);
+}
+int FWS_Utils::PWM::PWM_duty_cycle(double pid_output) {
+    int duty = (int)(fabs(pid_output) * (PWMMAX / 15)); // Adjusted scaling factor
+    // Ensure duty cycle is within valid range
+    if (duty > PWMMAX) duty = PWMMAX;
+    if (duty > 0 && duty < 300) duty = 400;  // Minimum force to actually move
+
+    return duty;
+}
+
+void FWS_Utils::GPIO::INITGPIO(System::GPIO::GPIO p_pin, uint32_t p_timer) {
+    DL_GPIO_initPeripheralOutputFunctionFeatures(
+        p_pin.iomux,
+        p_timer,
+        DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+        DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+        DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+        DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+    );
+    DL_GPIO_enableOutput(GPIOPINPUX(p_pin));
+}
+
+void FWS_Utils::INITFWS(FWS *fws) {
     fws->deadband = 0;
-}
-
-void FWS_Utils::SetupPID(PID *pid) {
-    pid->Kp = KP;
-    pid->Ki = KI;
-    pid->Kd = KD;
-    pid->previous_error = 0;
-    pid->integral = 0;
 }
