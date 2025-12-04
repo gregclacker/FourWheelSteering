@@ -27,72 +27,65 @@
 #define ESP_OK 0
 
 //TIMG0_C0, TIMG0_C1, TIMG4_C0, TIMG4_C0
-#define GateDriver1_PIN         System::GPIO::PA5
-#define GateDriver2_PIN         System::GPIO::PA6
+#define GateDriver1_PIN         System::GPIO::PA3
+#define GateDriver2_PIN         System::GPIO::PA4
 
-#define GateDriver3_PIN         System::GPIO::PA8
-#define GateDriver4_PIN         System::GPIO::PA9
+#define GateDriver3_PIN         System::GPIO::PA10
+#define GateDriver4_PIN         System::GPIO::PA11
 
 #define LED1_PIN                System::GPIO::PA0
-#define LED2_PIN                System::GPIO::PA25
+#define LED2_PIN                System::GPIO::PA26
 
 //#define Dir_Pin =             System::GPIO::PA0
 #define PWM_Pin                 System::GPIO::PA26
 
-#define PWMTIMER1_IOMUX         IOMUX_PINCM24_PF_TIMG0_CCP0
-#define PWMTIMER2_IOMUX         IOMUX_PINCM24_PF_TIMG0_CCP1
-
-#define PWMTIMER3_IOMUX         IOMUX_PINCM24_PF_TIMG2_CCP0
-#define PWMTIMER4_IOMUX         IOMUX_PINCM24_PF_TIMG2_CCP1
-
 #define PWMTIMER1_REG           TIMG0
 #define PWMTIMER2_REG           TIMG2
 
-
 #define ADC_1_ADDR              0x49 //TODO: NOT ACTUAL ADDRESS PLS FIX OR U WILL BE SAD FOR THE REST OF UR LIFE :( WOMP WOMP DO BETTER L CODE
 #define ADC_2_ADDR              0x50
-
-#define TURNRADIUSCALC_H
-
-#define WA_LW_Slope             0.3117f     //This is the slope of the left wheel, wheel angle vs turn radius
-#define WA_LW_Intercept         -1.6651f     //This is the Y intercept of the left wheel, wheel angle vs turn radius
-#define WA_RW_Slope             0.2286f     //This is the slope of the right wheel, wheel angle vs turn radius
-#define WA_RW_Intercept         -0.194f     //This is the Y intercept of the right wheel, wheel angle vs turn radius
-#define TR_LW_Coefficient       2677.7f  //This is the left wheel coefficient of the power function for Turn Radius vs Steering Angle
-#define TR_LW_Power             -1.147f    //This is the left wheel power of the power function for Turn Radius vs Steering Angle
-#define TR_RW_Coefficient       2760.0f  //This is the right wheel coefficient of the power function for Turn Radius vs Steering Angle
-#define TR_RW_Power             -1.222f    //This is the right wheel power of the power function for Turn Radius vs Steering Angle
-
-#define KP                      0.16        //The Kp value of the PID  | How hard motor should push
-#define KI                      0.000       //The Ki value of the PID  | Helps push motor into error range (kinda like a counter ofrce to friction)
-#define KD                      0.016        //The Kd value of the PID | Dampens movements (kinda like shock absorber)
-
-#define PWMMAX 0xFFFF
 
 namespace System { namespace GPIO { } }
 
 namespace FWS_Utils {
 
-    typedef struct {
-        double FS_SteeringAngle; //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
-        double RS_SteeringAngle;        //Input Rear Steering Angle
-        double LW_Angle;    //Left Wheel Angle
-        double RW_Angle;    //Right Wheel Angle
-        double TR_Left;     //Turn Radius Left Wheel Right Turn
-        double TR_Right;    //Turn Radius Right Wheel Left Turn
-        double IDEAL_RS_ANGLE;
-        double RS_TR_RIGHT;
-        double RS_WA_RIGHT;
-        double RS_TR_LEFT;
-        double RS_WA_LEFT;
-        double RT_Percentage;
-        double LT_Percentage;
-        double RS_Deg;
-        double deadband;
-        //double Gain_Input;    //Not sure if this will be used
-        //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
-        int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
-    } FWS;
+    namespace FWS {
+        constexpr double WA_LW_Slope = 0.3117f;          //This is the slope of the left wheel, wheel angle vs turn radius
+        constexpr double WA_LW_Intercept = -1.6651f;     //This is the Y intercept of the left wheel, wheel angle vs turn radius
+        constexpr double WA_RW_Slope = 0.2286f;          //This is the slope of the right wheel, wheel angle vs turn radius
+        constexpr double WA_RW_Intercept = -0.194f;      //This is the Y intercept of the right wheel, wheel angle vs turn radius
+        constexpr double TR_LW_Coefficient = 2677.7f;    //This is the left wheel coefficient of the power function for Turn Radius vs Steering Angle
+        constexpr double TR_LW_Power = -1.147f;          //This is the left wheel power of the power function for Turn Radius vs Steering Angle
+        constexpr double TR_RW_Coefficient = 2760.0f;    //This is the right wheel coefficient of the power function for Turn Radius vs Steering Angle
+        constexpr double TR_RW_Power = -1.222f;          //This is the right wheel power of the power function for Turn Radius vs Steering Angle
+
+        constexpr double KP = 0.16;          //The Kp value of the PID  | How hard motor should push
+        constexpr double KI = 0.000;         //The Ki value of the PID  | Helps push motor into error range (kinda like a counter ofrce to friction)
+        constexpr double KD = 0.016;         //The Kd value of the PID | Dampens movements (kinda like shock absorber)
+
+        typedef struct {
+            double FS_SteeringAngle;        //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
+            double RS_SteeringAngle;        //Input Rear Steering Angle
+            double LW_Angle;                //Left Wheel Angle
+            double RW_Angle;                //Right Wheel Angle
+            double TR_Left;                 //Turn Radius Left Wheel Right Turn
+            double TR_Right;                //Turn Radius Right Wheel Left Turn
+            double IDEAL_RS_ANGLE;
+            double RS_TR_RIGHT;
+            double RS_WA_RIGHT;
+            double RS_TR_LEFT;
+            double RS_WA_LEFT;
+            double RT_Percentage;
+            double LT_Percentage;
+            double RS_Deg;
+            double deadband;
+            //double Gain_Input;    //Not sure if this will be used
+            //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
+            int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
+        } FWS;
+
+        void INITFWS(FWS*);
+    }
 
     namespace Motor {
         // Steers the motor
@@ -136,38 +129,38 @@ namespace FWS_Utils {
         // Calculates PID
         double caclulate_PID(PID*, double);
         // Gets the target rear angle
-        double target_rear_angle(double, FWS*);
+        double target_rear_angle(double, FWS::FWS*);
     }
 
     namespace PWM {
+        constexpr uint32_t PWMMAX = 0xFFFF;
         /*
          * Groups all our needed timer functionality
          */
         typedef struct {
-            GPTIMER_Regs *timer;        // Timer register
-            DL_TIMER_CC_INDEX CC_index; // CC index
-            uint32_t CC_output;         // CC Output index
-
-
-        } Timer;
+            GPTIMER_Regs *timer;            // Timer register
+            DL_TIMER_CC_INDEX cc_index;     // CC index
+            const uint32_t cc_output;             // CC Output index
+            const  System::GPIO::GPIO *pins;       // Timer Pins
+            const uint32_t *iomuxes;              // Timer IOMux
+            const buffsize_t count;              // Timer IOMux
+        } PWM;
 
         // Inits basic pwm functionality
-        void INITPWMTIMER(GPTIMER_Regs*, DL_TIMER_CC_INDEX, uint32_t);
+        void INITPWMTIMER(PWM);
 
-        //Gets PWM output
-        uint32_t get_PWM(GPTIMER_Regs*);
-        //Sets PWM duty
-        void set_PWM(GPTIMER_Regs*, uint32_t, DL_TIMER_CC_INDEX);
-
+        // Gets PWM output
+        uint32_t PWM_output(PWM);
+        // Sets get PWM duty
         int PWM_duty(double);
+        // Sets PWM duty
+        void set_PWM_duty(PWM, uint32_t);
     }
-
+//uint32_t, DL_TIMER_CC_INDEX
     namespace GPIO {
         // Inits basic GPIO functionality
-        void INITGPIO(System::GPIO::GPIO, uint32_t);
+        void INITGPIO(PWM::PWM, buffsize_t);
     }
-
-    void INITFWS(FWS*);
 }
 
 #endif

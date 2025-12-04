@@ -112,7 +112,26 @@ void System::init() {
         DL_UART_setTXFIFOThreshold(uart0.reg, DL_UART_TX_FIFO_LEVEL::DL_UART_TX_FIFO_LEVEL_ONE_ENTRY);
         DL_UART_enableFIFOs(uart0.reg);
 
-        DL_GPIO_initPeripheralOutputFunctionFeatures( // PA25
+        bool _on_board = true;
+        if(_on_board) {
+            DL_GPIO_initPeripheralOutputFunctionFeatures( // PA8
+                IOMUX_PINCM9,
+                IOMUX_PINCM9_PF_UART0_TX,
+                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+            );
+            DL_GPIO_initPeripheralInputFunctionFeatures( // PA9
+                IOMUX_PINCM10,
+                IOMUX_PINCM10_PF_UART0_RX,
+                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                DL_GPIO_HYSTERESIS::DL_GPIO_HYSTERESIS_ENABLE,
+                DL_GPIO_WAKEUP::DL_GPIO_WAKEUP_DISABLE
+            );
+        } else {
+            DL_GPIO_initPeripheralOutputFunctionFeatures( // PA25
                 IOMUX_PINCM26,
                 IOMUX_PINCM26_PF_UART0_TX,
                 DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
@@ -120,7 +139,7 @@ void System::init() {
                 DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
                 DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
             );
-        DL_GPIO_initPeripheralInputFunctionFeatures( // PA26
+            DL_GPIO_initPeripheralInputFunctionFeatures( // PA26
                 IOMUX_PINCM27,
                 IOMUX_PINCM27_PF_UART0_RX,
                 DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
@@ -128,7 +147,7 @@ void System::init() {
                 DL_GPIO_HYSTERESIS::DL_GPIO_HYSTERESIS_ENABLE,
                 DL_GPIO_WAKEUP::DL_GPIO_WAKEUP_DISABLE
             );
-
+        }
         DL_UART_enable(uart0.reg);
     }
     #endif

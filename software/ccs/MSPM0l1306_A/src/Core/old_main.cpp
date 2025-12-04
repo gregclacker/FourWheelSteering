@@ -20,7 +20,7 @@
 /*************************************************************/
 GPTIMER_Regs * PWMTimer = TIMG1;
 constexpr uint32_t PWMMAX = 0xFFFF;
-
+/*
 void setPWM(uint32_t val){
     if(val >= PWMMAX)
         val = PWMMAX - 1;
@@ -33,6 +33,7 @@ void setPWM(uint32_t val){
 uint32_t getPWM(){
     return DL_Timer_getCaptureCompareValue(PWMTimer, DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX);
 }
+*/
 /*
  * Number of bytes to send from Controller to target.
  *  This example uses FIFO with polling, and the maximum FIFO size is 8.
@@ -429,3 +430,143 @@ while (1) {
 
     //DL_ADC12_enableConversions(ADC12_0_INST);
 }*/
+
+
+/*
+
+void setPWM2(uint32_t val){
+    if(val >= 0xFFFF)
+        val = 0xFFFF - 1;
+
+    if(val == 0)
+        val = 0xFFFF;
+
+    DL_Timer_setCaptureCompareValue(PWM1.timer, val, PWM1.cc_index);
+    DL_Timer_setCaptureCompareValue(PWM3.timer, val, PWM3.cc_index);
+}
+
+void tmp () {
+
+    DL_GPIO_initPeripheralOutputFunctionFeatures(
+                LED1_PIN.iomux,
+                PWM1.iomuxes[0],
+                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+            );
+    DL_GPIO_initPeripheralOutputFunctionFeatures(
+                LED2_PIN.iomux,
+                PWM1.iomuxes[1],
+                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+            );
+
+        // setup Timer-1 for PWM
+        DL_Timer_enablePower(PWM1.timer);
+        delay_cycles(POWER_STARTUP_DELAY);
+        {
+            constexpr DL_Timer_ClockConfig clkConfig = {
+                    .clockSel      = DL_TIMER_CLOCK::DL_TIMER_CLOCK_BUSCLK,
+                    .divideRatio   = DL_TIMER_CLOCK_DIVIDE::DL_TIMER_CLOCK_DIVIDE_1,
+                    .prescale      = 0,
+                };
+            DL_Timer_setClockConfig(PWM1.timer, &clkConfig);
+        }
+        {
+            constexpr DL_Timer_PWMConfig pwmConfig = {
+                    .period     = 0xFFFF,
+                    .pwmMode    = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
+                    .isTimerWithFourCC = false,
+                    .startTimer = DL_TIMER::DL_TIMER_START,
+                };
+            DL_Timer_initPWMMode(PWM1.timer, &pwmConfig);
+        }
+
+        // PWM level triggers
+        DL_Timer_setCounterControl(
+                PWM1.timer,
+                DL_TIMER_CZC::DL_TIMER_CZC_CCCTL0_ZCOND,
+                DL_TIMER_CAC::DL_TIMER_CAC_CCCTL0_ACOND,
+                DL_TIMER_CLC::DL_TIMER_CLC_CCCTL0_LCOND
+            );
+        DL_Timer_setCaptureCompareOutCtl(
+                PWM1.timer,
+                DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+                DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+                DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+                PWM1.cc_index
+            );
+        DL_Timer_setCaptCompUpdateMethod(
+                PWM1.timer,
+                DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
+                PWM1.cc_index
+            );
+
+        setPWM2(0);
+        DL_Timer_enableClock(PWM1.timer);
+        DL_Timer_setCCPDirection(PWM1.timer, PWM1.cc_output);
+        DL_Timer_startCounter(PWM1.timer);
+}
+*/
+
+
+
+/*
+ * DL_GPIO_initPeripheralOutputFunctionFeatures(
+            IOMUX_PINCM27,
+            IOMUX_PINCM27_PF_TIMG1_CCP0,
+            DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+            DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+            DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+            DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+        );
+    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA26));
+
+    // setup Timer-1 for PWM
+    DL_Timer_enablePower(PWMTimer);
+    delay_cycles(POWER_STARTUP_DELAY);
+    {
+        constexpr DL_Timer_ClockConfig clkConfig = {
+                .clockSel      = DL_TIMER_CLOCK::DL_TIMER_CLOCK_BUSCLK,
+                .divideRatio   = DL_TIMER_CLOCK_DIVIDE::DL_TIMER_CLOCK_DIVIDE_1,
+                .prescale      = 0,
+            };
+        DL_Timer_setClockConfig(PWMTimer, &clkConfig);
+    }
+    {
+        constexpr DL_Timer_PWMConfig pwmConfig = {
+                .period     = PWMMAX,
+                .pwmMode    = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
+                .isTimerWithFourCC = false,
+                .startTimer = DL_TIMER::DL_TIMER_START,
+            };
+        DL_Timer_initPWMMode(PWMTimer, &pwmConfig);
+    }
+
+    // PWM level triggers
+    DL_Timer_setCounterControl(
+            PWMTimer,
+            DL_TIMER_CZC::DL_TIMER_CZC_CCCTL0_ZCOND,
+            DL_TIMER_CAC::DL_TIMER_CAC_CCCTL0_ACOND,
+            DL_TIMER_CLC::DL_TIMER_CLC_CCCTL0_LCOND
+        );
+    DL_Timer_setCaptureCompareOutCtl(
+            PWMTimer,
+            DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+            DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+            DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+            DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
+        );
+    DL_Timer_setCaptCompUpdateMethod(
+            PWMTimer,
+            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
+            DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
+        );
+    setPWM(0);
+    DL_Timer_enableClock(PWMTimer);
+    DL_Timer_setCCPDirection(PWMTimer, DL_TIMER_CC0_OUTPUT);
+    DL_Timer_startCounter(PWMTimer);
+ */
