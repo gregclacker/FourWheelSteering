@@ -31,7 +31,7 @@
 #define GateDriver2_PIN         System::GPIO::PA4
 
 #define GateDriver3_PIN         System::GPIO::PA10
-#define GateDriver4_PIN         System::GPIO::PA11
+#define GateDriver4_PIN         System::GPIO::PA12  //TODO: CHANGE THIS ASWELLL
 
 #define LED1_PIN                System::GPIO::PA0
 #define LED2_PIN                System::GPIO::PA26
@@ -84,7 +84,7 @@ namespace FWS_Utils {
             int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
         } FWS;
 
-        void INITFWS(FWS*);
+        void INIT_FWS(FWS*);
     }
 
     namespace Motor {
@@ -120,7 +120,7 @@ namespace FWS_Utils {
             double integral;
         } PID;
 
-        void INITPID(PID*);
+        void INIT_PID(PID*);
 
         // Front angle
         double fs_POT();
@@ -146,20 +146,22 @@ namespace FWS_Utils {
             const buffsize_t count;              // Timer IOMux
         } PWM;
 
+        // Inits basic timer functionality
+        void INIT_TIMER(GPTIMER_Regs*);
         // Inits basic pwm functionality
-        void INITPWMTIMER(PWM);
+        void INIT_PWM_TIMER(PWM);
 
         // Gets PWM output
         uint32_t PWM_output(PWM);
         // Sets get PWM duty
         int PWM_duty(double);
         // Sets PWM duty
-        void set_PWM_duty(PWM, uint32_t);
+        void set_PWM_duty(PWM, double);
     }
 //uint32_t, DL_TIMER_CC_INDEX
     namespace GPIO {
         // Inits basic GPIO functionality
-        void INITGPIO(PWM::PWM, buffsize_t);
+        void INIT_GPIO(System::GPIO::GPIO);
     }
 }
 
