@@ -32,8 +32,9 @@ void FWS_Utils::Motor::steer_motor() {
 //
 void FWS_Utils::Motor::motor_right() {
     //Set Pins
-    GateDriver1_PIN.set();
-    GateDriver4_PIN.set();
+//    GateDriver1_PIN.set();
+//    GateDriver4_PIN.set();
+
 
 }
 void FWS_Utils::Motor::motor_left() {
@@ -136,7 +137,7 @@ double FWS_Utils::PID::target_rear_angle(double FS_SteeringAngle, FWS::FWS *fws)
     return fws->RS_Deg;
 }
 
-void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs* p_timer) {
+void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer) {
     DL_Timer_enablePower(p_timer);
 
     // setup Timer_x for PWM
@@ -144,31 +145,48 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs* p_timer) {
 
     delay_cycles(POWER_STARTUP_DELAY);
     constexpr DL_Timer_ClockConfig _clkConfig = {
-            .clockSel      = DL_TIMER_CLOCK_BUSCLK,
-            .divideRatio   = DL_TIMER_CLOCK_DIVIDE_1,
-            .prescale      = 0,
+            .clockSel           = DL_TIMER_CLOCK_BUSCLK,
+            .divideRatio        = DL_TIMER_CLOCK_DIVIDE_1,
+            .prescale            = 0,
         };
     DL_Timer_setClockConfig(p_timer, &_clkConfig);
     constexpr DL_Timer_PWMConfig _pwmConfig = {
-            .period     = PWMMAX,
-            .pwmMode    = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
-            .isTimerWithFourCC = false,
-            .startTimer = DL_TIMER::DL_TIMER_START,
+            .period             = PWMMAX,
+            .pwmMode            = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
+            .isTimerWithFourCC  = true,
+            .startTimer         = DL_TIMER::DL_TIMER_STOP,
         };
-
+    /*      use for new timer */
+    constexpr DL_Timer_CaptureConfig _captureConfig = {
+           .captureMode         = DL_TIMER_CAPTURE_MODE_EDGE_TIME,
+           .period              = PWMMAX,
+           .startTimer          = DL_TIMER_START,
+           .edgeCaptMode        = DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_RISING,
+           .inputChan           = DL_TIMER_INPUT_CHAN_0,
+           .inputInvMode        = 0,
+        };
+//*/
     DL_Timer_setCounterControl(
             p_timer,
             DL_TIMER_CZC::DL_TIMER_CZC_CCCTL0_ZCOND,
             DL_TIMER_CAC::DL_TIMER_CAC_CCCTL0_ACOND,
             DL_TIMER_CLC::DL_TIMER_CLC_CCCTL0_LCOND
         );
+    DL_Timer_initCaptureMode(p_timer, &_captureConfig);
+    DL_Timer_configCrossTrigger(p_timer, DL_TIMER_CROSS_TRIG_SRC_FSUB0, DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED, DL_TIMER_CROSS_TRIGGER_MODE_ENABLED);
+
     DL_Timer_setClockConfig(p_timer, &_clkConfig);
     DL_Timer_initPWMMode(p_timer, &_pwmConfig);
     DL_Timer_enableClock(p_timer);
-    DL_Timer_startCounter(p_timer);
-}
-void FWS_Utils::PWM::INIT_PWM_TIMER(PWM p_pwm) {
 
+    /*
+     * DL_Timer_configCrossTrigger(GPTIMER_Regs *gptimer,
+    DL_TIMER_CROSS_TRIG_SRC ctSource,
+    DL_TIMER_CROSS_TRIGGER_INPUT enInTrigCond,
+    DL_TIMER_CROSS_TRIGGER_MODE enCrossTrig)
+     */
+}
+void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
     for(int i = 0; i < p_pwm.count; i++)
         DL_GPIO_initPeripheralOutputFunctionFeatures(
                 p_pwm.pins[i].iomux,
@@ -181,21 +199,28 @@ void FWS_Utils::PWM::INIT_PWM_TIMER(PWM p_pwm) {
     DL_Timer_setCaptureCompareOutCtl(
             p_pwm.timer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
-            DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+            DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
             DL_TIMER_CC_OCTL_SRC_FUNCVAL,
             p_pwm.cc_index
         );
     DL_Timer_setCaptCompUpdateMethod(
             p_pwm.timer,
-            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
+            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_EVT,
             p_pwm.cc_index
         );
 
-    //FWS_Utils::PWM::set_PWM_duty(p_pwm, 0);
-    //DL_Timer_setCCPDirection(p_pwm.timer, p_pwm.cc_output);
-    uint32_t ccpd = DL_Timer_getCCPDirection(p_pwm.timer); // read current
-    ccpd |= p_pwm.cc_output;                              // set only the desired bit
-    DL_Timer_setCCPDirection(p_pwm.timer, ccpd);
+    FWS_Utils::PWM::set_PWM_duty(p_pwm, 0);
+    DL_Timer_setCCPDirection(p_pwm.timer,
+             DL_Timer_getCCPDirection(p_pwm.timer) | p_pwm.cc_output    // Keep previous ccp's active and add new one
+         );
+}
+void FWS_Utils::PWM::start_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
+    for(int i = 0; i < p_size; i++)
+        DL_Timer_startCounter(p_timer[i]);
+}
+void FWS_Utils::PWM::stop_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
+    for(int i = 0; i < sizeof(p_timer[0])/sizeof(p_timer); i++)
+        DL_Timer_stopCounter(p_timer[i]);
 }
 uint32_t FWS_Utils::PWM::PWM_output(PWM p_pwm) {
     return DL_Timer_getCaptureCompareValue(p_pwm.timer, p_pwm.cc_index);
@@ -209,14 +234,11 @@ int FWS_Utils::PWM::PWM_duty(double pid_output) {
     return duty;
 }
 void FWS_Utils::PWM::set_PWM_duty(PWM p_pwm, double p_duty) {
-    uint32_t _PWM_duty = PWMMAX * p_duty;
-    if(_PWM_duty >= PWMMAX) _PWM_duty = PWMMAX - 1;
-    if(_PWM_duty == 0) _PWM_duty = PWMMAX;
-    DL_Timer_setCaptureCompareValue(p_pwm.timer, _PWM_duty, p_pwm.cc_index);
+    uint32_t _ccr = PWMMAX * p_duty;
+    if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
+    DL_Timer_setCaptureCompareValue(p_pwm.timer, _ccr, p_pwm.cc_index);
 }
-/*
- *
- */
+
 void FWS_Utils::GPIO::INIT_GPIO(System::GPIO::GPIO p_gpio) {
     DL_GPIO_initDigitalOutput(p_gpio.iomux);
     DL_GPIO_enableOutput(GPIOPINPUX(p_gpio));

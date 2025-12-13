@@ -31,7 +31,7 @@
 #define GateDriver2_PIN         System::GPIO::PA4
 
 #define GateDriver3_PIN         System::GPIO::PA10
-#define GateDriver4_PIN         System::GPIO::PA12  //TODO: CHANGE THIS ASWELLL
+#define GateDriver4_PIN         System::GPIO::PA11
 
 #define LED1_PIN                System::GPIO::PA0
 #define LED2_PIN                System::GPIO::PA26
@@ -138,18 +138,20 @@ namespace FWS_Utils {
          * Groups all our needed timer functionality
          */
         typedef struct {
-            GPTIMER_Regs *timer;            // Timer register
-            DL_TIMER_CC_INDEX cc_index;     // CC index
-            const uint32_t cc_output;             // CC Output index
-            const  System::GPIO::GPIO *pins;       // Timer Pins
-            const uint32_t *iomuxes;              // Timer IOMux
-            const buffsize_t count;              // Timer IOMux
+            GPTIMER_Regs *timer;                // Timer register
+            DL_TIMER_CC_INDEX cc_index;         // CC index
+            const uint32_t cc_output;           // CC Output index
+            const  System::GPIO::GPIO *pins;    // Timer Pins
+            const uint32_t *iomuxes;            // Timer IOMux
+            const buffsize_t count;             // Timer IOMux
         } PWM;
 
         // Inits basic timer functionality
         void INIT_TIMER(GPTIMER_Regs*);
         // Inits basic pwm functionality
-        void INIT_PWM_TIMER(PWM);
+        void INIT_PWM_OUTPUT(PWM);
+        void start_timers(GPTIMER_Regs**, buffsize_t);
+        void stop_timers(GPTIMER_Regs**, buffsize_t);
 
         // Gets PWM output
         uint32_t PWM_output(PWM);
