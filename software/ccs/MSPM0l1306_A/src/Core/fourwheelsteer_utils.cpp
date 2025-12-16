@@ -8,21 +8,6 @@
 #include "system.hpp"
 #include "fourwheelsteer_defs.hpp"
 
-/* Four Wheel Steering Information
- * fs - Front Steer ADC Angle
- * Go forward when fs <= 180 or fs >= 0
- * Go backward when fs > 180 or fs < 0
- * */
-void FWS_Utils::Motor::steer_motor() {
-    double _fsangle = FWS_Utils::PID::fs_POT();
-    if(_fsangle <= 180 || _fsangle >= 0) {
-        motor_right();
-    }
-    if(_fsangle < 180 || _fsangle > 0) {
-        motor_left();
-    }
-}
-
 // 6 \ 10 >>> 9 / 7
 //
 //  10  7
@@ -30,17 +15,29 @@ void FWS_Utils::Motor::steer_motor() {
 //    /\
 //   9  6
 //
-void FWS_Utils::Motor::motor_right() {
+void FWS_Utils::Motor::steer_motor(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
+
+}
+
+void FWS_Utils::Motor::motor_right(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
     //Set Pins
 //    GateDriver1_PIN.set();
 //    GateDriver4_PIN.set();
-
-
+//    fws->sensor_max_angle
+    PWM::set_PWM_duty(p_pwms[0], steer_error(p_fws));
+    PWM::set_PWM_duty(p_pwms[1], 0.0);
+    PWM::set_PWM_duty(p_pwms[2], 0.0);
+    PWM::set_PWM_duty(p_pwms[3], steer_error(p_fws));
 }
-void FWS_Utils::Motor::motor_left() {
+void FWS_Utils::Motor::motor_left(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
     //Set Pins
-    GateDriver2_PIN.set();
-    GateDriver3_PIN.set();
+    PWM::set_PWM_duty(p_pwms[0], 0.0);
+    PWM::set_PWM_duty(p_pwms[1], steer_error(p_fws));
+    PWM::set_PWM_duty(p_pwms[2], steer_error(p_fws));
+    PWM::set_PWM_duty(p_pwms[3], 0.0);
+}
+double FWS_Utils::Motor::steer_error(FWS::FWS *p_fws) {
+    double _turn = (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) /p_fws->sensor_max_angle;
 }
 
 /* ADC Information
@@ -69,18 +66,18 @@ double FWS_Utils::ADC::get_ADC_voltage(uint8_t p_adcAddr) {
     return (_raw / MAXBITS) * REFVOLTAGE;
 }
 
-double FWS_Utils::PID::fs_POT() {
+double FWS_Utils::PID::fs_POT(FWS::FWS* p_fws) {
     int16_t raw_fs_val = 0;
     FWS_Utils::ADC::get_ADC_raw(ADC_1_ADDR, &raw_fs_val);
-    double front_voltage = (raw_fs_val / MAXBITS) * REFVOLTAGE;
-    double fs_angle = (front_voltage / REFVOLTAGE) * 270.0 - 131.0;
+    double front_voltage = (static_cast<double>(raw_fs_val) / MAXBITS) * REFVOLTAGE;
+    double fs_angle = (front_voltage / REFVOLTAGE) * p_fws->sensor_max_angle - p_fws->sensor_angle_offset;
     return fs_angle;
 }
-double FWS_Utils::PID::rs_POT() {
+double FWS_Utils::PID::rs_POT(FWS::FWS* p_fws) {
     int16_t raw_rs_val = 0;
     FWS_Utils::ADC::get_ADC_raw(ADC_2_ADDR, &raw_rs_val);
     double rear_voltage = (raw_rs_val / MAXBITS) * REFVOLTAGE;
-    double rs_angle = (rear_voltage / REFVOLTAGE) * 270.0 - 131.0;
+    double rs_angle = (rear_voltage / REFVOLTAGE) * p_fws->sensor_max_angle - p_fws->sensor_angle_offset;
     return rs_angle;
 }
 
@@ -121,42 +118,38 @@ double FWS_Utils::PID::caclulate_PID(PID *p_pid, double p_err) {
     */
     return output;
 }
-double FWS_Utils::PID::target_rear_angle(double FS_SteeringAngle, FWS::FWS *fws) {
-    if (fws->FS_SteeringAngle > fws->deadband) { //Left Turn Steering Percentage Calc
-        fws->LT_Percentage = -50 * tanh(0.1 * (FWS::TR_RW_Coefficient * pow(fws->FS_SteeringAngle, FWS::TR_RW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of left turn
-        double RearAngle = (fws->LT_Percentage / 100.0) * 135.0;
-        fws->RS_Deg = RearAngle;
-        return fws->RS_Deg;
-    } else if (fws->FS_SteeringAngle < -fws->deadband) { // Right Turn Steering Percentage Calc
-        fws->RT_Percentage = -50 * tanh(0.1 * (FWS::TR_LW_Coefficient * pow(-fws->FS_SteeringAngle, FWS::TR_LW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of right turn
-        double RearAngle = (fws->RT_Percentage / 100.0) * 135.0;
-        fws->RS_Deg = RearAngle * -1;
-        return fws->RS_Deg;
+double FWS_Utils::PID::target_rear_angle(double FS_SteeringAngle, FWS::FWS *p_fws) {
+    if (p_fws->FS_SteeringAngle > p_fws->deadband) { //Left Turn Steering Percentage Calc
+        p_fws->LT_Percentage = -50 * tanh(0.1 * (FWS::TR_RW_Coefficient * pow(p_fws->FS_SteeringAngle, FWS::TR_RW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of left turn
+        double RearAngle = (p_fws->LT_Percentage / 100.0) * 135.0;
+        p_fws->RS_Deg = RearAngle;
+        return p_fws->RS_Deg;
+    } else if (p_fws->FS_SteeringAngle < -p_fws->deadband) { // Right Turn Steering Percentage Calc
+        p_fws->RT_Percentage = -50 * tanh(0.1 * (FWS::TR_LW_Coefficient * pow(-p_fws->FS_SteeringAngle, FWS::TR_LW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of right turn
+        double RearAngle = (p_fws->RT_Percentage / 100.0) * 135.0;
+        p_fws->RS_Deg = RearAngle * -1;
+        return p_fws->RS_Deg;
     }
-    fws->RS_Deg = 0.0;
-    return fws->RS_Deg;
+    p_fws->RS_Deg = 0.0;
+    return p_fws->RS_Deg;
 }
 
-void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer) {
+void FWS_Utils::PWM::INIT_TIMER_DSYNC(GPTIMER_Regs *p_timer) {
     DL_Timer_enablePower(p_timer);
-
-    // setup Timer_x for PWM
-    DL_Timer_enablePower(p_timer);
-
     delay_cycles(POWER_STARTUP_DELAY);
+
     constexpr DL_Timer_ClockConfig _clkConfig = {
             .clockSel           = DL_TIMER_CLOCK_BUSCLK,
             .divideRatio        = DL_TIMER_CLOCK_DIVIDE_1,
             .prescale            = 0,
         };
-    DL_Timer_setClockConfig(p_timer, &_clkConfig);
     constexpr DL_Timer_PWMConfig _pwmConfig = {
             .period             = PWMMAX,
             .pwmMode            = DL_TIMER_PWM_MODE::DL_TIMER_PWM_MODE_EDGE_ALIGN,
             .isTimerWithFourCC  = true,
             .startTimer         = DL_TIMER::DL_TIMER_STOP,
         };
-    /*      use for new timer */
+    // Load refers to when the preiod is hit
     constexpr DL_Timer_CaptureConfig _captureConfig = {
            .captureMode         = DL_TIMER_CAPTURE_MODE_EDGE_TIME,
            .period              = PWMMAX,
@@ -165,26 +158,42 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer) {
            .inputChan           = DL_TIMER_INPUT_CHAN_0,
            .inputInvMode        = 0,
         };
-//*/
-    DL_Timer_setCounterControl(
-            p_timer,
-            DL_TIMER_CZC::DL_TIMER_CZC_CCCTL0_ZCOND,
-            DL_TIMER_CAC::DL_TIMER_CAC_CCCTL0_ACOND,
-            DL_TIMER_CLC::DL_TIMER_CLC_CCCTL0_LCOND
-        );
-    DL_Timer_initCaptureMode(p_timer, &_captureConfig);
-    DL_Timer_configCrossTrigger(p_timer, DL_TIMER_CROSS_TRIG_SRC_FSUB0, DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED, DL_TIMER_CROSS_TRIGGER_MODE_ENABLED);
 
+    DL_Timer_setClockConfig(p_timer, &_clkConfig);
+    DL_Timer_initCaptureMode(p_timer, &_captureConfig);
     DL_Timer_setClockConfig(p_timer, &_clkConfig);
     DL_Timer_initPWMMode(p_timer, &_pwmConfig);
     DL_Timer_enableClock(p_timer);
+}
 
-    /*
-     * DL_Timer_configCrossTrigger(GPTIMER_Regs *gptimer,
-    DL_TIMER_CROSS_TRIG_SRC ctSource,
-    DL_TIMER_CROSS_TRIGGER_INPUT enInTrigCond,
-    DL_TIMER_CROSS_TRIGGER_MODE enCrossTrig)
-     */
+void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master) {
+    DL_Timer_enablePower(p_timer);
+    delay_cycles(POWER_STARTUP_DELAY);
+
+    constexpr DL_Timer_ClockConfig _clkCfg = {
+            .clockSel    = DL_TIMER_CLOCK_BUSCLK,
+            .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
+            .prescale    = 0,
+        };
+    constexpr DL_Timer_PWMConfig _pwmCfg = {
+            .period            = PWMMAX,
+            .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN,
+            .isTimerWithFourCC = true,
+            .startTimer        = DL_TIMER_STOP,
+        };
+
+    DL_Timer_setClockConfig(p_timer, &_clkCfg);
+    DL_Timer_initPWMMode(p_timer, &_pwmCfg);
+    DL_Timer_enableClock(p_timer);
+
+    DL_Timer_configCrossTrigger(
+            p_timer,
+            DL_TIMER_CROSS_TRIG_SRC_ZERO,
+            p_master
+                ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
+                : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+        );
 }
 void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
     for(int i = 0; i < p_pwm.count; i++)
@@ -209,7 +218,7 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
             p_pwm.cc_index
         );
 
-    FWS_Utils::PWM::set_PWM_duty(p_pwm, 0);
+    FWS_Utils::PWM::set_PWM_duty(&p_pwm, 0);
     DL_Timer_setCCPDirection(p_pwm.timer,
              DL_Timer_getCCPDirection(p_pwm.timer) | p_pwm.cc_output    // Keep previous ccp's active and add new one
          );
@@ -222,8 +231,8 @@ void FWS_Utils::PWM::stop_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
     for(int i = 0; i < sizeof(p_timer[0])/sizeof(p_timer); i++)
         DL_Timer_stopCounter(p_timer[i]);
 }
-uint32_t FWS_Utils::PWM::PWM_output(PWM p_pwm) {
-    return DL_Timer_getCaptureCompareValue(p_pwm.timer, p_pwm.cc_index);
+uint32_t FWS_Utils::PWM::PWM_output(const PWM *p_pwm) {
+    return DL_Timer_getCaptureCompareValue(p_pwm->timer, p_pwm->cc_index);
 }
 int FWS_Utils::PWM::PWM_duty(double pid_output) {
     int duty = (int)(fabs(pid_output) * (PWMMAX / 15)); // Adjusted scaling factor
@@ -233,10 +242,10 @@ int FWS_Utils::PWM::PWM_duty(double pid_output) {
 
     return duty;
 }
-void FWS_Utils::PWM::set_PWM_duty(PWM p_pwm, double p_duty) {
+void FWS_Utils::PWM::set_PWM_duty(const PWM *p_pwm, double p_duty) {
     uint32_t _ccr = PWMMAX * p_duty;
     if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
-    DL_Timer_setCaptureCompareValue(p_pwm.timer, _ccr, p_pwm.cc_index);
+    DL_Timer_setCaptureCompareValue(p_pwm->timer, _ccr, p_pwm->cc_index);
 }
 
 void FWS_Utils::GPIO::INIT_GPIO(System::GPIO::GPIO p_gpio) {
@@ -246,4 +255,7 @@ void FWS_Utils::GPIO::INIT_GPIO(System::GPIO::GPIO p_gpio) {
 
 void FWS_Utils::FWS::INIT_FWS(FWS *fws) {
     fws->deadband = 0;
+
+    fws->sensor_max_angle = 270.0;
+    fws->sensor_angle_offset = 131.0;
 }

@@ -10,6 +10,13 @@
 #include "fourwheelsteer_defs.hpp"
 #include "system.hpp"
 
+using namespace System::GPIO;
+using namespace FWS_Utils::Motor;
+using namespace FWS_Utils::GPIO;
+using namespace FWS_Utils::PWM;
+using namespace FWS_Utils::FWS;
+using namespace FWS_Utils::PID;
+
 /*************************************************************/
 
 /*
@@ -36,13 +43,13 @@ volatile uint8_t gRxPacket[I2C_RX_PACKET_SIZE];
 /* I2C Target address */
 #define I2C_TARGET_ADDRESS (0x48)
 
-FWS_Utils::FWS::FWS fws;
-FWS_Utils::PID::PID pid;
+FWS fws;
+PID pid;
 
 // Leds
-static const System::GPIO::GPIO pwm_led1_pins[] = { LED2_PIN };
+static const GPIO pwm_led1_pins[] = { LED2_PIN };
 static const uint32_t pwm_led1_iomuxes[] = { IOMUX_PINCM27_PF_TIMG1_CCP0 };
-const FWS_Utils::PWM::PWM PWM_LED1 {
+const PWM PWM_LED1 {
     .timer      = TIMG1,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
@@ -50,9 +57,9 @@ const FWS_Utils::PWM::PWM PWM_LED1 {
     .iomuxes    = pwm_led1_iomuxes,
     .count      = 1
 };
-static const System::GPIO::GPIO pwm_led2_pins[] = { LED1_PIN };
+static const GPIO pwm_led2_pins[] = { LED1_PIN };
 static const uint32_t pwm_led2_iomuxes[] = { IOMUX_PINCM1_PF_TIMG1_CCP0 };
-const FWS_Utils::PWM::PWM PWM_LED2 {
+const PWM PWM_LED2 {
     .timer      = TIMG1,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
@@ -62,40 +69,40 @@ const FWS_Utils::PWM::PWM PWM_LED2 {
 };
 
 // Gate Drivers
-static const System::GPIO::GPIO pwm_gate1_pins[] = { GateDriver1_PIN };         // PA03
+static const GPIO pwm_gate1_pins[] = { GateDriver1_PIN };         // PA03
 static const uint32_t pwm_gate1_iomuxes[] = { IOMUX_PINCM4_PF_TIMG2_CCP0 };     // Timer2-PWM1
-const FWS_Utils::PWM::PWM PWM_GATE_1 {
-    .timer      = TIMG2,
+const PWM PWM_GATE_1 {
+    .timer      = PWMTIMER1_REG,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
     .pins       = pwm_gate1_pins,
     .iomuxes    = pwm_gate1_iomuxes,
     .count      = 1
 };
-static const System::GPIO::GPIO pwm_gate2_pins[] = { GateDriver2_PIN };         // PA04
+static const GPIO pwm_gate2_pins[] = { GateDriver2_PIN };         // PA04
 static const uint32_t pwm_gate2_iomuxes[] = { IOMUX_PINCM5_PF_TIMG2_CCP1 };     // Timer2-PWM2
-const FWS_Utils::PWM::PWM PWM_GATE_2 {
-    .timer      = TIMG2,
+const PWM PWM_GATE_2 {
+    .timer      = PWMTIMER1_REG,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
     .pins       = pwm_gate2_pins,
     .iomuxes    = pwm_gate2_iomuxes,
     .count      = 1
 };
-static const System::GPIO::GPIO pwm_gate3_pins[] = { GateDriver3_PIN };         // PA10
+static const GPIO pwm_gate3_pins[] = { GateDriver3_PIN };         // PA10
 static const uint32_t pwm_gate3_iomuxes[] = { IOMUX_PINCM11_PF_TIMG4_CCP0 };    // Timer4-PWM2
-const FWS_Utils::PWM::PWM PWM_GATE_3 {
-    .timer      = TIMG4,
+const PWM PWM_GATE_3 {
+    .timer      = PWMTIMER2_REG,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
     .pins       = pwm_gate3_pins,
     .iomuxes    = pwm_gate3_iomuxes,
     .count      = 1
 };
-static const System::GPIO::GPIO pwm_gate4_pins[] = { GateDriver4_PIN };         // PA11
+static const GPIO pwm_gate4_pins[] = { GateDriver4_PIN };         // PA11
 static const uint32_t pwm_gate4_iomuxes[] = { IOMUX_PINCM12_PF_TIMG4_CCP1 };    // Timer4-PWM2
-const FWS_Utils::PWM::PWM PWM_GATE_4 {
-    .timer      = TIMG4,
+const PWM PWM_GATE_4 {
+    .timer      = PWMTIMER2_REG,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
     .pins       = pwm_gate4_pins,
@@ -103,11 +110,10 @@ const FWS_Utils::PWM::PWM PWM_GATE_4 {
     .count      = 1
 };
 
-
 void init();
 void run();
 void fail_safe();
-void test_pins(const System::GPIO::GPIO*, buffsize_t p_size);
+void test_pins(const GPIO*, buffsize_t p_size);
 void test_pwm_pins();
 void turn_on_leds();
 void leds_with_pwm();
@@ -126,23 +132,23 @@ int main(void) {
 //
 //    delay_cycles(POWER_STARTUP_DELAY);
 //
-//    DL_GPIO_initDigitalOutput(System::GPIO::PA3.iomux);
-//    DL_GPIO_initDigitalOutput(System::GPIO::PA4.iomux);
-//    DL_GPIO_initDigitalOutput(System::GPIO::PA10.iomux);
-//    DL_GPIO_initDigitalOutput(System::GPIO::PA11.iomux); // 11
-//    DL_GPIO_initDigitalOutput(System::GPIO::PA12.iomux);
+//    DL_GPIO_initDigitalOutput(PA3.iomux);
+//    DL_GPIO_initDigitalOutput(PA4.iomux);
+//    DL_GPIO_initDigitalOutput(PA10.iomux);
+//    DL_GPIO_initDigitalOutput(PA11.iomux); // 11
+//    DL_GPIO_initDigitalOutput(PA12.iomux);
 //
-//    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA3));
-//    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA4));
-//    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA10));
-//    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA11)); // 11
-//    DL_GPIO_enableOutput(GPIOPINPUX(System::GPIO::PA12));
+//    DL_GPIO_enableOutput(GPIOPINPUX(PA3));
+//    DL_GPIO_enableOutput(GPIOPINPUX(PA4));
+//    DL_GPIO_enableOutput(GPIOPINPUX(PA10));
+//    DL_GPIO_enableOutput(GPIOPINPUX(PA11)); // 11
+//    DL_GPIO_enableOutput(GPIOPINPUX(PA12));
 //
-//    System::GPIO::PA3.set();
-//    System::GPIO::PA4.set();
-//    System::GPIO::PA10.set();
-//    System::GPIO::PA11.set(); // 11
-//    System::GPIO::PA12.set();
+//    PA3.set();
+//    PA4.set();
+//    PA10.set();
+//    PA11.set(); // 11
+//    PA12.set();
 
 //    test_pwm_pins();
     leds_with_pwm();
@@ -164,32 +170,58 @@ void init() {
      * PA10 used as PWM output 1. driven by TIMER-4 C0
      * PA11 used as PWM output 1. driven by TIMER-4 C1
      * */
-    FWS_Utils::PWM::INIT_TIMER(PWM_GATE_1.timer);
-    FWS_Utils::PWM::INIT_TIMER(PWM_GATE_3.timer);
-    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_GATE_1);
-    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_GATE_2);
-    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_GATE_3);
-    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_GATE_4);
+//    INIT_TIMER_DSYNC(PWM_GATE_1.timer);
+//    INIT_TIMER_DSYNC(PWM_GATE_3.timer);
+    INIT_TIMER(PWMTIMERSYNC_REG, true);
+    INIT_TIMER(PWM_GATE_1.timer, false);
+    INIT_TIMER(PWM_GATE_3.timer, false);
+    INIT_PWM_OUTPUT(PWM_GATE_1);
+    INIT_PWM_OUTPUT(PWM_GATE_2);
+    INIT_PWM_OUTPUT(PWM_GATE_3);
+    INIT_PWM_OUTPUT(PWM_GATE_4);
+
+
+    DL_Timer_startCounter(PWMTIMERSYNC_REG);   // master
+
+    delay_cycles(1200);
+
+    DL_Timer_startCounter(PWM_GATE_1.timer);   // slave 1
+
+    delay_cycles(3400);
+
+    DL_Timer_startCounter(PWM_GATE_3.timer);   // slave 2
+
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
 
     GPTIMER_Regs *_timers[] {
-          PWM_GATE_1.timer,
-          PWM_GATE_3.timer,
+         PWM_GATE_1.timer,
+         PWM_GATE_3.timer,
+         PWMTIMERSYNC_REG,
     };
-    FWS_Utils::PWM::start_timers(_timers, 2);
-//    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_LED1);
-//    FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM_LED2);
+    start_timers(_timers, 3);
 
-    FWS_Utils::PID::INIT_PID(&pid);
-    //FWS_Utils::FWS::INIT_FWS(&fws);
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
+
+//    INIT_PWM_OUTPUT(PWM_LED1);
+//    INIT_PWM_OUTPUT(PWM_LED2);
+
+    INIT_PID(&pid);
+    //INIT_FWS(&fws);
 
     /**********************************************************/
 }
 
+const PWM* PWM_GATES[] {
+       &PWM_GATE_1,
+       &PWM_GATE_2,
+       &PWM_GATE_3,
+       &PWM_GATE_4
+};
 void run() {
     double voltage = 3.3;
 
     while(1) {
-        FWS_Utils::Motor::steer_motor();
+        steer_motor(PWM_GATES, 4, &fws);
         delay_cycles(System::CLK::CPUCLK);
     }
 }
@@ -202,16 +234,16 @@ void fail_safe() {
 }
 
 void test_pwm_pins() {
-    const System::GPIO::GPIO _pins[] {
-        System::GPIO::PA3,
-        System::GPIO::PA4,
-        System::GPIO::PA10,
-        System::GPIO::PA11,
+    const GPIO _pins[] {
+        PA3,
+        PA4,
+        PA10,
+        PA11,
     };
     test_pins(_pins, 4);
 }
 
-void test_pins(const System::GPIO::GPIO* p_pin, buffsize_t p_size) {
+void test_pins(const GPIO* p_pin, buffsize_t p_size) {
     for(int i = 0; i < p_size; i++)
         FWS_Utils::GPIO::INIT_GPIO(p_pin[i]);
     while(true) {
@@ -226,11 +258,11 @@ void turn_on_leds() {
     System::uart_ui.setBaudTarget(115200);
     System::uart_ui.nputs(ARRANDN(CLICLEAR CLIRESET CLIGOOD PROJECT_NAME "   " CLIRESET CLIHIGHLIGHT PROJECT_VERSION CLIRESET NEWLINE "\t - " PROJECT_DESCRIPTION NEWLINE "\t - compiled " __DATE__ " , " __TIME__ NEWLINE CLIRESET));
 
-    FWS_Utils::GPIO::INIT_GPIO(System::GPIO::PA0);
-    FWS_Utils::GPIO::INIT_GPIO(System::GPIO::PA26);
+    FWS_Utils::GPIO::INIT_GPIO(PA0);
+    FWS_Utils::GPIO::INIT_GPIO(PA26);
     while(1) {
-        System::GPIO::PA1.set();
-        System::GPIO::PA26.set();
+        PA1.set();
+        PA26.set();
         delay_cycles(System::CLK::CPUCLK/100);
     };
 }
@@ -239,14 +271,14 @@ void leds_with_pwm() {
     static double duty = 0.0;
     static double dir = 0.1;
 
-//    FWS_Utils::PWM::set_PWM_duty(PWM_GATE_1, 0.1);
-//    FWS_Utils::PWM::set_PWM_duty(PWM_GATE_2, 0.1);
-//    FWS_Utils::PWM::set_PWM_duty(PWM_GATE_3, 0.1);
-//    FWS_Utils::PWM::set_PWM_duty(PWM_GATE_4, 0.9);
-//    FWS_Utils::PWM::set_PWM_duty(PWM_GATE_4, 0.9);
+//    set_PWM_duty(PWM_GATE_1, 0.1);
+//    set_PWM_duty(PWM_GATE_2, 0.1);
+//    set_PWM_duty(PWM_GATE_3, 0.1);
+//    set_PWM_duty(PWM_GATE_4, 0.9);
+//    set_PWM_duty(PWM_GATE_4, 0.9);
 
     while(1) {
-        //int duty_cycle = FWS_Utils::PWM::get_PWM_duty_cycle(FWS_Utils::ADC::get_ADC_voltage(ADC_1_ADDR));
+        //int duty_cycle = get_PWM_duty_cycle(FWS_Utils::ADC::get_ADC_voltage(ADC_1_ADDR));
         duty += dir;
         if(duty >= 1) {
             duty = 1;
@@ -256,14 +288,14 @@ void leds_with_pwm() {
             duty = 0;
             dir = 0.1;
         }
-        //snprintf(ARRANDN(uart_buffer), "PWM Out: %u\n duty: %f\n dir: %f\n", FWS_Utils::PWM::PWM_output(PWM_GATE_1), duty, dir);
-        snprintf(ARRANDN(uart_buffer), "PWM Out: %u\n", FWS_Utils::PWM::PWM_output(PWM_GATE_1));
+        //snprintf(ARRANDN(uart_buffer), "PWM Out: %u\n duty: %f\n dir: %f\n", PWM_output(PWM_GATE_1), duty, dir);
+        snprintf(ARRANDN(uart_buffer), "PWM Out: %u\n", PWM_output(&PWM_GATE_1));
         //System::uart_ui.nputs(ARRANDN(uart_buffer));
 
-        FWS_Utils::PWM::set_PWM_duty(PWM_GATE_1, duty);
-        FWS_Utils::PWM::set_PWM_duty(PWM_GATE_2, duty);
-        FWS_Utils::PWM::set_PWM_duty(PWM_GATE_3, duty);
-        FWS_Utils::PWM::set_PWM_duty(PWM_GATE_4, duty);
+        set_PWM_duty(&PWM_GATE_1, duty);
+        set_PWM_duty(&PWM_GATE_2, duty);
+        set_PWM_duty(&PWM_GATE_3, duty);
+        set_PWM_duty(&PWM_GATE_4, duty);
         delay_cycles(System::CLK::CPUCLK/20);
     }
 }
@@ -273,20 +305,20 @@ void voltage_test() {
     double voltage = 3.3;
     while(1){
        if(voltage > 0x7FF) {
-           FWS_Utils::PWM::set_PWM_duty(PWM_GATE_1, voltage);
+           set_PWM_duty(&PWM_GATE_1, voltage);
        }
-       FWS_Utils::PWM::set_PWM_duty(PWM_GATE_1, FWS_Utils::PWM::PWMMAX);
-       snprintf(ARRANDN(str), "PWM Out: %u\nVoltage: %f\n", FWS_Utils::PWM::PWM_output(PWM_GATE_1), voltage);
+       set_PWM_duty(&PWM_GATE_1, PWMMAX);
+       snprintf(ARRANDN(str), "PWM Out: %u\nVoltage: %f\n", PWM_output(&PWM_GATE_1), voltage);
        System::uart_ui.nputs(ARRANDN(str));
        delay_cycles(System::CLK::CPUCLK);
     }
 }
 
 void killChip() {
-    auto &lh = System::GPIO::PA4;
-    auto &ll = System::GPIO::PA3;
-    auto &rh = System::GPIO::PA11;
-    auto &rl = System::GPIO::PA10;
+    auto &lh = PA4;
+    auto &ll = PA3;
+    auto &rh = PA11;
+    auto &rl = PA10;
 
 //    DL_GPIO_initDigitalOutput(lh.iomux);
 //    DL_GPIO_initDigitalOutput(ll.iomux);

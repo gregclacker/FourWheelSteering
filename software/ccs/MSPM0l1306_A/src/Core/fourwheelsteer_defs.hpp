@@ -39,8 +39,9 @@
 //#define Dir_Pin =             System::GPIO::PA0
 #define PWM_Pin                 System::GPIO::PA26
 
-#define PWMTIMER1_REG           TIMG0
-#define PWMTIMER2_REG           TIMG2
+#define PWMTIMERSYNC_REG        TIMG0
+#define PWMTIMER1_REG           TIMG2
+#define PWMTIMER2_REG           TIMG4
 
 #define ADC_1_ADDR              0x49 //TODO: NOT ACTUAL ADDRESS PLS FIX OR U WILL BE SAD FOR THE REST OF UR LIFE :( WOMP WOMP DO BETTER L CODE
 #define ADC_2_ADDR              0x50
@@ -79,28 +80,15 @@ namespace FWS_Utils {
             double LT_Percentage;
             double RS_Deg;
             double deadband;
+
+            double sensor_max_angle;
+            double sensor_angle_offset;
             //double Gain_Input;    //Not sure if this will be used
             //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
             int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
         } FWS;
 
         void INIT_FWS(FWS*);
-    }
-
-    namespace Motor {
-        // Steers the motor
-        void steer_motor();
-        // Turns the motor right through the H-bridge
-        void motor_right();
-        // Turns the motor left through the H-bridge
-        void motor_left();
-    }
-
-    namespace ADC {
-        // Gets the raw binary voltage data over I2c
-        void get_ADC_raw(uint8_t, int16_t*);
-        // Gets the adc voltage over I2c
-        double get_ADC_voltage(uint8_t);
     }
 
     namespace PID {
@@ -123,9 +111,9 @@ namespace FWS_Utils {
         void INIT_PID(PID*);
 
         // Front angle
-        double fs_POT();
+        double fs_POT(FWS::FWS*);
         // Rear angle
-        double rs_POT();
+        double rs_POT(FWS::FWS*);
         // Calculates PID
         double caclulate_PID(PID*, double);
         // Gets the target rear angle
@@ -147,18 +135,38 @@ namespace FWS_Utils {
         } PWM;
 
         // Inits basic timer functionality
-        void INIT_TIMER(GPTIMER_Regs*);
+        void INIT_TIMER_DSYNC(GPTIMER_Regs*);
+        // Inits basic cross trigger timer functionality
+        void INIT_TIMER(GPTIMER_Regs*, bool);
         // Inits basic pwm functionality
         void INIT_PWM_OUTPUT(PWM);
         void start_timers(GPTIMER_Regs**, buffsize_t);
         void stop_timers(GPTIMER_Regs**, buffsize_t);
 
         // Gets PWM output
-        uint32_t PWM_output(PWM);
+        uint32_t PWM_output(const PWM*);
         // Sets get PWM duty
         int PWM_duty(double);
         // Sets PWM duty
-        void set_PWM_duty(PWM, double);
+        void set_PWM_duty(const PWM*, double);
+    }
+
+    namespace Motor {
+        // Steers the motor
+        void steer_motor(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
+        // Turns the motor right through the H-bridge
+        void motor_right(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
+        // Turns the motor left through the H-bridge
+        void motor_left(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
+        // Error move
+        double steer_error(FWS::FWS*);
+    }
+
+    namespace ADC {
+        // Gets the raw binary voltage data over I2c
+        void get_ADC_raw(uint8_t, int16_t*);
+        // Gets the adc voltage over I2c
+        double get_ADC_voltage(uint8_t);
     }
 //uint32_t, DL_TIMER_CC_INDEX
     namespace GPIO {
