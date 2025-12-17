@@ -51,20 +51,24 @@ namespace System { namespace GPIO { } }
 namespace FWS_Utils {
 
     namespace FWS {
-        constexpr double WA_LW_Slope = 0.3117f;          //This is the slope of the left wheel, wheel angle vs turn radius
-        constexpr double WA_LW_Intercept = -1.6651f;     //This is the Y intercept of the left wheel, wheel angle vs turn radius
-        constexpr double WA_RW_Slope = 0.2286f;          //This is the slope of the right wheel, wheel angle vs turn radius
-        constexpr double WA_RW_Intercept = -0.194f;      //This is the Y intercept of the right wheel, wheel angle vs turn radius
-        constexpr double TR_LW_Coefficient = 2677.7f;    //This is the left wheel coefficient of the power function for Turn Radius vs Steering Angle
-        constexpr double TR_LW_Power = -1.147f;          //This is the left wheel power of the power function for Turn Radius vs Steering Angle
-        constexpr double TR_RW_Coefficient = 2760.0f;    //This is the right wheel coefficient of the power function for Turn Radius vs Steering Angle
-        constexpr double TR_RW_Power = -1.222f;          //This is the right wheel power of the power function for Turn Radius vs Steering Angle
-
-        constexpr double KP = 0.16;          //The Kp value of the PID  | How hard motor should push
-        constexpr double KI = 0.000;         //The Ki value of the PID  | Helps push motor into error range (kinda like a counter ofrce to friction)
-        constexpr double KD = 0.016;         //The Kd value of the PID | Dampens movements (kinda like shock absorber)
 
         typedef struct {
+            double WA_LW_Slope;             //This is the slope of the left wheel, wheel angle vs turn radius
+            double WA_LW_Intercept;         //This is the Y intercept of the left wheel, wheel angle vs turn radius
+            double WA_RW_Slope;             //This is the slope of the right wheel, wheel angle vs turn radius
+            double WA_RW_Intercept;         //This is the Y intercept of the right wheel, wheel angle vs turn radius
+            double TR_LW_Coefficient;       //This is the left wheel coefficient of the power function for Turn Radius vs Steering Angle
+            double TR_LW_Power;             //This is the left wheel power of the power function for Turn Radius vs Steering Angle
+            double TR_RW_Coefficient;       //This is the right wheel coefficient of the power function for Turn Radius vs Steering Angle
+            double TR_RW_Power;             //This is the right wheel power of the power function for Turn Radius vs Steering Angle
+
+            double KP;                      //The Kp value of the PID  | How hard motor should push
+            double KI;                      //The Ki value of the PID  | Helps push motor into error range (kinda like a counter ofrce to friction)
+            double KD;                      //The Kd value of the PID | Dampens movements (kinda like shock absorber)
+
+            double sensor_max_angle;
+            double sensor_angle_offset;
+
             double FS_SteeringAngle;        //Input Front Steering Angle, set to -91 for testing the angles, whenever actually implemented this will not have a value
             double RS_SteeringAngle;        //Input Rear Steering Angle
             double LW_Angle;                //Left Wheel Angle
@@ -79,15 +83,15 @@ namespace FWS_Utils {
             double RT_Percentage;
             double LT_Percentage;
             double RS_Deg;
+
             double deadband;
 
-            double sensor_max_angle;
-            double sensor_angle_offset;
             //double Gain_Input;    //Not sure if this will be used
             //The amount of 'clicks' you want to be able to turn the rear steering adjustment knob
             int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
         } FWS;
 
+        // Basic init for PID struct
         void INIT_FWS(FWS*);
     }
 
@@ -108,8 +112,8 @@ namespace FWS_Utils {
             double integral;
         } PID;
 
-        void INIT_PID(PID*);
-
+        // Basic init for PID struct
+        void INIT_PID(PID*, FWS::FWS*);
         // Front angle
         double fs_POT(FWS::FWS*);
         // Rear angle
@@ -163,10 +167,11 @@ namespace FWS_Utils {
     }
 
     namespace ADC {
+        const bool use_external = false;
         // Gets the raw binary voltage data over I2c
-        void get_ADC_raw(uint8_t, int16_t*);
+        void get_adc_raw(uint8_t, int16_t*);
         // Gets the adc voltage over I2c
-        double get_ADC_voltage(uint8_t);
+        double get_adc_voltage(uint8_t);
     }
 //uint32_t, DL_TIMER_CC_INDEX
     namespace GPIO {

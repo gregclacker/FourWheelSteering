@@ -16,28 +16,37 @@
 //   9  6
 //
 void FWS_Utils::Motor::steer_motor(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-
+    if(steer_error(p_fws) < 0)
+        motor_right(p_pwms, count, p_fws);
+    else
+        motor_left(p_pwms, count, p_fws);
 }
 
 void FWS_Utils::Motor::motor_right(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-    //Set Pins
-//    GateDriver1_PIN.set();
-//    GateDriver4_PIN.set();
-//    fws->sensor_max_angle
-    PWM::set_PWM_duty(p_pwms[0], steer_error(p_fws));
     PWM::set_PWM_duty(p_pwms[1], 0.0);
     PWM::set_PWM_duty(p_pwms[2], 0.0);
-    PWM::set_PWM_duty(p_pwms[3], steer_error(p_fws));
+    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
+
+    double speed = steer_error(p_fws);
+    if(speed < 0) speed *= -1;
+
+    PWM::set_PWM_duty(p_pwms[0], speed);
+    PWM::set_PWM_duty(p_pwms[3], speed);
 }
 void FWS_Utils::Motor::motor_left(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-    //Set Pins
     PWM::set_PWM_duty(p_pwms[0], 0.0);
-    PWM::set_PWM_duty(p_pwms[1], steer_error(p_fws));
-    PWM::set_PWM_duty(p_pwms[2], steer_error(p_fws));
     PWM::set_PWM_duty(p_pwms[3], 0.0);
+    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
+
+    double speed = steer_error(p_fws);
+    if(speed < 0) speed *= -1;
+
+    PWM::set_PWM_duty(p_pwms[1], speed);
+    PWM::set_PWM_duty(p_pwms[2], speed);
 }
 double FWS_Utils::Motor::steer_error(FWS::FWS *p_fws) {
-    double _turn = (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) /p_fws->sensor_max_angle;
+    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
+//    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
 }
 
 /* ADC Information
@@ -45,48 +54,77 @@ double FWS_Utils::Motor::steer_error(FWS::FWS *p_fws) {
  * 3.3 Vref
 */
 constexpr double REFVOLTAGE = 3.3f;
-constexpr double MAXBITS = 2048.0f; // Currently 12 bits unsigned
-void FWS_Utils::ADC::get_ADC_raw(uint8_t p_adcAddr, int16_t *_raw) {
-    uint8_t config = 0x80;       // example config byte | 1000000 Ready
-    System::i2c1.tx(p_adcAddr, &config, 1);
-    uint8_t _dataBuffer[2];
-    System::i2c1.rx(p_adcAddr, _dataBuffer, 2);            // _dataBuffer contains 12 bits of data. It stores 7 bits in the first byte and 5 bits in the second
-    if(!(_dataBuffer[1] & 0x80)) {
-//        Explination for my smol brain
-//        uint8_t _dataByte1 = buf[0] & 0x7F;       // Remove ready bit for data there are 7 bits of data
-//        uint8_t _dataByte2 = (buf[1] >> 3);       // 3 bits aren't needed since 3 lowest bits are padding
-//        *_raw = (_dataByte1 << 5) | _dataByte2;   // The 5 extra zeros leaves room for lsb to be combined.
-        *_raw = (_dataBuffer[0] & 0x7F << 5) | (_dataBuffer[1] >> 3);
+constexpr double MAXBITS = 4095.0f; // Currently 12 bits unsigned
+void FWS_Utils::ADC::get_adc_raw(uint8_t p_adcAddr, int16_t *_raw) {
+//    *_raw = MAXBITS;
+    if(use_external) {
+       uint8_t config = 0x80;   // example: start conversion
+       System::i2c1.tx(p_adcAddr, &config, 1);
+
+       uint8_t buf[2];
+       System::i2c1.rx(p_adcAddr, buf, 2);
+
+       // READY bit = bit7 of byte1, 0 = ready
+       if ((buf[1] & 0x80) == 0) {
+           int16_t value =
+               ((int16_t)(buf[0] & 0x7F) << 5) |
+               ((int16_t)(buf[1] >> 3));
+
+           // If signed 12-bit ADC, uncomment:
+           // if (value & 0x0800) value |= 0xF000;
+
+           *_raw = value;
+       }
     }
+    /*
+    if(use_external) {
+        uint8_t config = 0x80;       // example config byte | 1000000 Ready
+        System::i2c1.tx(p_adcAddr, &config, 1);
+        uint8_t _dataBuffer[2];
+        System::i2c1.rx(p_adcAddr, _dataBuffer, 2);            // _dataBuffer contains 12 bits of data. It stores 7 bits in the first byte and 5 bits in the second
+        if (value & 0x0800) {   // bit 11 set?
+            value |= 0xF000;    // sign extend
+        }
+        if(!(_dataBuffer[1] & 0x80)) {
+//            Explination for my smol brain
+//            uint8_t _dataByte1 = buf[0] & 0x7F;       // Remove ready bit for data there are 7 bits of data
+//            uint8_t _dataByte2 = (buf[1] >> 3);       // 3 bits aren't needed since 3 lowest bits are padding
+//            *_raw = (_dataByte1 << 5) | _dataByte2;   // The 5 extra zeros leaves room for lsb to be combined.
+            *_raw = ((int16_t)_dataBuffer[0] & 0x7F << 5)
+                    | ((int16_t)_dataBuffer[1] >> 3);
+        }
+    } else {
+
+    }*/
 }
 // Eventually this will replace 'front_voltage'/'rear_voltage' just don't wanna replace it yet
-double FWS_Utils::ADC::get_ADC_voltage(uint8_t p_adcAddr) {
+double FWS_Utils::ADC::get_adc_voltage(uint8_t p_adcAddr) {
     int16_t _raw;
-    FWS_Utils::ADC::get_ADC_raw(p_adcAddr, &_raw);
+    FWS_Utils::ADC::get_adc_raw(p_adcAddr, &_raw);
     return (_raw / MAXBITS) * REFVOLTAGE;
 }
 
 double FWS_Utils::PID::fs_POT(FWS::FWS* p_fws) {
     int16_t raw_fs_val = 0;
-    FWS_Utils::ADC::get_ADC_raw(ADC_1_ADDR, &raw_fs_val);
-    double front_voltage = (static_cast<double>(raw_fs_val) / MAXBITS) * REFVOLTAGE;
+    FWS_Utils::ADC::get_adc_raw(ADC_1_ADDR, &raw_fs_val);
+    double front_voltage = ((double)(raw_fs_val) / MAXBITS) * REFVOLTAGE;
     double fs_angle = (front_voltage / REFVOLTAGE) * p_fws->sensor_max_angle - p_fws->sensor_angle_offset;
     return fs_angle;
 }
 double FWS_Utils::PID::rs_POT(FWS::FWS* p_fws) {
     int16_t raw_rs_val = 0;
-    FWS_Utils::ADC::get_ADC_raw(ADC_2_ADDR, &raw_rs_val);
+    FWS_Utils::ADC::get_adc_raw(ADC_2_ADDR, &raw_rs_val);
     double rear_voltage = (raw_rs_val / MAXBITS) * REFVOLTAGE;
     double rs_angle = (rear_voltage / REFVOLTAGE) * p_fws->sensor_max_angle - p_fws->sensor_angle_offset;
     return rs_angle;
 }
 
-void FWS_Utils::PID::INIT_PID(PID *pid) {
-    pid->Kp = FWS::KP;
-    pid->Ki = FWS::KI;
-    pid->Kd = FWS::KD;
-    pid->previous_error = 0;
-    pid->integral = 0;
+void FWS_Utils::PID::INIT_PID(PID *p_pid, FWS::FWS *p_fws) {
+    p_pid->Kp = p_fws->KP;
+    p_pid->Ki = p_fws->KI;
+    p_pid->Kd = p_fws->KD;
+    p_pid->previous_error = 0;
+    p_pid->integral = 0;
 }
 #define INTEGRAL_LIMIT 100 // Adjust based on testing
 double FWS_Utils::PID::caclulate_PID(PID *p_pid, double p_err) {
@@ -120,12 +158,12 @@ double FWS_Utils::PID::caclulate_PID(PID *p_pid, double p_err) {
 }
 double FWS_Utils::PID::target_rear_angle(double FS_SteeringAngle, FWS::FWS *p_fws) {
     if (p_fws->FS_SteeringAngle > p_fws->deadband) { //Left Turn Steering Percentage Calc
-        p_fws->LT_Percentage = -50 * tanh(0.1 * (FWS::TR_RW_Coefficient * pow(p_fws->FS_SteeringAngle, FWS::TR_RW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of left turn
+        p_fws->LT_Percentage = -50 * tanh(0.1 * (p_fws->TR_RW_Coefficient * pow(p_fws->FS_SteeringAngle, p_fws->TR_RW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of left turn
         double RearAngle = (p_fws->LT_Percentage / 100.0) * 135.0;
         p_fws->RS_Deg = RearAngle;
         return p_fws->RS_Deg;
     } else if (p_fws->FS_SteeringAngle < -p_fws->deadband) { // Right Turn Steering Percentage Calc
-        p_fws->RT_Percentage = -50 * tanh(0.1 * (FWS::TR_LW_Coefficient * pow(-p_fws->FS_SteeringAngle, FWS::TR_LW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of right turn
+        p_fws->RT_Percentage = -50 * tanh(0.1 * (p_fws->TR_LW_Coefficient * pow(-p_fws->FS_SteeringAngle, p_fws->TR_LW_Power)) - 4.5) + 50;  //Steering using hyperbolic tangent curve to get percentage of right turn
         double RearAngle = (p_fws->RT_Percentage / 100.0) * 135.0;
         p_fws->RS_Deg = RearAngle * -1;
         return p_fws->RS_Deg;
@@ -243,7 +281,7 @@ int FWS_Utils::PWM::PWM_duty(double pid_output) {
     return duty;
 }
 void FWS_Utils::PWM::set_PWM_duty(const PWM *p_pwm, double p_duty) {
-    uint32_t _ccr = PWMMAX * p_duty;
+    uint32_t _ccr = PWMMAX * (1 - p_duty);
     if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
     DL_Timer_setCaptureCompareValue(p_pwm->timer, _ccr, p_pwm->cc_index);
 }
@@ -254,6 +292,23 @@ void FWS_Utils::GPIO::INIT_GPIO(System::GPIO::GPIO p_gpio) {
 }
 
 void FWS_Utils::FWS::INIT_FWS(FWS *fws) {
+    fws->WA_LW_Slope = 0.3117f;
+    fws->WA_LW_Intercept = -1.6651f;
+    fws->WA_RW_Slope = 0.2286f;
+    fws->WA_RW_Intercept = -0.194f;
+    fws->TR_LW_Coefficient = 2677.7f;
+    fws->TR_LW_Power = -1.147f;
+    fws->TR_RW_Coefficient = 2760.0f;
+    fws->TR_RW_Power = -1.222f;
+
+    fws->KP = 0.16;
+    fws->KI = 0.000;
+    fws->KD = 0.016;
+
+    fws->deadband = 0;
+    fws->sensor_max_angle = 270.0;
+    fws->sensor_angle_offset = 131.0;
+
     fws->deadband = 0;
 
     fws->sensor_max_angle = 270.0;

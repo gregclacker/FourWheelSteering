@@ -151,8 +151,8 @@ int main(void) {
 //    PA12.set();
 
 //    test_pwm_pins();
-    leds_with_pwm();
-//    run();
+//    leds_with_pwm();
+    run();
     fail_safe();
 }
 
@@ -166,9 +166,9 @@ void init() {
 
     /*** PWM config
      * PA03 used as PWM output 1. driven by TIMER-2 C0
-     * PA04 used as PWM output 1. driven by TIMER-2 C1
+     * PA04 used as PWM output 2. driven by TIMER-2 C1
      * PA10 used as PWM output 1. driven by TIMER-4 C0
-     * PA11 used as PWM output 1. driven by TIMER-4 C1
+     * PA11 used as PWM output 2. driven by TIMER-4 C1
      * */
 //    INIT_TIMER_DSYNC(PWM_GATE_1.timer);
 //    INIT_TIMER_DSYNC(PWM_GATE_3.timer);
@@ -180,18 +180,13 @@ void init() {
     INIT_PWM_OUTPUT(PWM_GATE_3);
     INIT_PWM_OUTPUT(PWM_GATE_4);
 
-
-    DL_Timer_startCounter(PWMTIMERSYNC_REG);   // master
-
-    delay_cycles(1200);
-
-    DL_Timer_startCounter(PWM_GATE_1.timer);   // slave 1
-
-    delay_cycles(3400);
-
-    DL_Timer_startCounter(PWM_GATE_3.timer);   // slave 2
-
-    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
+    // Test to see if the clocks get synced
+//    DL_Timer_startCounter(PWMTIMERSYNC_REG);   // master
+//    delay_cycles(1200);
+//    DL_Timer_startCounter(PWM_GATE_1.timer);   // slave 1
+//    delay_cycles(3400);
+//    DL_Timer_startCounter(PWM_GATE_3.timer);   // slave 2
+//    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
 
     GPTIMER_Regs *_timers[] {
          PWM_GATE_1.timer,
@@ -205,7 +200,7 @@ void init() {
 //    INIT_PWM_OUTPUT(PWM_LED1);
 //    INIT_PWM_OUTPUT(PWM_LED2);
 
-    INIT_PID(&pid);
+    INIT_PID(&pid, &fws);
     //INIT_FWS(&fws);
 
     /**********************************************************/
@@ -222,14 +217,14 @@ void run() {
 
     while(1) {
         steer_motor(PWM_GATES, 4, &fws);
-        delay_cycles(System::CLK::CPUCLK);
+        delay_cycles(System::CLK::CPUCLK/100);
     }
 }
 
 void fail_safe() {
     while(true) {
        System::FailHard("reached end of main" NEWLINE);
-       delay_cycles(20e6);
+       delay_cycles(System::CLK::MCLK * 5/8);
     }
 }
 
@@ -249,7 +244,7 @@ void test_pins(const GPIO* p_pin, buffsize_t p_size) {
     while(true) {
         for(int i = 0; i < p_size; i++)
             DL_GPIO_togglePins(GPIOPINPUX(p_pin[i]));
-        delay_cycles(32e6*3);
+        delay_cycles(System::CLK::MCLK*3);
     };
 }
 
