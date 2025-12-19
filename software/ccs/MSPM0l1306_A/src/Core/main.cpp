@@ -112,6 +112,7 @@ const PWM PWM_GATE_4 {
 
 void init();
 void run();
+void pwm_start_timers();
 void fail_safe();
 void test_pins(const GPIO*, buffsize_t p_size);
 void test_pwm_pins();
@@ -152,6 +153,7 @@ int main(void) {
 
 //    test_pwm_pins();
 //    leds_with_pwm();
+
     run();
     fail_safe();
 }
@@ -172,38 +174,28 @@ void init() {
      * */
 //    INIT_TIMER_DSYNC(PWM_GATE_1.timer);
 //    INIT_TIMER_DSYNC(PWM_GATE_3.timer);
-    INIT_TIMER(PWMTIMERSYNC_REG, true);
-    INIT_TIMER(PWM_GATE_1.timer, false);
-    INIT_TIMER(PWM_GATE_3.timer, false);
-    INIT_PWM_OUTPUT(PWM_GATE_1);
-    INIT_PWM_OUTPUT(PWM_GATE_2);
-    INIT_PWM_OUTPUT(PWM_GATE_3);
-    INIT_PWM_OUTPUT(PWM_GATE_4);
 
-    // Test to see if the clocks get synced
-//    DL_Timer_startCounter(PWMTIMERSYNC_REG);   // master
-//    delay_cycles(1200);
-//    DL_Timer_startCounter(PWM_GATE_1.timer);   // slave 1
-//    delay_cycles(3400);
-//    DL_Timer_startCounter(PWM_GATE_3.timer);   // slave 2
-//    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
+//        INIT_PWM_OUTPUT(PWM_LED1);
+//        INIT_PWM_OUTPUT(PWM_LED2);
 
-    GPTIMER_Regs *_timers[] {
-         PWM_GATE_1.timer,
-         PWM_GATE_3.timer,
-         PWMTIMERSYNC_REG,
-    };
-    start_timers(_timers, 3);
-
-    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
-
-//    INIT_PWM_OUTPUT(PWM_LED1);
-//    INIT_PWM_OUTPUT(PWM_LED2);
+    INIT_TIMER(PWMTIMERSYNC_REG, true, 0);
+    INIT_TIMER(PWM_GATE_1.timer, false, PWMMAX/2);
+    INIT_TIMER(PWM_GATE_3.timer, false, PWMMAX);
+    INIT_PWM_OUTPUT(PWM_GATE_1, false);
+    INIT_PWM_OUTPUT(PWM_GATE_2, true);
+    INIT_PWM_OUTPUT(PWM_GATE_3, false);
+    INIT_PWM_OUTPUT(PWM_GATE_4, true);
 
     INIT_PID(&pid, &fws);
-    //INIT_FWS(&fws);
+    INIT_FWS(&fws);
 
-    /**********************************************************/
+    pwm_start_timers();
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
+
+//    DL_Timer_setPhaseLoadValue(PWM_GATE_1.timer, PWMMAX);
+//    DL_Timer_setPhaseLoadValue(PWM_GATE_3.timer, PWMMAX);
+//    DL_Timer_setPhaseLoadValue(PWM_GATE_2.timer, PWMMAX/2);
+//    DL_Timer_setPhaseLoadValue(PWM_GATE_4.timer, PWMMAX/2);
 }
 
 const PWM* PWM_GATES[] {
@@ -214,10 +206,18 @@ const PWM* PWM_GATES[] {
 };
 void run() {
     double voltage = 3.3;
+    int counter = 0;
 
     while(1) {
         steer_motor(PWM_GATES, 4, &fws);
-        delay_cycles(System::CLK::CPUCLK/100);
+        //counter++;
+        snprintf(ARRANDN(uart_buffer), "Counter Out: %u\n", counter % 20);
+        System::uart0.nputs(ARRANDN(uart_buffer));
+        if(counter % 20 < 10)
+            motor_move = 1;
+        if(counter % 20 >= 10)
+            motor_move = 2;
+//        delay_cycles(System::CLK::CPUCLK/100);
     }
 }
 
@@ -226,6 +226,16 @@ void fail_safe() {
        System::FailHard("reached end of main" NEWLINE);
        delay_cycles(System::CLK::MCLK * 5/8);
     }
+}
+
+void pwm_start_timers() {
+    GPTIMER_Regs *_timers[] {
+         PWM_GATE_1.timer,
+         PWM_GATE_3.timer,
+         PWMTIMERSYNC_REG,
+    };
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
+    start_timers(_timers, 3);
 }
 
 void test_pwm_pins() {

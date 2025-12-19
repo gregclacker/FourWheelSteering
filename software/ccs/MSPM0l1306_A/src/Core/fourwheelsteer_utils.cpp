@@ -7,48 +7,7 @@
 
 #include "system.hpp"
 #include "fourwheelsteer_defs.hpp"
-
-// 6 \ 10 >>> 9 / 7
-//
-//  10  7
-//    \/
-//    /\
-//   9  6
-//
-void FWS_Utils::Motor::steer_motor(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-    if(steer_error(p_fws) < 0)
-        motor_right(p_pwms, count, p_fws);
-    else
-        motor_left(p_pwms, count, p_fws);
-}
-
-void FWS_Utils::Motor::motor_right(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-    PWM::set_PWM_duty(p_pwms[1], 0.0);
-    PWM::set_PWM_duty(p_pwms[2], 0.0);
-    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
-
-    double speed = steer_error(p_fws);
-    if(speed < 0) speed *= -1;
-
-    PWM::set_PWM_duty(p_pwms[0], speed);
-    PWM::set_PWM_duty(p_pwms[3], speed);
-}
-void FWS_Utils::Motor::motor_left(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
-    PWM::set_PWM_duty(p_pwms[0], 0.0);
-    PWM::set_PWM_duty(p_pwms[3], 0.0);
-    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
-
-    double speed = steer_error(p_fws);
-    if(speed < 0) speed *= -1;
-
-    PWM::set_PWM_duty(p_pwms[1], speed);
-    PWM::set_PWM_duty(p_pwms[2], speed);
-}
-double FWS_Utils::Motor::steer_error(FWS::FWS *p_fws) {
-    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
-//    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
-}
-
+#include <cmath>
 /* ADC Information
  * 120 SPS Minimum ~ 12 Bit Resolution
  * 3.3 Vref
@@ -204,7 +163,7 @@ void FWS_Utils::PWM::INIT_TIMER_DSYNC(GPTIMER_Regs *p_timer) {
     DL_Timer_enableClock(p_timer);
 }
 
-void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master) {
+void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master, uint16_t p_phase) {
     DL_Timer_enablePower(p_timer);
     delay_cycles(POWER_STARTUP_DELAY);
 
@@ -215,7 +174,7 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master) {
         };
     constexpr DL_Timer_PWMConfig _pwmCfg = {
             .period            = PWMMAX,
-            .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN,
+            .pwmMode           = DL_TIMER_PWM_MODE_CENTER_ALIGN,
             .isTimerWithFourCC = true,
             .startTimer        = DL_TIMER_STOP,
         };
@@ -227,13 +186,18 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master) {
     DL_Timer_configCrossTrigger(
             p_timer,
             DL_TIMER_CROSS_TRIG_SRC_ZERO,
-            p_master
-                ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
-                : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+//            p_master
+//                ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
+//            : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+            DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
             DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
         );
+    if(!p_master) {
+        DL_Timer_enablePhaseLoad(p_timer);
+        DL_Timer_setPhaseLoadValue(p_timer, p_phase);
+    }
 }
-void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
+void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
     for(int i = 0; i < p_pwm.count; i++)
         DL_GPIO_initPeripheralOutputFunctionFeatures(
                 p_pwm.pins[i].iomux,
@@ -246,13 +210,15 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
     DL_Timer_setCaptureCompareOutCtl(
             p_pwm.timer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
-            DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
+            p_invert ?
+            DL_TIMER_CC_OCTL_INV_OUT_DISABLED
+            : DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
             DL_TIMER_CC_OCTL_SRC_FUNCVAL,
             p_pwm.cc_index
         );
     DL_Timer_setCaptCompUpdateMethod(
             p_pwm.timer,
-            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_EVT,
+            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_OR_LOAD_EVT,
             p_pwm.cc_index
         );
 
@@ -263,11 +229,18 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm) {
 }
 void FWS_Utils::PWM::start_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
     for(int i = 0; i < p_size; i++)
-        DL_Timer_startCounter(p_timer[i]);
+        start_timer(p_timer[i]);
+}
+void FWS_Utils::PWM::start_timer(GPTIMER_Regs *p_timer) {
+//    DL_Timer_setTimerCount(p_timer, PWMMAX);
+    DL_Timer_startCounter(p_timer);
 }
 void FWS_Utils::PWM::stop_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
     for(int i = 0; i < sizeof(p_timer[0])/sizeof(p_timer); i++)
-        DL_Timer_stopCounter(p_timer[i]);
+        stop_timer(p_timer[i]);
+}
+void FWS_Utils::PWM::stop_timer(GPTIMER_Regs *p_timer) {
+    DL_Timer_stopCounter(p_timer);
 }
 uint32_t FWS_Utils::PWM::PWM_output(const PWM *p_pwm) {
     return DL_Timer_getCaptureCompareValue(p_pwm->timer, p_pwm->cc_index);
@@ -284,6 +257,51 @@ void FWS_Utils::PWM::set_PWM_duty(const PWM *p_pwm, double p_duty) {
     uint32_t _ccr = PWMMAX * (1 - p_duty);
     if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
     DL_Timer_setCaptureCompareValue(p_pwm->timer, _ccr, p_pwm->cc_index);
+}
+
+
+// 10 \ 3 (Forward) >>> 11 / 4 (Backward)
+//
+//  10  4
+//    \/
+//    /\
+//  11  3
+//
+void FWS_Utils::Motor::steer_motor(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
+    if(steer_error(p_fws) < 0 && motor_move == 0 || motor_move == 1)
+        motor_forward(p_pwms, count, p_fws);
+//    else if(steer_error(p_fws) >= 0 && motor_move == 0 || motor_move == 2)
+//        motor_backward(p_pwms, count, p_fws);
+}
+void FWS_Utils::Motor::motor_forward(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
+//    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
+    delay_cycles(System::CLK::MCLK / 2);         // Wait 500ns before turning on other pair
+//  double _speed = std::abs(steer_error(p_fws))
+    double _speed = 0.6;
+
+//    PWM::set_PWM_duty(p_pwms[0], _speed);
+//    PWM::set_PWM_duty(p_pwms[2], _speed);
+//    PWM::set_PWM_duty(p_pwms[1], 1 - _speed);
+//    PWM::set_PWM_duty(p_pwms[3], 1 - _speed);
+    double _length = 0;
+    PWM::set_PWM_duty(p_pwms[0], _speed);
+    PWM::set_PWM_duty(p_pwms[2], _speed);
+    PWM::set_PWM_duty(p_pwms[1], _speed - _length);
+    PWM::set_PWM_duty(p_pwms[3], _speed - _length);
+}
+void FWS_Utils::Motor::motor_backward(const PWM::PWM* const* p_pwms, buffsize_t count, FWS::FWS *p_fws) {
+    PWM::set_PWM_duty(p_pwms[0], 0.0);
+    PWM::set_PWM_duty(p_pwms[2], 0.0);
+    delay_cycles(System::CLK::MCLK / 2);         // Wait 500ns before turning on other pair
+
+    double speed = std::abs(steer_error(p_fws));
+
+    PWM::set_PWM_duty(p_pwms[1], speed);
+    PWM::set_PWM_duty(p_pwms[3], speed);
+}
+double FWS_Utils::Motor::steer_error(FWS::FWS *p_fws) {
+    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
+//    return (PID::rs_POT(p_fws) - (p_fws->sensor_max_angle - PID::fs_POT(p_fws))) / p_fws->sensor_max_angle;
 }
 
 void FWS_Utils::GPIO::INIT_GPIO(System::GPIO::GPIO p_gpio) {

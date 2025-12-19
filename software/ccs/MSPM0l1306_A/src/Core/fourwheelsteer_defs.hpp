@@ -141,11 +141,13 @@ namespace FWS_Utils {
         // Inits basic timer functionality
         void INIT_TIMER_DSYNC(GPTIMER_Regs*);
         // Inits basic cross trigger timer functionality
-        void INIT_TIMER(GPTIMER_Regs*, bool);
+        void INIT_TIMER(GPTIMER_Regs*, bool, uint16_t);
         // Inits basic pwm functionality
-        void INIT_PWM_OUTPUT(PWM);
+        void INIT_PWM_OUTPUT(PWM,bool);
         void start_timers(GPTIMER_Regs**, buffsize_t);
+        void start_timer(GPTIMER_Regs*);
         void stop_timers(GPTIMER_Regs**, buffsize_t);
+        void stop_timer(GPTIMER_Regs*);
 
         // Gets PWM output
         uint32_t PWM_output(const PWM*);
@@ -156,12 +158,13 @@ namespace FWS_Utils {
     }
 
     namespace Motor {
+        inline int motor_move = 0;
         // Steers the motor
         void steer_motor(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
         // Turns the motor right through the H-bridge
-        void motor_right(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
+        void motor_forward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
         // Turns the motor left through the H-bridge
-        void motor_left(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
+        void motor_backward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
         // Error move
         double steer_error(FWS::FWS*);
     }
