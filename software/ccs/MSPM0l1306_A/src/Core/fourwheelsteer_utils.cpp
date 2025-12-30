@@ -153,7 +153,7 @@ void FWS_Utils::PWM::INIT_TIMER_DSYNC(GPTIMER_Regs *p_timer) {
            .startTimer          = DL_TIMER_START,
            .edgeCaptMode        = DL_TIMER_CAPTURE_EDGE_DETECTION_MODE_RISING,
            .inputChan           = DL_TIMER_INPUT_CHAN_0,
-           .inputInvMode        = 0,
+           .inputInvMode        = DL_TIMER_CC_INPUT_INV_NOINVERT,
         };
 
     DL_Timer_setClockConfig(p_timer, &_clkConfig);
@@ -174,7 +174,7 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master, uint16_t p
         };
     constexpr DL_Timer_PWMConfig _pwmCfg = {
             .period            = PWMMAX,
-            .pwmMode           = DL_TIMER_PWM_MODE_CENTER_ALIGN,
+            .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //DL_TIMER_PWM_MODE_CENTER_ALIGN
             .isTimerWithFourCC = true,
             .startTimer        = DL_TIMER_STOP,
         };
@@ -183,19 +183,19 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master, uint16_t p
     DL_Timer_initPWMMode(p_timer, &_pwmCfg);
     DL_Timer_enableClock(p_timer);
 
-    DL_Timer_configCrossTrigger(
-            p_timer,
-            DL_TIMER_CROSS_TRIG_SRC_ZERO,
-//            p_master
-//                ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
-//            : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-            DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-        );
     if(!p_master) {
         DL_Timer_enablePhaseLoad(p_timer);
         DL_Timer_setPhaseLoadValue(p_timer, p_phase);
     }
+    DL_Timer_configCrossTrigger(
+            p_timer,
+            DL_TIMER_CROSS_TRIG_SRC_ZERO,
+            p_master
+            ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
+            : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+//            DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+        );
 }
 void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
     for(int i = 0; i < p_pwm.count; i++)
@@ -211,8 +211,8 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
             p_pwm.timer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
             p_invert ?
-            DL_TIMER_CC_OCTL_INV_OUT_DISABLED
-            : DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+            DL_TIMER_CC_OCTL_INV_OUT_ENABLED
+            : DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
             DL_TIMER_CC_OCTL_SRC_FUNCVAL,
             p_pwm.cc_index
         );
@@ -222,7 +222,7 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
             p_pwm.cc_index
         );
 
-    FWS_Utils::PWM::set_PWM_duty(&p_pwm, 0);
+//    FWS_Utils::PWM::set_PWM_duty(&p_pwm, 0);
     DL_Timer_setCCPDirection(p_pwm.timer,
              DL_Timer_getCCPDirection(p_pwm.timer) | p_pwm.cc_output    // Keep previous ccp's active and add new one
          );
@@ -277,13 +277,13 @@ void FWS_Utils::Motor::motor_forward(const PWM::PWM* const* p_pwms, buffsize_t c
 //    delay_cycles(System::CLK::MCLK / 1000 / 2);         // Wait 500ns before turning on other pair
     delay_cycles(System::CLK::MCLK / 2);         // Wait 500ns before turning on other pair
 //  double _speed = std::abs(steer_error(p_fws))
-    double _speed = 0.6;
+    double _speed = 0.9;
 
 //    PWM::set_PWM_duty(p_pwms[0], _speed);
 //    PWM::set_PWM_duty(p_pwms[2], _speed);
 //    PWM::set_PWM_duty(p_pwms[1], 1 - _speed);
 //    PWM::set_PWM_duty(p_pwms[3], 1 - _speed);
-    double _length = 0;
+    double _length = 0.0;
     PWM::set_PWM_duty(p_pwms[0], _speed);
     PWM::set_PWM_duty(p_pwms[2], _speed);
     PWM::set_PWM_duty(p_pwms[1], _speed - _length);

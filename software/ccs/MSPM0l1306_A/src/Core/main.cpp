@@ -180,17 +180,18 @@ void init() {
 
     INIT_TIMER(PWMTIMERSYNC_REG, true, 0);
     INIT_TIMER(PWM_GATE_1.timer, false, PWMMAX/2);
-    INIT_TIMER(PWM_GATE_3.timer, false, PWMMAX);
+    INIT_TIMER(PWM_GATE_3.timer, false, 0);
+
     INIT_PWM_OUTPUT(PWM_GATE_1, false);
-    INIT_PWM_OUTPUT(PWM_GATE_2, true);
+    INIT_PWM_OUTPUT(PWM_GATE_2, false);
     INIT_PWM_OUTPUT(PWM_GATE_3, false);
-    INIT_PWM_OUTPUT(PWM_GATE_4, true);
+    INIT_PWM_OUTPUT(PWM_GATE_4, false);
+
+    pwm_start_timers();
 
     INIT_PID(&pid, &fws);
     INIT_FWS(&fws);
 
-    pwm_start_timers();
-    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
 
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_1.timer, PWMMAX);
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_3.timer, PWMMAX);
@@ -234,8 +235,8 @@ void pwm_start_timers() {
          PWM_GATE_3.timer,
          PWMTIMERSYNC_REG,
     };
-    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
     start_timers(_timers, 3);
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
 }
 
 void test_pwm_pins() {
