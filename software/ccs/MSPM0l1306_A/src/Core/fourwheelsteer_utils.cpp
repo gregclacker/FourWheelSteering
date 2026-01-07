@@ -189,16 +189,15 @@ void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master, uint16_t p
     }
     DL_Timer_configCrossTrigger(
             p_timer,
-            DL_TIMER_CROSS_TRIG_SRC_ZERO,
+            DL_TIMER_CROSS_TRIG_SRC_FSUB0,
             p_master
             ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
             : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-//            DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
             DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
         );
 }
 void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
-    for(int i = 0; i < p_pwm.count; i++)
+    for(int i = 0; i < p_pwm.count; i++) {
         DL_GPIO_initPeripheralOutputFunctionFeatures(
                 p_pwm.pins[i].iomux,
                 p_pwm.iomuxes[i],
@@ -207,6 +206,19 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
                 DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
                 DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
             );
+    }
+    DL_Timer_setCaptureCompareCtl(
+            p_pwm.timer,
+            DL_TIMER_CC_MODE_COMPARE,
+            DL_TIMER_CC_LCOND_TRIG_RISE,
+            p_pwm.cc_index
+        );
+    DL_Timer_setCounterControl(
+            p_pwm.timer,
+            DL_TIMER_CZC_CCCTL0_ZCOND,
+            DL_TIMER_CAC_CCCTL0_ACOND,
+            DL_TIMER_CLC_CCCTL0_LCOND
+        );
     DL_Timer_setCaptureCompareOutCtl(
             p_pwm.timer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
