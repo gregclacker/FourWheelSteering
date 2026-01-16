@@ -163,40 +163,39 @@ void FWS_Utils::PWM::INIT_TIMER_DSYNC(GPTIMER_Regs *p_timer) {
     DL_Timer_enableClock(p_timer);
 }
 
-void FWS_Utils::PWM::INIT_TIMER(GPTIMER_Regs *p_timer, bool p_master, uint16_t p_phase) {
-    DL_Timer_enablePower(p_timer);
-    delay_cycles(POWER_STARTUP_DELAY);
-
-    constexpr DL_Timer_ClockConfig _clkCfg = {
+constexpr DL_Timer_ClockConfig clkCfg = {
             .clockSel    = DL_TIMER_CLOCK_BUSCLK,
             .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
             .prescale    = 0,
         };
-    constexpr DL_Timer_PWMConfig _pwmCfg = {
-            .period            = PWMMAX,
-            .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //DL_TIMER_PWM_MODE_CENTER_ALIGN
-            .isTimerWithFourCC = true,
-            .startTimer        = DL_TIMER_STOP,
-        };
-
-    DL_Timer_setClockConfig(p_timer, &_clkCfg);
-    DL_Timer_initPWMMode(p_timer, &_pwmCfg);
+constexpr DL_Timer_PWMConfig pwmCfg = {
+        .period            = FWS_Utils::PWM::PWMMAX,
+        .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //DL_TIMER_PWM_MODE_CENTER_ALIGN
+        .isTimerWithFourCC = true,
+        .startTimer        = DL_TIMER_STOP,
+    };
+void FWS_Utils::PWM::INIT_TIMER_SYNC(GPTIMER_Regs *p_timer) {
+    DL_Timer_enablePower(p_timer);
+    DL_Timer_setClockConfig(p_timer, &clkCfg);
+    DL_Timer_initPWMMode(p_timer, &pwmCfg);
     DL_Timer_enableClock(p_timer);
 
-    if(!p_master) {
-        DL_Timer_enablePhaseLoad(p_timer);
-        DL_Timer_setPhaseLoadValue(p_timer, p_phase);
-    }
     DL_Timer_configCrossTrigger(
-            p_timer,
-            DL_TIMER_CROSS_TRIG_SRC_FSUB0,
-            p_master
-            ? DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED
-            : DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-        );
+        p_timer,
+        DL_TIMER_CROSS_TRIG_SRC_ZERO,           // emit FSUB0 on ZERO
+        DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED,
+        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+    );
+
+    DL_Timer_startCounter(p_timer);
 }
-void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
+void FWS_Utils::PWM::INIT_TIMER_PWM(PWM p_pwm, uint32_t p_phase) {
+    GPTIMER_Regs* timer = p_pwm.timer;
+    DL_Timer_enablePower(timer);
+    DL_Timer_setClockConfig(timer, &clkCfg);
+    DL_Timer_initPWMMode(timer, &pwmCfg);
+    DL_Timer_enableClock(timer);
+
     for(int i = 0; i < p_pwm.count; i++) {
         DL_GPIO_initPeripheralOutputFunctionFeatures(
                 p_pwm.pins[i].iomux,
@@ -207,20 +206,38 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
                 DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
             );
     }
-    DL_Timer_setCaptureCompareCtl(
-            p_pwm.timer,
-            DL_TIMER_CC_MODE_COMPARE,
-            DL_TIMER_CC_LCOND_TRIG_RISE,
-            p_pwm.cc_index
-        );
+
+    // 1. Allow FSUB0 in
+    DL_Timer_configCrossTrigger(
+        timer,
+        DL_TIMER_CROSS_TRIG_SRC_FSUB0,
+        DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+    );
+
+    // 2. Map external trigger to LOAD/RESET action
+    DL_Timer_setExternalTriggerEvent(timer,
+        DL_TIMER_EXT_TRIG_SEL_TRIG_SUB_0);
+
     DL_Timer_setCounterControl(
-            p_pwm.timer,
-            DL_TIMER_CZC_CCCTL0_ZCOND,
-            DL_TIMER_CAC_CCCTL0_ACOND,
-            DL_TIMER_CLC_CCCTL0_LCOND
-        );
+        timer,
+        DL_TIMER_CZC_CCCTL0_ZCOND,   // use ZERO for reload
+        DL_TIMER_CAC_CCCTL0_ACOND,   // no active reset
+        DL_TIMER_CLC_CCCTL0_LCOND    // LOAD on external trigger (FSUB0)
+    );
+
+    // 3. Optional — phase offset
+    DL_Timer_enablePhaseLoad(timer);
+    DL_Timer_setPhaseLoadValue(timer, p_phase);   // 0 = symmetric
+
+    // 4. Slaves must run continuously
+    DL_Timer_startCounter(timer);
+}
+void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert)  {
+    GPTIMER_Regs* timer = p_pwm.timer;
+//////////////////////////////////////////////////////////  SLAVE-1-PT2
     DL_Timer_setCaptureCompareOutCtl(
-            p_pwm.timer,
+            timer,
             DL_TIMER_CC_OCTL_INIT_VAL_LOW,
             p_invert ?
             DL_TIMER_CC_OCTL_INV_OUT_ENABLED
@@ -228,17 +245,23 @@ void FWS_Utils::PWM::INIT_PWM_OUTPUT(PWM p_pwm, bool p_invert) {
             DL_TIMER_CC_OCTL_SRC_FUNCVAL,
             p_pwm.cc_index
         );
-    DL_Timer_setCaptCompUpdateMethod(
-            p_pwm.timer,
-            DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_OR_LOAD_EVT,
-            p_pwm.cc_index
-        );
+
+//    DL_Timer_setCaptureCompareOutCtl(timer,
+//        DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+//        DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+//        DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+//        DL_TIMER_CC_1_INDEX);
+    DL_Timer_setCCPDirection(timer,
+         DL_Timer_getCCPDirection(timer) | DL_TIMER_CC0_OUTPUT | DL_TIMER_CC1_OUTPUT);
+
+
 
 //    FWS_Utils::PWM::set_PWM_duty(&p_pwm, 0);
-    DL_Timer_setCCPDirection(p_pwm.timer,
-             DL_Timer_getCCPDirection(p_pwm.timer) | p_pwm.cc_output    // Keep previous ccp's active and add new one
-         );
+//    DL_Timer_setCCPDirection(timer,
+//             DL_Timer_getCCPDirection(p_pwm.timer) | p_pwm.cc_output    // Keep previous ccp's active and add new one
+//         );
 }
+
 void FWS_Utils::PWM::start_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
     for(int i = 0; i < p_size; i++)
         start_timer(p_timer[i]);

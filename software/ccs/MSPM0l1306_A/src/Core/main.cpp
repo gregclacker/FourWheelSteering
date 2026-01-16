@@ -6,6 +6,7 @@
  */
 
 #include <cstdio>
+#include <ti/driverlib/dl_timera.h>.h>
 
 #include "fourwheelsteer_defs.hpp"
 #include "system.hpp"
@@ -181,7 +182,7 @@ void init() {
      * PA11 used as PWM output 2. driven by TIMER-4 C1
      * */
 
-    test_init();
+//    test_init();
 
 ////    INIT_TIMER_DSYNC(PWM_GATE_1.timer);
 ////    INIT_TIMER_DSYNC(PWM_GATE_3.timer);
@@ -189,9 +190,15 @@ void init() {
 ////    INIT_PWM_OUTPUT(PWM_LED1);
 ////    INIT_PWM_OUTPUT(PWM_LED2);
 //
-//    INIT_TIMER(PWMTIMERSYNC_REG, true, 0);
-//    INIT_TIMER(PWM_GATE_1.timer, false, PWMMAX/2);
-//    INIT_TIMER(PWM_GATE_3.timer, false, 0);
+    INIT_TIMER_SYNC(PWMTIMERSYNC_REG);
+    //PWMMAX/2
+    INIT_TIMER_PWM(PWM_GATE_1, 0);
+    INIT_TIMER_PWM(PWM_GATE_3, PWMMAX/2);
+
+    INIT_PWM_OUTPUT(PWM_GATE_1, false);
+    INIT_PWM_OUTPUT(PWM_GATE_2, false);
+    INIT_PWM_OUTPUT(PWM_GATE_3, false);
+    INIT_PWM_OUTPUT(PWM_GATE_4, false);
 //
 //    INIT_PWM_OUTPUT(PWM_GATE_1, false);
 //    INIT_PWM_OUTPUT(PWM_GATE_2, false);
@@ -212,76 +219,48 @@ void init() {
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_4.timer, PWMMAX/2);
 }
 
-GPTIMER_Regs *master_timer = PWMTIMERSYNC_REG;
-GPTIMER_Regs *slave_timer = PWM_GATE_1.timer;
+GPTIMER_Regs *master = PWMTIMERSYNC_REG;
+GPTIMER_Regs *slave = PWM_GATE_1.timer;
 PWM PWMT = PWM_GATE_1;
+uint32_t phase = PWMMAX / 2;
+uint16_t rise_ns = 0;
+uint16_t fall_ns = 0;
 void test_init() {
 //////////////////////////////////////////////////////////  MASTER
-
-        // Power up
-        DL_Timer_enablePower(master_timer);
-        delay_cycles(POWER_STARTUP_DELAY);
-
         // Configure clock
         constexpr DL_Timer_ClockConfig clkCfg = {
                 .clockSel    = DL_TIMER_CLOCK_BUSCLK,
                 .divideRatio = DL_TIMER_CLOCK_DIVIDE_1,
                 .prescale    = 0,
             };
-        DL_Timer_setClockConfig(master_timer, &clkCfg);
-
-        // Configure PWM mode (no output pins needed)
+        // Configure as basic counter, no PWM outputs needed
         constexpr DL_Timer_PWMConfig pwmCfg = {
                 .period            = PWMMAX,
-                .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN,
+                .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //DL_TIMER_PWM_MODE_CENTER_ALIGN
                 .isTimerWithFourCC = true,
                 .startTimer        = DL_TIMER_STOP,
             };
-        DL_Timer_initPWMMode(master_timer, &pwmCfg);
 
-        // Enable timer clock
-        DL_Timer_enableClock(master_timer);
+        DL_Timer_enablePower(master);
+        DL_Timer_setClockConfig(master, &clkCfg);
+        DL_Timer_initPWMMode(master, &pwmCfg);
+        DL_Timer_enableClock(master);
 
-        // Enable FSUB0 cross-trigger output
         DL_Timer_configCrossTrigger(
-                master_timer,
-                DL_TIMER_CROSS_TRIG_SRC_ZERO,           // trigger on zero
-                DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED,  // master does not receive triggers
-                DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-            );
+            master,
+            DL_TIMER_CROSS_TRIG_SRC_ZERO,           // emit FSUB0 on ZERO
+            DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED,
+            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+        );
 
-        // Start master counter
-        DL_Timer_startCounter(master_timer);
+        DL_Timer_startCounter(master);
 //////////////////////////////////////////////////////////  SLAVE-1
 
-        // Power up and configure clock
-        DL_Timer_enablePower(slave_timer);
-        delay_cycles(POWER_STARTUP_DELAY);
-        DL_Timer_setClockConfig(slave_timer, &clkCfg);
-        DL_Timer_initPWMMode(slave_timer, &pwmCfg);
-        DL_Timer_enableClock(slave_timer);
+        DL_Timer_enablePower(slave);
+        DL_Timer_setClockConfig(slave, &clkCfg);
+        DL_Timer_initPWMMode(slave, &pwmCfg);
+        DL_Timer_enableClock(slave);
 
-        // Configure PWM output pin(s) only
-        DL_Timer_setCaptureCompareOutCtl(
-                slave_timer,
-                DL_TIMER_CC_OCTL_INIT_VAL_LOW,
-                DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
-                DL_TIMER_CC_OCTL_SRC_FUNCVAL,
-                DL_TIMER_CC_0_INDEX // PWM output CC index
-            );
-
-        // Enable phase load and set phase
-        DL_Timer_enablePhaseLoad(slave_timer);
-        DL_Timer_setPhaseLoadValue(slave_timer, PWMMAX/2);
-
-        // Enable cross-trigger input
-        DL_Timer_configCrossTrigger(
-                slave_timer,
-                DL_TIMER_CROSS_TRIG_SRC_FSUB0,   // FSUB0 from master
-                DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-                DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-            );
-//////////////////////////////////////////////////////////  SLAVE-2
         for(int i = 0; i < PWMT.count; i++) {
             DL_GPIO_initPeripheralOutputFunctionFeatures(
                     PWMT.pins[i].iomux,
@@ -292,52 +271,63 @@ void test_init() {
                     DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
                 );
         }
-        DL_Timer_setCaptureCompareCtl(
-                PWMT.timer,
-                DL_TIMER_CC_MODE_COMPARE,
-                DL_TIMER_CC_LCOND_TRIG_RISE,
-                PWMT.cc_index
-            );
+
+        // 1. Allow FSUB0 in
+        DL_Timer_configCrossTrigger(
+            slave,
+            DL_TIMER_CROSS_TRIG_SRC_FSUB0,
+            DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
+            DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+        );
+
+        // 2. Map external trigger to LOAD/RESET action
+        DL_Timer_setExternalTriggerEvent(slave,
+            DL_TIMER_EXT_TRIG_SEL_TRIG_SUB_0);
+
         DL_Timer_setCounterControl(
-                PWMT.timer,
-                DL_TIMER_CZC_CCCTL0_ZCOND,
-                DL_TIMER_CAC_CCCTL0_ACOND,
-                DL_TIMER_CLC_CCCTL0_LCOND
-            );
-        DL_Timer_setCaptureCompareOutCtl(
-                PWMT.timer,
-                DL_TIMER_CC_OCTL_INIT_VAL_LOW,
-                false ?
-                DL_TIMER_CC_OCTL_INV_OUT_ENABLED
-                : DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
-                DL_TIMER_CC_OCTL_SRC_FUNCVAL,
-                PWMT.cc_index
-            );
-        DL_Timer_setCaptCompUpdateMethod(
-                PWMT.timer,
-                DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_ZERO_OR_LOAD_EVT,
-                PWMT.cc_index
-            );
-        DL_Timer_setCCPDirection(PWMT.timer,
-                 DL_Timer_getCCPDirection(PWMT.timer) | PWMT.cc_output    // Keep previous ccp's active and add new one
-             );
-//        DL_Timer_startCounter(slave_timer);
+            slave,
+            DL_TIMER_CZC_CCCTL0_ZCOND,   // use ZERO for reload
+            DL_TIMER_CAC_CCCTL0_ACOND,   // no active reset
+            DL_TIMER_CLC_CCCTL0_LCOND    // LOAD on external trigger (FSUB0)
+        );
+
+        // 3. Optional — phase offset
+        DL_Timer_enablePhaseLoad(slave);
+        DL_Timer_setPhaseLoadValue(slave, phase);   // 0 = symmetric
+
+        // 4. Slaves must run continuously
+        DL_Timer_startCounter(slave);
+
+//////////////////////////////////////////////////////////  SLAVE-1-PT2
+        DL_Timer_setCaptureCompareOutCtl(slave,
+            DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+            DL_TIMER_CC_OCTL_INV_OUT_DISABLED,
+            DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+            DL_TIMER_CC_0_INDEX);
+
+        DL_Timer_setCaptureCompareOutCtl(slave,
+            DL_TIMER_CC_OCTL_INIT_VAL_LOW,
+            DL_TIMER_CC_OCTL_INV_OUT_ENABLED,
+            DL_TIMER_CC_OCTL_SRC_FUNCVAL,
+            DL_TIMER_CC_1_INDEX);
+        DL_Timer_setCCPDirection(slave,
+             DL_Timer_getCCPDirection(slave) | DL_TIMER_CC0_OUTPUT | DL_TIMER_CC1_OUTPUT);
+        //DL_Timer_setDeadBand(slave, rise_ns, fall_ns, DL_TIMER_DEAD_BAND_MODE_1);
 //////////////////////////////////////////////////////////  TEST
-        // Slave counter before trigger
-        uint32_t before = DL_Timer_getTimerCount(slave_timer);
+        float duty = 0.6;
+        DL_Timer_setCaptureCompareValue(slave, (uint32_t)(PWMMAX * duty), DL_TIMER_CC_0_INDEX);
+        DL_Timer_setCaptureCompareValue(slave, (uint32_t)(PWMMAX * duty), DL_TIMER_CC_1_INDEX);
+        //DL_Timer_setCounterValueAfterEnable
+        uint32_t b = DL_Timer_getTimerCount(slave);
+        DL_Timer_generateCrossTrigger(master);
+        uint32_t a = DL_Timer_getTimerCount(slave);
 
-        // Fire FSUB0 manually
-        DL_Timer_generateCrossTrigger(master_timer);
-
-        // Slave counter after trigger
-        uint32_t after = DL_Timer_getTimerCount(slave_timer);
-
-        if (after == before) {
-            System::uart_ui.nputs(ARRANDN("failed"));
+        if (a == b) {
+            System::uart_ui.nputs(ARRANDN("failed\n"));
             // Slave still ignored the trigger
             // This means CCCTLx LCOND or CLC mapping is wrong
         } else {
-            System::uart_ui.nputs(ARRANDN("success"));
+            System::uart_ui.nputs(ARRANDN("success\n"));
             // Slave counter incremented cross-trigger working
         }
 //////////////////////////////////////////////////////////
@@ -349,16 +339,23 @@ void run() {
 
     while(1) {
         //steer_motor(PWM_GATES, 4, &fws);
-        FWS_Utils::PWM::set_PWM_duty(&PWMT, 0.8);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_1, 0.8);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_2, 0.3);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_3, 0.8);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_4, 0.3);
         //counter++;
-        snprintf(ARRANDN(uart_buffer), "Counter Out: %u\nPhase:%u\n", counter % 20, DL_Timer_getTimerCount(slave_timer));
+        snprintf(ARRANDN(uart_buffer), "|MASTER|Cnt: %u||Phase:%u\n", DL_Timer_getTimerCount(PWMTIMERSYNC_REG), DL_Timer_getPhaseLoadValue(PWMTIMERSYNC_REG));
+        System::uart0.nputs(ARRANDN(uart_buffer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_1|Cnt: %u||Phase:%u||PhaseOn:%d\n", DL_Timer_getTimerCount(PWM_GATE_1.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_1.timer), DL_Timer_isPhaseLoadEnabled(PWM_GATE_1.timer));
+        System::uart0.nputs(ARRANDN(uart_buffer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_3|Cnt: %u||Phase:%u||PhaseOn:%d\n", DL_Timer_getTimerCount(PWM_GATE_3.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_3.timer), DL_Timer_isPhaseLoadEnabled(PWM_GATE_3.timer));
         System::uart0.nputs(ARRANDN(uart_buffer));
 
         if(counter % 20 < 10)
             motor_move = 1;
         if(counter % 20 >= 10)
             motor_move = 2;
-//        delay_cycles(System::CLK::CPUCLK/100);
+        delay_cycles(System::CLK::CPUCLK);
     }
 }
 

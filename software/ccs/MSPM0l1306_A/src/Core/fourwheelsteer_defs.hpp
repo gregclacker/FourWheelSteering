@@ -141,9 +141,12 @@ namespace FWS_Utils {
         // Inits basic timer functionality
         void INIT_TIMER_DSYNC(GPTIMER_Regs*);
         // Inits basic cross trigger timer functionality
-        void INIT_TIMER(GPTIMER_Regs*, bool, uint16_t);
+        void INIT_TIMER_SYNC(GPTIMER_Regs*);
+        // Inits basic pwm trigger timer functionality
+        void INIT_TIMER_PWM(PWM,uint32_t);
         // Inits basic pwm functionality
         void INIT_PWM_OUTPUT(PWM,bool);
+
         void start_timers(GPTIMER_Regs**, buffsize_t);
         void start_timer(GPTIMER_Regs*);
         void stop_timers(GPTIMER_Regs**, buffsize_t);
