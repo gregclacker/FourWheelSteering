@@ -48,74 +48,62 @@ FWS fws;
 PID pid;
 
 // Leds
-static const GPIO pwm_led1_pins[] = { LED2_PIN };
-static const uint32_t pwm_led1_iomuxes[] = { IOMUX_PINCM27_PF_TIMG1_CCP0 };
 const PWM PWM_LED1 {
     .timer      = TIMG1,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
-    .pins       = pwm_led1_pins,
-    .iomuxes    = pwm_led1_iomuxes,
-    .count      = 1
+    .pin       = LED2_PIN,
+    .iomux    = IOMUX_PINCM27_PF_TIMG1_CCP0,
 };
-static const GPIO pwm_led2_pins[] = { LED1_PIN };
-static const uint32_t pwm_led2_iomuxes[] = { IOMUX_PINCM1_PF_TIMG1_CCP0 };
 const PWM PWM_LED2 {
     .timer      = TIMG1,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
-    .pins       = pwm_led2_pins,
-    .iomuxes    = pwm_led2_iomuxes,
-    .count      = 1
+    .pin       = LED1_PIN,
+    .iomux    = IOMUX_PINCM1_PF_TIMG1_CCP0,
 };
 
 // Gate Drivers
-static const GPIO pwm_gate1_pins[] = { GateDriver1_PIN };         // PA03
-static const uint32_t pwm_gate1_iomuxes[] = { IOMUX_PINCM4_PF_TIMG2_CCP0 };     // Timer2-PWM1
 const PWM PWM_GATE_1 {
     .timer      = PWMTIMER1_REG,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
-    .pins       = pwm_gate1_pins,
-    .iomuxes    = pwm_gate1_iomuxes,
-    .count      = 1
+    .pin        = GateDriver1_PIN,                  // PA03
+    .iomux      = IOMUX_PINCM4_PF_TIMG2_CCP0,       // Timer2-PWM1
 };
-static const GPIO pwm_gate2_pins[] = { GateDriver2_PIN };         // PA04
-static const uint32_t pwm_gate2_iomuxes[] = { IOMUX_PINCM5_PF_TIMG2_CCP1 };     // Timer2-PWM2
 const PWM PWM_GATE_2 {
     .timer      = PWMTIMER1_REG,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
-    .pins       = pwm_gate2_pins,
-    .iomuxes    = pwm_gate2_iomuxes,
-    .count      = 1
+    .pin        = GateDriver2_PIN,                  // PA04
+    .iomux      = IOMUX_PINCM5_PF_TIMG2_CCP1,       // Timer2-PWM2
 };
-static const GPIO pwm_gate3_pins[] = { GateDriver3_PIN };         // PA10
-static const uint32_t pwm_gate3_iomuxes[] = { IOMUX_PINCM11_PF_TIMG4_CCP0 };    // Timer4-PWM2
 const PWM PWM_GATE_3 {
     .timer      = PWMTIMER2_REG,
     .cc_index   = DL_TIMER_CC_0_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
-    .pins       = pwm_gate3_pins,
-    .iomuxes    = pwm_gate3_iomuxes,
-    .count      = 1
+    .pin        = GateDriver3_PIN,                  // PA10
+    .iomux      = IOMUX_PINCM11_PF_TIMG4_CCP0,      // Timer4-PWM2
 };
-static const GPIO pwm_gate4_pins[] = { GateDriver4_PIN };         // PA11
-static const uint32_t pwm_gate4_iomuxes[] = { IOMUX_PINCM12_PF_TIMG4_CCP1 };    // Timer4-PWM2
 const PWM PWM_GATE_4 {
     .timer      = PWMTIMER2_REG,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
-    .pins       = pwm_gate4_pins,
-    .iomuxes    = pwm_gate4_iomuxes,
-    .count      = 1
+    .pin        = GateDriver4_PIN,                  // PA11
+    .iomux      = IOMUX_PINCM12_PF_TIMG4_CCP1       // Timer4-PWM2
 };
 
-const PWM* PWM_GATES[] {
-       &PWM_GATE_1,
-       &PWM_GATE_2,
-       &PWM_GATE_3,
-       &PWM_GATE_4
+static const PWM timer1_pwms[] = { PWM_GATE_1, PWM_GATE_2 };         // PA3 & PA4
+const TIMER TIMER2 {
+    .timer      = PWMTIMER1_REG,
+    .pwms       = timer1_pwms,
+    .pwm_count  = 2
+};
+static const PWM timer2_pwms[] = { PWM_GATE_3, PWM_GATE_4 };         // PA10 & PA11
+const TIMER TIMER4 {
+    .timer      = PWMTIMER2_REG,
+    .pwms       = timer2_pwms,
+    .pwm_count  = 2
 };
 
 void init();
@@ -192,13 +180,13 @@ void init() {
 //
     INIT_TIMER_SYNC(PWMTIMERSYNC_REG);
     //PWMMAX/2
-    INIT_TIMER_PWM(PWM_GATE_1, 0);
-    INIT_TIMER_PWM(PWM_GATE_3, PWMMAX/2);
+    INIT_TIMER_PWM(TIMER2, 0);
+    INIT_TIMER_PWM(TIMER4,PWMMAX/2);  //PWMMAX/2
 
-    INIT_PWM_OUTPUT(PWM_GATE_1, false);
-    INIT_PWM_OUTPUT(PWM_GATE_2, false);
-    INIT_PWM_OUTPUT(PWM_GATE_3, false);
-    INIT_PWM_OUTPUT(PWM_GATE_4, false);
+    INIT_PWM_OUTPUT(TIMER2.pwms[0], false);
+    INIT_PWM_OUTPUT(TIMER2.pwms[1], false);
+    INIT_PWM_OUTPUT(TIMER4.pwms[0], false);
+    INIT_PWM_OUTPUT(TIMER4.pwms[1], false);
 //
 //    INIT_PWM_OUTPUT(PWM_GATE_1, false);
 //    INIT_PWM_OUTPUT(PWM_GATE_2, false);
@@ -220,8 +208,7 @@ void init() {
 }
 
 GPTIMER_Regs *master = PWMTIMERSYNC_REG;
-GPTIMER_Regs *slave = PWM_GATE_1.timer;
-PWM PWMT = PWM_GATE_1;
+GPTIMER_Regs *slave = TIMER2.timer;
 uint32_t phase = PWMMAX / 2;
 uint16_t rise_ns = 0;
 uint16_t fall_ns = 0;
@@ -261,10 +248,10 @@ void test_init() {
         DL_Timer_initPWMMode(slave, &pwmCfg);
         DL_Timer_enableClock(slave);
 
-        for(int i = 0; i < PWMT.count; i++) {
+        for(int i = 0; i < TIMER2.pwm_count; i++) {
             DL_GPIO_initPeripheralOutputFunctionFeatures(
-                    PWMT.pins[i].iomux,
-                    PWMT.iomuxes[i],
+                    TIMER2.pwms[i].pin.iomux,
+                    TIMER2.pwms[i].iomux,
                     DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
                     DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
                     DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
@@ -340,15 +327,15 @@ void run() {
     while(1) {
         //steer_motor(PWM_GATES, 4, &fws);
         FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_1, 0.8);
-        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_2, 0.3);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_2, 0.8);
         FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_3, 0.8);
-        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_4, 0.3);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_4, 0.8);
         //counter++;
-        snprintf(ARRANDN(uart_buffer), "|MASTER|Cnt: %u||Phase:%u\n", DL_Timer_getTimerCount(PWMTIMERSYNC_REG), DL_Timer_getPhaseLoadValue(PWMTIMERSYNC_REG));
+        snprintf(ARRANDN(uart_buffer), "|MASTER|Cnt: %u||\tPhase:%u||\tTrig:%u\n", DL_Timer_getTimerCount(PWMTIMERSYNC_REG), DL_Timer_getPhaseLoadValue(PWMTIMERSYNC_REG), DL_Timer_getCrossTriggerEnable(PWMTIMERSYNC_REG));
         System::uart0.nputs(ARRANDN(uart_buffer));
-        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_1|Cnt: %u||Phase:%u||PhaseOn:%d\n", DL_Timer_getTimerCount(PWM_GATE_1.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_1.timer), DL_Timer_isPhaseLoadEnabled(PWM_GATE_1.timer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_1|Cnt: %u||\tPhase:%u||\tTrig:%d\n", DL_Timer_getTimerCount(PWM_GATE_1.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_1.timer), DL_Timer_getCrossTriggerEnable(PWM_GATE_1.timer));
         System::uart0.nputs(ARRANDN(uart_buffer));
-        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_3|Cnt: %u||Phase:%u||PhaseOn:%d\n", DL_Timer_getTimerCount(PWM_GATE_3.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_3.timer), DL_Timer_isPhaseLoadEnabled(PWM_GATE_3.timer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_3|Cnt: %u||\tPhase:%u||\tTrig:%d\n", DL_Timer_getTimerCount(PWM_GATE_3.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_3.timer), DL_Timer_getCrossTriggerEnable(PWM_GATE_3.timer));
         System::uart0.nputs(ARRANDN(uart_buffer));
 
         if(counter % 20 < 10)

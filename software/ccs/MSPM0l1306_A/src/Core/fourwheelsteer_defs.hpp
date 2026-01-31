@@ -129,22 +129,29 @@ namespace FWS_Utils {
         /*
          * Groups all our needed timer functionality
          */
+
         typedef struct {
             GPTIMER_Regs *timer;                // Timer register
             DL_TIMER_CC_INDEX cc_index;         // CC index
             const uint32_t cc_output;           // CC Output index
-            const  System::GPIO::GPIO *pins;    // Timer Pins
-            const uint32_t *iomuxes;            // Timer IOMux
-            const buffsize_t count;             // Timer IOMux
+            const  System::GPIO::GPIO pin;      // Timer Pin
+            const uint32_t iomux;               // Timer IOmux
         } PWM;
+
+        typedef struct {
+            GPTIMER_Regs *timer;                // Timer register
+            const PWM *pwms;                    // pwms
+            const buffsize_t pwm_count;         // PWM Count
+        } TIMER;
 
         // Inits basic timer functionality
         void INIT_TIMER_DSYNC(GPTIMER_Regs*);
         // Inits basic cross trigger timer functionality
         void INIT_TIMER_SYNC(GPTIMER_Regs*);
         // Inits basic pwm trigger timer functionality
-        void INIT_TIMER_PWM(PWM,uint32_t);
+        void INIT_TIMER_PWM(TIMER,uint32_t);
         // Inits basic pwm functionality
+        void INIT_PWM_OUTPUTS(TIMER,bool);
         void INIT_PWM_OUTPUT(PWM,bool);
 
         void start_timers(GPTIMER_Regs**, buffsize_t);
