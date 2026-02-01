@@ -170,28 +170,41 @@ constexpr DL_Timer_ClockConfig clkCfg = {
         };
 constexpr DL_Timer_PWMConfig pwmCfg = {
         .period            = FWS_Utils::PWM::PWMMAX,
-        .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //DL_TIMER_PWM_MODE_CENTER_ALIGN
+        .pwmMode           = DL_TIMER_PWM_MODE_EDGE_ALIGN, //Switch Once working DL_TIMER_PWM_MODE_CENTER_ALIGN
         .isTimerWithFourCC = true,
         .startTimer        = DL_TIMER_STOP,
+    };
+constexpr DL_Timer_TimerConfig timerCfg = {
+        .timerMode          = DL_TIMER_TIMER_MODE_PERIODIC,
+        .period             = FWS_Utils::PWM::PWMMAX,
+        .startTimer         = DL_TIMER_STOP,
+        .genIntermInt       = DL_TIMER_INTERM_INT_DISABLED,
+        .counterVal         = 0,
     };
 void FWS_Utils::PWM::INIT_TIMER_SYNC(GPTIMER_Regs *p_timer) {
     DL_Timer_enablePower(p_timer);
     DL_Timer_setClockConfig(p_timer, &clkCfg);
     DL_Timer_initPWMMode(p_timer, &pwmCfg);
+
+//    DL_Timer_configCrossTrigger(
+//        p_timer,
+//        DL_TIMER_CROSS_TRIG_SRC_LOAD,
+//        DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED,
+//        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
+//    );
+//    DL_Timer_configCrossTriggerEnable(p_timer, DL_TIMER_CROSS_TRIGGER_MODE_ENABLED);
+
+
+    constexpr uint32_t LOAD_SOURCE = ((uint32_t)0x00030000U);   // GPTIMER_CTTRIGCTL_EVTCTTRIGSEL_L
+
+    // Enable input + cross-trigger mode
+    constexpr uint32_t ENABLE_INPUT = ((uint32_t)0x00000000U);   // GPTIMER_CTTRIGCTL_EVTCTEN_DISABLED
+    constexpr uint32_t ENABLE_MODE  = ((uint32_t)0x00000001U);   // GPTIMER_CTTRIGCTL_CTEN_ENABLE
+
+    p_timer->COMMONREGS.CTTRIGCTL = LOAD_SOURCE | ENABLE_INPUT | ENABLE_MODE;
+
     DL_Timer_enableClock(p_timer);
-
-    DL_Timer_configCrossTrigger(
-        p_timer,
-        DL_TIMER_CROSS_TRIG_SRC_ZERO,           // emit FSUB0 on ZERO
-        DL_TIMER_CROSS_TRIGGER_INPUT_DISABLED,
-        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-    );
-    DL_Timer_configCrossTriggerEnable(
-        p_timer,
-        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED);
-
     DL_Timer_startCounter(p_timer);
-    DL_Timer_generateCrossTrigger(p_timer);
 }
 void FWS_Utils::PWM::INIT_TIMER_PWM(TIMER p_timer, uint32_t p_phase) {
     GPTIMER_Regs* timer = p_timer.timer;
@@ -209,25 +222,39 @@ void FWS_Utils::PWM::INIT_TIMER_PWM(TIMER p_timer, uint32_t p_phase) {
                     DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
                     DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
                 );
-//            DL_Timer_setCaptCompUpdateMethod(timer, DL_TIMER_CC_UPDATE_METHOD_TRIG_EVT, p_timer.pwms[i].cc_index);
-//            DL_Timer_setCaptureCompareOutCtl(timer, DL_TIMER_CC_OCTL_INIT_VAL_LOW, DL_TIMER_CC_OCTL_INV_OUT_DISABLED, DL_TIMER_CC_OCTL_SRC_FUNCVAL, p_timer.pwms[i].cc_index);
-//          DL_TimerG_setCaptureCompareValue(timer, 500, p_timer.pwms[i].cc_index);
         }
     }
-
-    DL_Timer_configCrossTrigger(
-        timer,
-        DL_TIMER_CROSS_TRIG_SRC_FSUB0,
-        DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
-        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-    );
-//    DL_Timer_configCrossTriggerEnable(
+//    DL_Timer_configCrossTrigger(
 //        timer,
+//        DL_TIMER_CROSS_TRIG_SRC_FSUB0,
+//        DL_TIMER_CROSS_TRIGGER_INPUT_ENABLED,
 //        DL_TIMER_CROSS_TRIGGER_MODE_ENABLED
-//        );
+//    );
+//    DL_Timer_configCrossTriggerEnable(timer, DL_TIMER_CROSS_TRIGGER_MODE_ENABLED);
 
-//    DL_Timer_setExternalTriggerEvent(timer,
-//        DL_TIMER_EXT_TRIG_SEL_TRIG_SUB_0);
+
+    // FSUB0 = 0 (or 1 depending on master config)
+//    constexpr uint32_t FSUB0_SOURCE = DL_TIMER_CROSS_TRIG_SRC_FSUB0;
+//
+//    // Enable input + cross-trigger mode
+//    constexpr uint32_t ENABLE_INPUT = 1 << 4;   // CTINPEN
+//    constexpr uint32_t ENABLE_MODE  = 1 << 5;   // CTMODE or CTOUTEN
+
+    constexpr uint32_t FSUB0_SOURCE =((uint32_t) 0x00000000U);   // GPTIMER_CTTRIGCTL_EVTCTTRIGSEL_FSUB0
+
+    // Enable input + cross-trigger mode
+    constexpr uint32_t ENABLE_INPUT = ((uint32_t)0x00000002U);   // GPTIMER_CTTRIGCTL_EVTCTEN_ENABLE
+    constexpr uint32_t ENABLE_MODE  = ((uint32_t)0x00000001U);   // GPTIMER_CTTRIGCTL_CTEN_ENABLE
+
+
+    timer->COMMONREGS.CTTRIGCTL = FSUB0_SOURCE | ENABLE_INPUT | ENABLE_MODE;
+//    timer->COMMONREGS.CTTRIGCTL = (uint32_t) 0x3 | (uint32_t) 0x0 | (uint32_t) 0x20;
+
+
+//    DL_Timer_setExternalTriggerEvent(
+//            timer,
+//        DL_TIMER_EXT_TRIG_SEL_TRIG_SUB_0
+//    );
 
     DL_Timer_setCounterControl(
         timer,
@@ -237,11 +264,9 @@ void FWS_Utils::PWM::INIT_TIMER_PWM(TIMER p_timer, uint32_t p_phase) {
     );
 
     DL_Timer_enablePhaseLoad(timer);
-    DL_Timer_setPhaseLoadValue(timer, p_phase);   // 0 = symmetric
+    DL_Timer_setPhaseLoadValue(timer, p_phase);
 
     DL_Timer_enableClock(timer);
-
-    DL_Timer_startCounter(timer);
 }
 void FWS_Utils::PWM::INIT_PWM_OUTPUTS(TIMER p_timer, bool p_invert)  {
     for(int i = 0; i < p_timer.pwm_count; i++)

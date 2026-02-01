@@ -33,6 +33,8 @@
 #define GateDriver3_PIN         System::GPIO::PA10
 #define GateDriver4_PIN         System::GPIO::PA11
 
+#define PIN_15         System::GPIO::PA15
+
 #define LED1_PIN                System::GPIO::PA0
 #define LED2_PIN                System::GPIO::PA26
 

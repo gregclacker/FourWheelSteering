@@ -6,7 +6,6 @@
  */
 
 #include <cstdio>
-#include <ti/driverlib/dl_timera.h>.h>
 
 #include "fourwheelsteer_defs.hpp"
 #include "system.hpp"
@@ -93,13 +92,21 @@ const PWM PWM_GATE_4 {
     .iomux      = IOMUX_PINCM12_PF_TIMG4_CCP1       // Timer4-PWM2
 };
 
+const PWM PWM_PIN_15 {
+    .timer      = PWMTIMER2_REG,
+    .cc_index   = DL_TIMER_CC_1_INDEX,
+    .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
+    .pin        = PIN_15,                           // PA16
+    .iomux      = IOMUX_PINCM16_PF_TIMG4_CCP1       // Timer4-PWM2
+};
+
 static const PWM timer1_pwms[] = { PWM_GATE_1, PWM_GATE_2 };         // PA3 & PA4
 const TIMER TIMER2 {
     .timer      = PWMTIMER1_REG,
     .pwms       = timer1_pwms,
     .pwm_count  = 2
 };
-static const PWM timer2_pwms[] = { PWM_GATE_3, PWM_GATE_4 };         // PA10 & PA11
+static const PWM timer2_pwms[] = { PWM_GATE_3, PWM_PIN_15 };         // PA10 & PA11
 const TIMER TIMER4 {
     .timer      = PWMTIMER2_REG,
     .pwms       = timer2_pwms,
@@ -179,19 +186,18 @@ void init() {
 ////    INIT_PWM_OUTPUT(PWM_LED2);
 //
     INIT_TIMER_SYNC(PWMTIMERSYNC_REG);
-    //PWMMAX/2
     INIT_TIMER_PWM(TIMER2, 0);
     INIT_TIMER_PWM(TIMER4,PWMMAX/2);  //PWMMAX/2
 
-    INIT_PWM_OUTPUT(TIMER2.pwms[0], false);
-    INIT_PWM_OUTPUT(TIMER2.pwms[1], false);
-    INIT_PWM_OUTPUT(TIMER4.pwms[0], false);
-    INIT_PWM_OUTPUT(TIMER4.pwms[1], false);
+    INIT_PWM_OUTPUTS(TIMER2, false);
+    INIT_PWM_OUTPUTS(TIMER4, false);
+
+    DL_Timer_generateCrossTrigger(PWMTIMERSYNC_REG);
 //
 //    INIT_PWM_OUTPUT(PWM_GATE_1, false);
 //    INIT_PWM_OUTPUT(PWM_GATE_2, false);
 //    INIT_PWM_OUTPUT(PWM_GATE_3, false);
-//    INIT_PWM_OUTPUT(PWM_GATE_4, false);
+//    INIT_PWM_OUTPUT(PWM_PIN_15, false);
 //
 //    pwm_start_timers();
 //    start_timer(PWMTIMERSYNC_REG);
@@ -204,7 +210,7 @@ void init() {
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_1.timer, PWMMAX);
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_3.timer, PWMMAX);
 //    DL_Timer_setPhaseLoadValue(PWM_GATE_2.timer, PWMMAX/2);
-//    DL_Timer_setPhaseLoadValue(PWM_GATE_4.timer, PWMMAX/2);
+//    DL_Timer_setPhaseLoadValue(PWM_PIN_15.timer, PWMMAX/2);
 }
 
 GPTIMER_Regs *master = PWMTIMERSYNC_REG;
@@ -329,13 +335,13 @@ void run() {
         FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_1, 0.8);
         FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_2, 0.8);
         FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_3, 0.8);
-        FWS_Utils::PWM::set_PWM_duty(&PWM_GATE_4, 0.8);
+        FWS_Utils::PWM::set_PWM_duty(&PWM_PIN_15, 0.8);
         //counter++;
-        snprintf(ARRANDN(uart_buffer), "|MASTER|Cnt: %u||\tPhase:%u||\tTrig:%u\n", DL_Timer_getTimerCount(PWMTIMERSYNC_REG), DL_Timer_getPhaseLoadValue(PWMTIMERSYNC_REG), DL_Timer_getCrossTriggerEnable(PWMTIMERSYNC_REG));
+        snprintf(ARRANDN(uart_buffer), "|MASTER|Cnt: %u||\tPhase:%u||\tconf:%u\n", DL_Timer_getTimerCount(PWMTIMERSYNC_REG), DL_Timer_getPhaseLoadValue(PWMTIMERSYNC_REG), DL_Timer_getCrossTriggerConfig(PWMTIMERSYNC_REG));
         System::uart0.nputs(ARRANDN(uart_buffer));
-        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_1|Cnt: %u||\tPhase:%u||\tTrig:%d\n", DL_Timer_getTimerCount(PWM_GATE_1.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_1.timer), DL_Timer_getCrossTriggerEnable(PWM_GATE_1.timer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_1|Cnt: %u||\tPhase:%u||\tconf:%u\n", DL_Timer_getTimerCount(PWM_GATE_1.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_1.timer), DL_Timer_getCrossTriggerConfig(PWM_GATE_1.timer));
         System::uart0.nputs(ARRANDN(uart_buffer));
-        snprintf(ARRANDN(uart_buffer), "|PWM_GATE_3|Cnt: %u||\tPhase:%u||\tTrig:%d\n", DL_Timer_getTimerCount(PWM_GATE_3.timer), DL_Timer_getPhaseLoadValue(PWM_GATE_3.timer), DL_Timer_getCrossTriggerEnable(PWM_GATE_3.timer));
+        snprintf(ARRANDN(uart_buffer), "|PWM_PIN_15|Cnt: %u||\tPhase:%u||\tSrc:%u\n", DL_Timer_getTimerCount(PWM_PIN_15.timer), DL_Timer_getPhaseLoadValue(PWM_PIN_15.timer), DL_Timer_getCrossTriggerSrc(PWM_PIN_15.timer));
         System::uart0.nputs(ARRANDN(uart_buffer));
 
         if(counter % 20 < 10)
@@ -404,8 +410,7 @@ void leds_with_pwm() {
 //    set_PWM_duty(PWM_GATE_1, 0.1);
 //    set_PWM_duty(PWM_GATE_2, 0.1);
 //    set_PWM_duty(PWM_GATE_3, 0.1);
-//    set_PWM_duty(PWM_GATE_4, 0.9);
-//    set_PWM_duty(PWM_GATE_4, 0.9);
+//    set_PWM_duty(PWM_PIN_15, 0.9);
 
     while(1) {
         //int duty_cycle = get_PWM_duty_cycle(FWS_Utils::ADC::get_ADC_voltage(ADC_1_ADDR));
@@ -425,7 +430,7 @@ void leds_with_pwm() {
         set_PWM_duty(&PWM_GATE_1, duty);
         set_PWM_duty(&PWM_GATE_2, duty);
         set_PWM_duty(&PWM_GATE_3, duty);
-        set_PWM_duty(&PWM_GATE_4, duty);
+        set_PWM_duty(&PWM_PIN_15, duty);
         delay_cycles(System::CLK::CPUCLK/20);
     }
 }
