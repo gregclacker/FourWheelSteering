@@ -1,17 +1,10 @@
 /*
- * pid_defs.hpp
+ * fourwheelsteer_defs.hpp
  *
  *  Created on: Nov 25, 2025
  *      Author: FSAE
- */
-
-
-/*
- * PWM Signal will use the digital output to drive the anolog voltage. This voltage is scaled by the pwm timer
- * The H Bridge has 4 fets. These 4 fets are meant to be managed by 4 GPIO pins
- * Fets that are diagonally oppositly active to one another are in sync while the nearby fets are inversely active
- * Ensure the fets with the same terminal are not active with one another. If they are it will short
- * Once a pair of fets are disabled the other pair must be activated within some x amount of nanoseconds or the motor destroys itself
+ *      Drived From: https://github.com/gregclacker/FourWheelSteering/tree/main/original%20VSC%20project
+ *      Contributer: Marcus Turley, Abdul-Muizz Abgoola
  */
 
 #include <stdint.h>
@@ -27,31 +20,26 @@
 #define ESP_OK 0
 
 //TIMG0_C0, TIMG0_C1, TIMG4_C0, TIMG4_C0
-#define GateDriver1_PIN         System::GPIO::PA3
-#define GateDriver2_PIN         System::GPIO::PA4
+#define GATE_PIN_1         System::GPIO::PA3
+#define GATE_PIN_2         System::GPIO::PA4
 
-#define GateDriver3_PIN         System::GPIO::PA10
-#define GateDriver4_PIN         System::GPIO::PA11
+#define GATE_PIN_3         System::GPIO::PA10
+#define GATE_PIN_4         System::GPIO::PA11
 
-#define PIN_15         System::GPIO::PA15
+#define TIMERSYNC_REG           TIMG0
+#define TIMER_REG_1             TIMG2
+#define TIMER_REG_2             TIMG4
 
-#define LED1_PIN                System::GPIO::PA0
-#define LED2_PIN                System::GPIO::PA26
-
-//#define Dir_Pin =             System::GPIO::PA0
-#define PWM_Pin                 System::GPIO::PA26
-
-#define PWMTIMERSYNC_REG        TIMG0
-#define PWMTIMER1_REG           TIMG2
-#define PWMTIMER2_REG           TIMG4
-
-#define ADC_1_ADDR              0x49 //TODO: NOT ACTUAL ADDRESS PLS FIX OR U WILL BE SAD FOR THE REST OF UR LIFE :( WOMP WOMP DO BETTER L CODE
+#define ADC_1_ADDR              0x49 // TODO: Update this address to match adc
 #define ADC_2_ADDR              0x50
 
 namespace System { namespace GPIO { } }
 
 namespace FWS_Utils {
 
+    /* NB - All this stuff is derived from the FourwheelSteering github we forked:
+     * The github contains helpful front and rear wheel steer math for angles
+     */
     namespace FWS {
 
         typedef struct {
@@ -93,10 +81,13 @@ namespace FWS_Utils {
             int ADJUSTMENT_KNOB_VALUE;      //The value of the adjustment knob that will be used on calculations
         } FWS;
 
-        // Basic init for PID struct
+        // Basic init for FWS struct
         void INIT_FWS(FWS*);
     }
 
+    /* NB - All this stuff is derived from the FourwheelSteering github we forked:
+     * The github contains helpful front and rear wheel steer math for angles
+     */
     namespace PID {
         /*
          * How to tune Ki
@@ -107,31 +98,29 @@ namespace FWS_Utils {
          * Kp reacts to now. Ki reacts to the past. Kd reacts to the future.
          */
         typedef struct {
-            double Kp;
-            double Ki;
-            double Kd;
+            double kp;
+            double ki;
+            double kd;
             double previous_error;
             double integral;
         } PID;
 
-        // Basic init for PID struct
-        void INIT_PID(PID*, FWS::FWS*);
-        // Front angle
-        double fs_POT(FWS::FWS*);
-        // Rear angle
-        double rs_POT(FWS::FWS*);
-        // Calculates PID
-        double caclulate_PID(PID*, double);
-        // Gets the target rear angle
-        double target_rear_angle(double, FWS::FWS*);
+        void INIT_PID(PID*, FWS::FWS*);                 // Basic init for PID struct
+        double fs_pot(FWS::FWS*);                       // Front angle
+        double rs_pot(FWS::FWS*);                       // Rear angle
+        double caclulate_pid(PID*, double);             // Calculates PID
+        double target_rear_angle(double, FWS::FWS*);    // Gets the target rear angle
     }
 
+    /* Namespace containing general timer/pwm information
+     * The general idea is to have a group of pwms contained within the 'pwms' variable for access
+     * Make sure you properly set the 'pwm_count' so functions execute properly
+     */
     namespace PWM {
         constexpr uint32_t PWMMAX = 0xFFFF;
         /*
          * Groups all our needed timer functionality
          */
-
         typedef struct {
             GPTIMER_Regs *timer;                // Timer register
             DL_TIMER_CC_INDEX cc_index;         // CC index
@@ -139,59 +128,58 @@ namespace FWS_Utils {
             const  System::GPIO::GPIO pin;      // Timer Pin
             const uint32_t iomux;               // Timer IOmux
         } PWM;
-
+        extern const PWM PWM_GATE_1;
+        extern const PWM PWM_GATE_2;
+        extern const PWM PWM_GATE_3;
+        extern const PWM PWM_GATE_4;
         typedef struct {
             GPTIMER_Regs *timer;                // Timer register
             const PWM *pwms;                    // pwms
             const buffsize_t pwm_count;         // PWM Count
         } TIMER;
+        extern const TIMER PWM_TIMER_1;
+        extern const TIMER PWM_TIMER_2;
 
-        // Inits basic timer functionality
-        void INIT_TIMER_DSYNC(GPTIMER_Regs*);
-        // Inits basic cross trigger timer functionality
-        void INIT_TIMER_SYNC(GPTIMER_Regs*);
-        // Inits basic pwm trigger timer functionality
-        void INIT_TIMER_PWM(TIMER,uint32_t);
-        // Inits basic pwm functionality
-        void INIT_PWM_OUTPUTS(TIMER,bool);
-        void INIT_PWM_OUTPUT(PWM,bool);
 
-        void start_timers(GPTIMER_Regs**, buffsize_t);
-        void start_timer(GPTIMER_Regs*);
+        void INIT_TIMER_BASIC(TIMER,uint32_t);  // Inits basic individual timer functionality
+        void INIT_TIMER_MASTER(GPTIMER_Regs*);  // Inits basic master timer functionality through cross trigger
+        void INIT_TIMER_SLAVE(TIMER,uint32_t);  // Inits basic slave timer functionality through cross trigger
+
+        void INIT_PWM_OUTPUTS(TIMER,bool,bool);
+        void INIT_PWM_OUTPUT_SLAVE(PWM,bool);
+        void INIT_PWM_OUTPUT_BASIC(PWM,bool);
+
+        void start_timers(GPTIMER_Regs**, buffsize_t, bool);
+        void start_timer(GPTIMER_Regs*, bool);
         void stop_timers(GPTIMER_Regs**, buffsize_t);
         void stop_timer(GPTIMER_Regs*);
 
-        // Gets PWM output
-        uint32_t PWM_output(const PWM*);
-        // Sets get PWM duty
-        int PWM_duty(double);
-        // Sets PWM duty
-        void set_PWM_duty(const PWM*, double);
+        uint32_t get_cc_output(const PWM*);     // Gets PWM output raw
+        int get_duty(const PWM*);                   // Gets get PWM duty as a
+        void set_duty(const PWM*, double);      // Sets PWM duty
     }
 
+    /* Namespace containing motor functionality
+     */
     namespace Motor {
-        inline int motor_move = 0;
-        // Steers the motor
-        void steer_motor(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
-        // Turns the motor right through the H-bridge
-        void motor_forward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
-        // Turns the motor left through the H-bridge
-        void motor_backward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);
-        // Error move
-        double steer_error(FWS::FWS*);
+        void steer_motor(const PWM::PWM* const*, buffsize_t, FWS::FWS*);        // Steers the motor
+        void motor_forward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);      // Turns the motor right through the H-bridge
+        void motor_backward(const PWM::PWM* const*, buffsize_t, FWS::FWS*);     // Turns the motor left through the H-bridge
+        double steer_error(FWS::FWS*);                                          // Error move
     }
 
+    /* Namespace containing adc functionality
+     */
     namespace ADC {
-        const bool use_external = false;
-        // Gets the raw binary voltage data over I2c
-        void get_adc_raw(uint8_t, int16_t*);
-        // Gets the adc voltage over I2c
-        double get_adc_voltage(uint8_t);
+        const bool use_external = false;        // Gets the raw binary voltage data over I2c
+        void get_adc_raw(uint8_t, int16_t*);    // Gets raw the adc voltage data over I2c
+        double get_adc_voltage(uint8_t);        // Gets the adc voltage over I2c
     }
-//uint32_t, DL_TIMER_CC_INDEX
+
+    /* Namespace containing any gpio functionality
+     */
     namespace GPIO {
-        // Inits basic GPIO functionality
-        void INIT_GPIO(System::GPIO::GPIO);
+        void INIT_GPIO(System::GPIO::GPIO);     // Inits basic GPIO functionality
     }
 }
 

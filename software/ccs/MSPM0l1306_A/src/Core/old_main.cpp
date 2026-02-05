@@ -386,6 +386,7 @@ int main(void) {
                DL_TIMER_CC_OCTL_SRC_FUNCVAL,
                DL_TIMER_CC_INDEX::DL_TIMER_CC_0_INDEX
            );
+
        DL_Timer_setCaptCompUpdateMethod(
                PWMTimer,
                DL_TIMER_CC_UPDATE_METHOD::DL_TIMER_CC_UPDATE_METHOD_IMMEDIATE,
