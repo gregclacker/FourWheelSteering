@@ -46,6 +46,7 @@
 #include <stdbool.h>
 
 #include <ti/driverlib/driverlib.h>
+#include <ti/driverlib/dl_timera.h>
 
 
 /*--- meta ---------------------------------------------*/

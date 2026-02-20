@@ -72,6 +72,7 @@ const PWM FWS_Utils::PWM::PWM_GATE_1 {
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
     .pin        = GATE_PIN_1,                       // PA03
     .iomux      = IOMUX_PINCM4_PF_TIMG2_CCP0,       // PWM_TIMER_1-PWM1
+    .phase      = PWMMAX * 0.0
 };
 const PWM FWS_Utils::PWM::PWM_GATE_2 {
     .timer      = TIMER_REG_1,
@@ -79,6 +80,7 @@ const PWM FWS_Utils::PWM::PWM_GATE_2 {
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
     .pin        = GATE_PIN_2,                       // PA04
     .iomux      = IOMUX_PINCM5_PF_TIMG2_CCP1,       // PWM_TIMER_1-PWM2
+    .phase      = PWMMAX * 0.5
 };
 const PWM FWS_Utils::PWM::PWM_GATE_3 {
     .timer      = TIMER_REG_2,
@@ -86,13 +88,15 @@ const PWM FWS_Utils::PWM::PWM_GATE_3 {
     .cc_output  = GPTIMER_CCPD_C0CCP0_OUTPUT,
     .pin        = GATE_PIN_3,                       // PA10
     .iomux      = IOMUX_PINCM11_PF_TIMG4_CCP0,      // PWM_TIMER_2-PWM2
+    .phase      = PWMMAX * 0.0
 };
 const PWM FWS_Utils::PWM::PWM_GATE_4 {
     .timer      = TIMER_REG_2,
     .cc_index   = DL_TIMER_CC_1_INDEX,
     .cc_output  = GPTIMER_CCPD_C0CCP1_OUTPUT,
     .pin        = GATE_PIN_4,                       // PA11
-    .iomux      = IOMUX_PINCM12_PF_TIMG4_CCP1       // PWM_TIMER_2-PWM2
+    .iomux      = IOMUX_PINCM12_PF_TIMG4_CCP1,       // PWM_TIMER_2-PWM2
+    .phase      = PWMMAX * 0.5
 };
 
 static const PWM timer_1_pwms[] = { PWM_GATE_1, PWM_GATE_2 };         // PA3 & PA4
@@ -149,6 +153,9 @@ void init() {
     INIT_TIMER_BASIC(PWM_TIMER_2, PWMMAX/2);
     INIT_PWM_OUTPUTS(PWM_TIMER_2, false, false);
 
+    start_timer(PWM_TIMER_1.timer, false);
+    start_timer(PWM_TIMER_2.timer, false);
+
     // This section does not work currently since I could not get timersync work
     // TODO: Trying to get timer sync working but could not. If you can't get it working try shifting output of pwm in code :(
 //    INIT_TIMER_MASTER(TIMERSYNC_REG);
@@ -158,6 +165,7 @@ void init() {
 //    INIT_PWM_OUTPUTS(PWM_TIMER_1, true, false);
 //    INIT_PWM_OUTPUTS(PWM_TIMER_2, true, false);
 //    DL_Timer_generateCrossTrigger(TIMERSYNC_REG);
+//    start_timer(TIMERSYNC_REG, true);
 
     INIT_PID(&pid, &fws);
     INIT_FWS(&fws);
@@ -167,11 +175,9 @@ void run() {
 //    init_duty(0.0);
     GPTIMER_Regs *_timers[] = {PWM_TIMER_1.timer, PWM_TIMER_2.timer};
 //    start_timers(_timers, 2, false);
-    start_timer(PWM_TIMER_1.timer, false);
-    start_timer(PWM_TIMER_2.timer, false);
 
-    init_duty(0);
-    DL_Timer_setCaptureCompareValue(PWM_TIMER_1.timer, (uint32_t)(PWMMAX * 0), DL_TIMER_CC_0_INDEX);
+    init_duty(0.8);
+//    DL_Timer_setCaptureCompareValue(PWM_TIMER_1.timer, (uint32_t)(PWMMAX * 0), DL_TIMER_CC_0_INDEX);
 
     while(1) {
         //This should steer the motor but make sure you're pwms work first
@@ -210,14 +216,16 @@ void print_gate_stat(TIMER p_timer, const char* p_name = nullptr) {
     GPTIMER_Regs *_timer_reg;
     if(p_name == nullptr)
         p_name = "Timer";
-    snprintf(ARRANDN(uart_buffer), "|%s|Count: %u||Duty_1:%u||Duty_2:%u|Phase:%u||Config:%u\n",
-             p_name,
-             DL_Timer_getTimerCount(_timer_reg),
-             FWS_Utils::PWM::get_duty(&p_timer.pwms[0]),
-             FWS_Utils::PWM::get_duty(&p_timer.pwms[1]),
-             DL_Timer_getPhaseLoadValue(_timer_reg),
-             DL_Timer_getCrossTriggerConfig(_timer_reg)
-             );
+    snprintf(ARRANDN(uart_buffer), "||%s||Count: %u||Duty_1:%u||Duty_2:%u||Phase:%u||Phase:%u||Config:%u\n||",
+            p_name,
+            DL_Timer_getTimerCount(_timer_reg),
+            FWS_Utils::PWM::get_duty(&p_timer.pwms[0]),
+            FWS_Utils::PWM::get_duty(&p_timer.pwms[1]),
+//            DL_Timer_getPhaseLoadValue(_timer_reg),
+            get_phase(&p_timer.pwms[0]),
+            get_phase(&p_timer.pwms[1]),
+            DL_Timer_getCrossTriggerConfig(_timer_reg)
+        );
     System::uart0.nputs(ARRANDN(uart_buffer));
 }
 
