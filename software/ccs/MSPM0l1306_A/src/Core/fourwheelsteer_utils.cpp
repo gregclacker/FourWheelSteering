@@ -273,33 +273,55 @@ void FWS_Utils::PWM::stop_timers(GPTIMER_Regs **p_timer, buffsize_t p_size) {
 void FWS_Utils::PWM::stop_timer(GPTIMER_Regs *p_timer) {
     DL_Timer_stopCounter(p_timer);
 }
-uint32_t FWS_Utils::PWM::get_cc_output(const PWM *p_pwm) {
-    return get_cc_phase(p_pwm) + DL_Timer_getCaptureCompareValue(p_pwm->timer, p_pwm->cc_index);
+uint32_t FWS_Utils::PWM::get_counter_output(GPTIMER_Regs *p_timer_reg) {
+    return DL_Timer_getTimerCount(p_timer_reg);
 }
-int FWS_Utils::PWM::get_duty(const PWM *p_pwm) {
-    int cc_duty = (int)(get_cc_phase(p_pwm) + fabs(get_cc_output(p_pwm)) * (PWMMAX / 15)); // Adjusted scaling factor
+uint32_t FWS_Utils::PWM::get_counter_value(const PWM *p_pwm) {
+    return get_counter_output(p_pwm->timer) + get_ccv_phase(p_pwm);
+}
+
+uint32_t FWS_Utils::PWM::get_ccv(const PWM *p_pwm) {
+    int _ccv = (int)(fabs(get_ccr_output(p_pwm)) * (PWMMAX / 15)); // Adjusted scaling factor
     // Ensure duty cycle is within valid range
-    if (cc_duty > PWMMAX) return PWMMAX;
-    if (cc_duty > 0 && cc_duty < 300) return 400;  // Minimum force to actually move
-    return get_phase(p_pwm) + cc_duty;
+    if (_ccv > PWMMAX) return PWMMAX;
+    if (_ccv > 0 && _ccv < 300) return 400;  // Minimum force to actually move
+    return get_ccv_phase(p_pwm) + _ccv;
 }
+double FWS_Utils::PWM::get_duty(const PWM *p_pwm) {
+    return pwm_ccv_to_ratio(get_ccv(p_pwm));
+}
+uint32_t FWS_Utils::PWM::get_ccr_output(const PWM *p_pwm) {
+    return DL_Timer_getCaptureCompareValue(p_pwm->timer, p_pwm->cc_index);
+}
+uint32_t FWS_Utils::PWM::get_ccv_phase(const PWM *p_pwm) {
+    return p_pwm->phase;
+}
+uint32_t FWS_Utils::PWM::get_ccv_max(const PWM *p_pwm) {
+    return PWMMAX + get_ccv_phase(p_pwm);
+}
+
+/*
+void FWS_Utils::PWM::set_PWM_duty(const PWM *p_pwm, double p_duty) {
+    uint32_t _ccr = PWMMAX * (1 - p_duty);
+    if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
+    DL_Timer_setCaptureCompareValue(p_pwm->timer, _ccr, p_pwm->cc_index);
+}
+ */
+uint32_t FWS_Utils::PWM::pwm_duty_to_ccv(double p_duty) {
+    uint32_t _ccv = PWMMAX * (1 - p_duty);
+    return (_ccv >= PWMMAX) ? PWMMAX - 1 : _ccv;
+}
+double FWS_Utils::PWM::pwm_ccv_to_ratio(uint32_t p_ccv) {
+    return (double)p_ccv / PWMMAX;
+}
+
 void FWS_Utils::PWM::set_duty(const PWM *p_pwm, double p_duty) {
 //    uint32_t _ccr = PWMMAX * (1 - p_duty);
 //    if(_ccr >= PWMMAX) _ccr = PWMMAX - 1;
-    DL_Timer_setCaptureCompareValue(p_pwm->timer, cc_value_ratio(p_duty), p_pwm->cc_index);
-}
-double FWS_Utils::PWM::cc_value_ratio(double p_ratio) {
-    uint32_t _ccr = PWMMAX * (1 - p_ratio);
-    return (_ccr >= PWMMAX) ? PWMMAX - 1 : _ccr;
+    DL_Timer_setCaptureCompareValue(p_pwm->timer, pwm_duty_to_ccv(p_duty), p_pwm->cc_index);
 }
 void FWS_Utils::PWM::set_phase(PWM *p_pwm, double p_phase) {
     p_pwm->phase = p_phase;
-}
-double FWS_Utils::PWM::get_phase(const PWM *p_pwm) {
-    return cc_value_ratio(get_cc_phase(p_pwm));
-}
-int FWS_Utils::PWM::get_cc_phase(const PWM *p_pwm) {
-    return p_pwm->phase * PWMMAX;
 }
 
 

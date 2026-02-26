@@ -26,6 +26,11 @@
 #define GATE_PIN_3         System::GPIO::PA10
 #define GATE_PIN_4         System::GPIO::PA11
 
+#define Output_1         System::GPIO::PA17
+#define Output_2         System::GPIO::PA18
+#define Output_3         System::GPIO::PA21
+#define Output_4         System::GPIO::PA24
+
 #define TIMERSYNC_REG           TIMG0
 #define TIMER_REG_1             TIMG2
 #define TIMER_REG_2             TIMG4
@@ -127,7 +132,7 @@ namespace FWS_Utils {
             const uint32_t cc_output;           // CC Output index
             const System::GPIO::GPIO pin;       // Timer Pin
             const uint32_t iomux;               // Timer IOmux
-            double phase;
+            uint32_t phase;
         } PWM;
         extern const PWM PWM_GATE_1;
         extern const PWM PWM_GATE_2;
@@ -155,14 +160,21 @@ namespace FWS_Utils {
         void stop_timers(GPTIMER_Regs**, buffsize_t);
         void stop_timer(GPTIMER_Regs*);
 
-        uint32_t get_cc_output(const PWM*);         // Gets PWM output raw
-        int get_duty(const PWM*);                   // Gets get PWM duty as a
-        void set_duty(const PWM*, double);   // Sets PWM duty
-        void set_phase(PWM *PWM, double);
-        double get_phase(const PWM *PWM);
-        int get_cc_phase(const PWM *PWM);
+        uint32_t get_counter_output(GPTIMER_Regs *);
+        uint32_t get_counter_value(const PWM*);
 
-        double cc_value_ratio(double);
+        uint32_t get_ccv(const PWM*);
+        double get_duty(const PWM*);
+        uint32_t get_ccv_phase(const PWM *PWM);
+
+        uint32_t get_ccv_max(const PWM*);
+        uint32_t get_ccr_output(const PWM*);    // Gets PWM output raw
+
+        uint32_t pwm_duty_to_ccv(double);
+        double pwm_ccv_to_ratio(uint32_t);
+
+        void set_duty(const PWM*, double);      // Sets PWM duty
+        void set_phase(PWM *PWM, double);
     }
 
     /* Namespace containing motor functionality
