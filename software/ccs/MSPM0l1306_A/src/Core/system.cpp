@@ -235,14 +235,14 @@ void System::init() {
 
         /*--- GPIO config ----------------*/
 
-        DL_GPIO_initPeripheralOutputFunctionFeatures(//    SCLK ,  PA11
-                IOMUX_PINCM12,
-                IOMUX_PINCM12_PF_SPI0_SCLK,
-                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
-                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
-                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
-                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
-            );
+//        DL_GPIO_initPeripheralOutputFunctionFeatures(//    SCLK ,  PA11
+//                IOMUX_PINCM12,
+//                IOMUX_PINCM12_PF_SPI0_SCLK,
+//                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+//                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+//                DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
+//                DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
+//            );
         DL_GPIO_initPeripheralOutputFunctionFeatures(//    MOSI, PA5
                 IOMUX_PINCM6,
                 IOMUX_PINCM6_PF_SPI0_PICO,
@@ -251,16 +251,16 @@ void System::init() {
                 DL_GPIO_DRIVE_STRENGTH::DL_GPIO_DRIVE_STRENGTH_HIGH,
                 DL_GPIO_HIZ::DL_GPIO_HIZ_DISABLE
             );
-        DL_GPIO_initPeripheralInputFunctionFeatures(//      MISO , PA10
-                IOMUX_PINCM11,
-                IOMUX_PINCM11_PF_SPI0_POCI,
-                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
-                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
-                DL_GPIO_HYSTERESIS::DL_GPIO_HYSTERESIS_ENABLE,
-                DL_GPIO_WAKEUP::DL_GPIO_WAKEUP_DISABLE
-            );
-        DL_GPIO_enableHiZ(IOMUX_PINCM11); // MISO
-        DL_GPIO_enableOutput(GPIOPINPUX(GPIO::PA11));
+//        DL_GPIO_initPeripheralInputFunctionFeatures(//      MISO , PA10
+//                IOMUX_PINCM11,
+//                IOMUX_PINCM11_PF_SPI0_POCI,
+//                DL_GPIO_INVERSION::DL_GPIO_INVERSION_DISABLE,
+//                DL_GPIO_RESISTOR::DL_GPIO_RESISTOR_NONE,
+//                DL_GPIO_HYSTERESIS::DL_GPIO_HYSTERESIS_ENABLE,
+//                DL_GPIO_WAKEUP::DL_GPIO_WAKEUP_DISABLE
+//            );
+//        DL_GPIO_enableHiZ(IOMUX_PINCM11); // MISO
+//        DL_GPIO_enableOutput(GPIOPINPUX(GPIO::PA11));
         DL_GPIO_enableOutput(GPIOPINPUX(GPIO::PA5));
         DL_GPIO_enableOutput(GPIOPINPUX(GPIO::PA10));
 

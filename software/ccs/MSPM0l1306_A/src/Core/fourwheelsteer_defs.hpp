@@ -125,13 +125,15 @@ namespace FWS_Utils {
             GPTIMER_Regs *timer;                // Timer register
             DL_TIMER_CC_INDEX cc_index;         // CC index
             const uint32_t cc_output;           // CC Output index
-            const  System::GPIO::GPIO pin;      // Timer Pin
+            const System::GPIO::GPIO pin;       // Timer Pin
             const uint32_t iomux;               // Timer IOmux
+            double phase;
         } PWM;
         extern const PWM PWM_GATE_1;
         extern const PWM PWM_GATE_2;
         extern const PWM PWM_GATE_3;
         extern const PWM PWM_GATE_4;
+        extern const PWM PWM_GATE_5;            // Remove this or remove it (probably forgot to remove)
         typedef struct {
             GPTIMER_Regs *timer;                // Timer register
             const PWM *pwms;                    // pwms
@@ -139,7 +141,6 @@ namespace FWS_Utils {
         } TIMER;
         extern const TIMER PWM_TIMER_1;
         extern const TIMER PWM_TIMER_2;
-
 
         void INIT_TIMER_BASIC(TIMER,uint32_t);  // Inits basic individual timer functionality
         void INIT_TIMER_MASTER(GPTIMER_Regs*);  // Inits basic master timer functionality through cross trigger
@@ -154,9 +155,14 @@ namespace FWS_Utils {
         void stop_timers(GPTIMER_Regs**, buffsize_t);
         void stop_timer(GPTIMER_Regs*);
 
-        uint32_t get_cc_output(const PWM*);     // Gets PWM output raw
+        uint32_t get_cc_output(const PWM*);         // Gets PWM output raw
         int get_duty(const PWM*);                   // Gets get PWM duty as a
-        void set_duty(const PWM*, double);      // Sets PWM duty
+        void set_duty(const PWM*, double);   // Sets PWM duty
+        void set_phase(PWM *PWM, double);
+        double get_phase(const PWM *PWM);
+        int get_cc_phase(const PWM *PWM);
+
+        double cc_value_ratio(double);
     }
 
     /* Namespace containing motor functionality
